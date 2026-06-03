@@ -175,9 +175,21 @@
             width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;
         }
         .cert-card:hover .cert-img-wrapper img { transform: scale(1.05); }
+
+        /* Loading Overlay */
+        .loader-overlay {
+            position: fixed; inset: 0; background: rgba(255,255,255,0.7); backdrop-filter: blur(4px);
+            z-index: 200; display: none; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .loader-overlay.active { display: flex; }
     </style>
 </head>
 <body>
+
+    <div id="loadingOverlay" class="loader-overlay">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-3"></div>
+        <p class="text-sm font-semibold text-gray-600">กำลังเชื่อมต่อข้อมูลแบบออนไลน์...</p>
+    </div>
 
     <nav class="glass sticky top-0 z-40 px-6 py-4 flex justify-between items-center">
         <div class="flex items-center gap-3">
@@ -234,23 +246,20 @@
                 <button onclick="setCategory('กีฬา')" class="px-5 py-2 rounded-full text-sm font-medium bg-white text-gray-600 hover:bg-gray-100 shadow-sm border border-gray-100">🏆 กีฬา</button>
             </div>
 
-            <div id="certGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                </div>
+            <div id="certGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
         </section>
 
         <section id="view-upload" class="view-section max-w-2xl mx-auto">
             <div class="glass p-8 rounded-3xl">
                 <h2 class="text-2xl font-bold mb-6 flex items-center gap-2"><i class="fa-solid fa-cloud-arrow-up text-blue-500"></i> อัปโหลดเกียรติบัตร</h2>
-                
                 <form id="uploadForm" onsubmit="handleUpload(event)" class="space-y-5">
                     <div>
                         <label class="block text-sm font-semibold mb-2">ชื่อรายการแข่งขัน <span class="text-red-500">*</span></label>
                         <input type="text" id="upTitle" required class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
                     </div>
-                    
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold mb-2">หมวดการเรียนรู้หลัก <span class="text-red-500">*</span></label>
+                            <label class="block text-sm font-semibold mb-2">หมวดหลัก <span class="text-red-500">*</span></label>
                             <select id="upCategory" required class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 outline-none">
                                 <option value="วิทยาศาสตร์">วิทยาศาสตร์</option>
                                 <option value="คณิตศาสตร์">คณิตศาสตร์</option>
@@ -260,21 +269,18 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold mb-2">หมวดหมู่ย่อย (ถ้ามี)</label>
+                            <label class="block text-sm font-semibold mb-2">หมวดหมู่ย่อย</label>
                             <input type="text" id="upSubCat" placeholder="เช่น ฟิสิกส์" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 outline-none">
                         </div>
                     </div>
-
                     <div>
                         <label class="block text-sm font-semibold mb-2">ชื่อผู้ได้รับรางวัล <span class="text-red-500">*</span></label>
                         <input type="text" id="upRecipient" required placeholder="นายสมชาย ใจดี" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 outline-none">
                     </div>
-
                     <div>
                         <label class="block text-sm font-semibold mb-2">รายละเอียดการแข่งขัน</label>
                         <textarea id="upDetails" rows="3" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 outline-none"></textarea>
                     </div>
-
                     <div>
                         <label class="block text-sm font-semibold mb-2">ไฟล์เกียรติบัตร (รูปภาพ) <span class="text-red-500">*</span></label>
                         <div class="border-2 border-dashed border-gray-300 rounded-2xl p-6 text-center hover:bg-gray-50 transition-colors relative">
@@ -283,9 +289,7 @@
                             <p class="text-sm text-gray-500" id="fileNameDisplay">คลิกหรือลากไฟล์รูปภาพมาวางที่นี่</p>
                         </div>
                     </div>
-
                     <button type="submit" class="w-full btn-apple py-4 text-lg shadow-lg mt-4">บันทึกและส่งตรวจสอบ</button>
-                    <p class="text-xs text-center text-gray-400 mt-2">หลังจากส่งแล้ว กรุณารอแอดมินอนุมัติ</p>
                 </form>
             </div>
         </section>
@@ -302,25 +306,22 @@
                             <th class="py-4 px-6 font-semibold text-sm">จัดการ</th>
                         </tr>
                     </thead>
-                    <tbody id="historyList" class="divide-y divide-gray-100">
-                        </tbody>
+                    <tbody id="historyList" class="divide-y divide-gray-100"></tbody>
                 </table>
             </div>
         </section>
 
         <section id="view-admin" class="view-section max-w-5xl mx-auto">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold">แผงควบคุมผู้ดูแลระบบ (Admin)</h2>
+                <h2 class="text-2xl font-bold">แผงควบคุมแอดมิน</h2>
                 <div class="flex gap-2 bg-gray-200 p-1 rounded-xl">
                     <button onclick="setAdminTab('pending')" id="tab-pending" class="px-4 py-1.5 rounded-lg text-sm font-semibold bg-white shadow-sm">รอดำเนินการ</button>
                     <button onclick="setAdminTab('approved')" id="tab-approved" class="px-4 py-1.5 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-100">อนุมัติแล้ว</button>
                     <button onclick="setAdminTab('rejected')" id="tab-rejected" class="px-4 py-1.5 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-100">ไม่อนุมัติ</button>
                 </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="adminGrid">
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="adminGrid"></div>
         </section>
-
     </main>
 
     <div class="glass dock-container">
@@ -334,7 +335,7 @@
         <div class="modal-content" onclick="event.stopPropagation()">
             <div class="relative h-64 bg-gray-100">
                 <img id="modalImg" src="" alt="Certificate" class="w-full h-full object-contain p-4">
-                <button onclick="closeModal()" class="absolute top-4 right-4 w-8 h-8 bg-black/50 text-white rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeModal()" class="absolute top-4 right-4 w-8 h-8 bg-black/50 text-white rounded-full flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="p-6">
                 <div class="flex gap-2 mb-2">
@@ -353,42 +354,59 @@
     </div>
 
     <script>
-        // --- 1. Global State & Mock DB ---
+        // ✅ URL หลังบ้านของคุณที่อัปเดตเรียบร้อยแล้ว
+        const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbxzMQaUdxrJd74_36gWRf_AGXXTljaHBu4BNMduAFS5bNkRTK24_zoJ5LD6Rfu4Ha76xQ/exec';
+
         let currentUser = null;
+        
+        // สามารถเพิ่มอีเมลผู้ดูแลระบบ (Admin) อื่นๆ ลงในนี้ได้
         const ADMIN_EMAILS = ['aceaa372@gmail.com'];
-        // โหลดข้อมูลจาก LocalStorage (ถ้าไม่มีให้สร้าง Array ว่าง)
-        let certificates = JSON.parse(localStorage.getItem('ntun_certs')) || [];
+        let certificates = [];
         
         let currentSort = 'newest';
         let currentCategory = 'all';
         let adminCurrentTab = 'pending';
 
-        // --- 2. Google Authentication Logic ---
+        function toggleLoading(show) {
+            document.getElementById('loadingOverlay').classList.toggle('active', show);
+        }
+
+        // ดึงข้อมูลออนไลน์จาก Google Sheets ทันทีที่เปิดเว็บ
+        async function fetchOnlineData() {
+            if(!BACKEND_URL) return;
+            toggleLoading(true);
+            try {
+                const response = await fetch(BACKEND_URL);
+                certificates = await response.json();
+                renderCerts();
+                renderHistory();
+                renderAdmin();
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                alert("โหลดข้อมูลออนไลน์ล้มเหลว กรุณาตรวจสอบการตั้งค่าหลังบ้าน");
+            } finally {
+                toggleLoading(false);
+            }
+        }
+
         function parseJwt(token) {
             var base64Url = token.split('.')[1];
             var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            }).join(''));
-            return JSON.parse(jsonPayload);
+            return JSON.parse(decodeURIComponent(window.atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')));
         }
 
         function handleCredentialResponse(response) {
             const payload = parseJwt(response.credential);
             const email = payload.email;
 
-            // ตรวจสอบสิทธิ์ (ต้องเป็น @ntun.ac.th หรือ อีเมลแอดมินที่กำหนด)
             if (email.endsWith('@ntun.ac.th') || ADMIN_EMAILS.includes(email)) {
-                currentUser = {
-                    name: payload.name,
-                    email: email,
-                    picture: payload.picture,
-                    isAdmin: ADMIN_EMAILS.includes(email)
-                };
+                currentUser = { name: payload.name, email: email, picture: payload.picture, isAdmin: ADMIN_EMAILS.includes(email) };
                 updateAuthUI();
+                renderHistory();
+                renderAdmin();
                 alert(`เข้าสู่ระบบสำเร็จ: ยินดีต้อนรับ ${payload.name}`);
             } else {
-                alert('กรุณาใช้อีเมลของโรงเรียน (@ntun.ac.th) ในการเข้าสู่ระบบเท่านั้น');
+                alert('กรุณาใช้อีเมลของโรงเรียน (@ntun.ac.th) หรืออีเมลแอดมินเท่านั้น');
                 logout();
             }
         }
@@ -396,7 +414,7 @@
         function logout() {
             currentUser = null;
             updateAuthUI();
-            switchView('view-browse', document.querySelector('.dock-item')); // กลับหน้าแรก
+            switchView('view-browse', document.querySelector('.dock-item'));
         }
 
         function updateAuthUI() {
@@ -406,8 +424,7 @@
 
             if (currentUser) {
                 authContainer.classList.add('hidden');
-                userProfile.classList.remove('hidden');
-                userProfile.classList.add('flex');
+                userProfile.className = 'flex items-center gap-3';
                 document.getElementById('user-name').innerText = currentUser.name;
                 document.getElementById('user-avatar').src = currentUser.picture;
                 
@@ -420,57 +437,36 @@
                 }
             } else {
                 authContainer.classList.remove('hidden');
-                userProfile.classList.add('hidden');
-                userProfile.classList.remove('flex');
+                userProfile.className = 'hidden';
                 adminDock.classList.add('hidden');
             }
-            // อัปเดตหน้าประวัติถ้าเปิดอยู่
-            renderHistory();
         }
 
-        // --- 3. View Navigation (macOS Dock) ---
         function switchView(viewId, dockElement) {
-            // Hide all views
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
-            // Show target view
             document.getElementById(viewId).classList.add('active');
-            
-            // Highlight dock icon
             document.querySelectorAll('.dock-item').forEach(el => el.style.color = 'var(--text-muted)');
             if(dockElement) dockElement.style.color = dockElement.id === 'dock-admin' ? '#a855f7' : 'var(--accent)';
-
-            // Trigger specific renders
-            if(viewId === 'view-browse') renderCerts();
-            if(viewId === 'view-history') renderHistory();
-            if(viewId === 'view-admin') renderAdmin();
         }
 
         function checkAuthAndSwitch(viewId, dockElement) {
-            if (!currentUser) {
-                alert('คุณต้องเข้าสู่ระบบด้วยอีเมลโรงเรียนก่อน ถึงจะสามารถใช้งานเมนูนี้ได้ครับ');
-                return;
-            }
+            if (!currentUser) { alert('คุณต้องเข้าสู่ระบบด้วยอีเมลโรงเรียนก่อนครับ'); return; }
             switchView(viewId, dockElement);
         }
 
-        // --- 4. Browse & Filter Logic ---
         function toggleSort() {
-            const toggle = document.getElementById('sortToggle');
             currentSort = currentSort === 'newest' ? 'oldest' : 'newest';
-            toggle.setAttribute('data-state', currentSort);
+            document.getElementById('sortToggle').setAttribute('data-state', currentSort);
             renderCerts();
         }
 
         function setCategory(cat) {
             currentCategory = cat;
-            // Update UI buttons
             const btns = document.getElementById('categoryFilters').children;
             for(let btn of btns) {
-                if(btn.innerText.includes(cat) || (cat === 'all' && btn.innerText === 'ทั้งหมด')) {
-                    btn.className = "px-5 py-2 rounded-full text-sm font-medium transition-all bg-blue-600 text-white shadow-md";
-                } else {
-                    btn.className = "px-5 py-2 rounded-full text-sm font-medium bg-white text-gray-600 hover:bg-gray-100 shadow-sm border border-gray-100";
-                }
+                btn.className = (btn.innerText.includes(cat) || (cat === 'all' && btn.innerText === 'ทั้งหมด')) ? 
+                "px-5 py-2 rounded-full text-sm font-medium transition-all bg-blue-600 text-white shadow-md" : 
+                "px-5 py-2 rounded-full text-sm font-medium bg-white text-gray-600 hover:bg-gray-100 shadow-sm border border-gray-100";
             }
             renderCerts();
         }
@@ -478,116 +474,69 @@
         function renderCerts() {
             const grid = document.getElementById('certGrid');
             const searchVal = document.getElementById('searchInput').value.toLowerCase();
-            
-            // กรองเอาเฉพาะอันที่ 'อนุมัติแล้ว' (approved) มาแสดงหน้าแรก
             let filtered = certificates.filter(c => c.status === 'approved');
 
-            // กรองหมวดหมู่
-            if (currentCategory !== 'all') {
-                filtered = filtered.filter(c => c.category === currentCategory);
-            }
+            if (currentCategory !== 'all') filtered = filtered.filter(c => c.category === currentCategory);
+            if (searchVal) filtered = filtered.filter(c => c.title.toLowerCase().includes(searchVal) || c.recipient.toLowerCase().includes(searchVal));
 
-            // กรองคำค้นหา
-            if (searchVal) {
-                filtered = filtered.filter(c => 
-                    c.title.toLowerCase().includes(searchVal) || 
-                    c.recipient.toLowerCase().includes(searchVal)
-                );
-            }
-
-            // เรียงลำดับ
-            filtered.sort((a, b) => {
-                return currentSort === 'newest' ? b.timestamp - a.timestamp : a.timestamp - b.timestamp;
-            });
-
-            // วาด UI
-            grid.innerHTML = '';
-            if(filtered.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-10 text-gray-400">ไม่พบเกียรติบัตรที่คุณค้นหา</div>`;
-                return;
-            }
+            filtered.sort((a, b) => currentSort === 'newest' ? b.timestamp - a.timestamp : a.timestamp - b.timestamp);
+            grid.innerHTML = filtered.length === 0 ? `<div class="col-span-full text-center py-10 text-gray-400">ไม่พบเกียรติบัตร</div>` : '';
 
             filtered.forEach(cert => {
                 grid.innerHTML += `
                     <div class="cert-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer hover:shadow-xl transition-all" onclick="openModal('${cert.id}')">
                         <div class="cert-img-wrapper relative">
-                            <img src="${cert.image}" alt="Certificate">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
-                                <span class="text-white text-sm font-semibold"><i class="fa-solid fa-expand mr-2"></i>ดูรายละเอียด</span>
-                            </div>
+                            <img src="${cert.image}" alt="Certificate" crossorigin="anonymous">
                         </div>
                         <div class="p-4">
-                            <div class="flex gap-2 mb-2">
-                                <span class="text-[9px] font-bold uppercase tracking-wider bg-blue-50 text-blue-600 px-2 py-0.5 rounded">${cert.category}</span>
-                            </div>
-                            <h3 class="font-bold text-sm text-gray-900 leading-tight mb-1 truncate">${cert.title}</h3>
+                            <span class="text-[9px] font-bold uppercase bg-blue-50 text-blue-600 px-2 py-0.5 rounded">${cert.category}</span>
+                            <h3 class="font-bold text-sm text-gray-900 leading-tight mt-2 mb-1 truncate">${cert.title}</h3>
                             <p class="text-xs text-gray-500 truncate"><i class="fa-solid fa-user-graduate mr-1"></i> ${cert.recipient}</p>
                         </div>
-                    </div>
-                `;
+                    </div>`;
             });
         }
 
-        // --- 5. Modal Logic ---
         function openModal(id) {
             const cert = certificates.find(c => c.id === id);
             if(!cert) return;
 
             document.getElementById('modalImg').src = cert.image;
             document.getElementById('modalCat').innerText = cert.category;
-            
-            const subCatEl = document.getElementById('modalSubCat');
-            if(cert.subCategory) {
-                subCatEl.innerText = cert.subCategory;
-                subCatEl.style.display = 'inline-block';
-            } else {
-                subCatEl.style.display = 'none';
-            }
+            document.getElementById('modalSubCat').style.display = cert.subCategory ? 'inline-block' : 'none';
+            if(cert.subCategory) document.getElementById('modalSubCat').innerText = cert.subCategory;
 
             document.getElementById('modalTitle').innerText = cert.title;
             document.querySelector('#modalRecipient span').innerText = cert.recipient;
             document.getElementById('modalDetails').innerText = cert.details || 'ไม่มีรายละเอียดเพิ่มเติม';
             
-            // ตั้งค่าปุ่มดาวน์โหลด
-            const btn = document.getElementById('modalDownloadBtn');
-            btn.onclick = () => {
-                const a = document.createElement('a');
-                a.href = cert.image;
-                a.download = `Certificate_${cert.recipient}.png`;
-                a.click();
-            };
-
+            document.getElementById('modalDownloadBtn').onclick = () => window.open(cert.image, '_blank');
             document.getElementById('certModal').classList.add('active');
         }
 
-        function closeModal() {
-            document.getElementById('certModal').classList.remove('active');
-        }
+        function closeModal() { document.getElementById('certModal').classList.remove('active'); }
 
-        // --- 6. Upload Logic ---
         let currentUploadBase64 = null;
-        
         function previewImage(input) {
             const file = input.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = e => {
                     currentUploadBase64 = e.target.result;
                     document.getElementById('fileNameDisplay').innerText = `เลือกไฟล์แล้ว: ${file.name}`;
-                    document.getElementById('fileNameDisplay').classList.add('text-blue-500', 'font-semibold');
-                }
+                    document.getElementById('fileNameDisplay').className = "text-sm text-blue-500 font-semibold";
+                };
                 reader.readAsDataURL(file);
             }
         }
 
-        function handleUpload(e) {
+        async function handleUpload(e) {
             e.preventDefault();
-            if (!currentUploadBase64) {
-                alert("กรุณาแนบไฟล์รูปภาพเกียรติบัตรครับ");
-                return;
-            }
+            if (!currentUploadBase64) { alert("กรุณาแนบไฟล์รูปภาพครับ"); return; }
+            toggleLoading(true);
 
-            const newCert = {
+            const payload = {
+                action: 'upload',
                 id: 'cert_' + Date.now(),
                 title: document.getElementById('upTitle').value,
                 category: document.getElementById('upCategory').value,
@@ -596,70 +545,52 @@
                 details: document.getElementById('upDetails').value,
                 image: currentUploadBase64,
                 uploaderEmail: currentUser.email,
-                timestamp: Date.now(),
-                status: 'pending' // ต้องรอแอดมินอนุมัติ
+                timestamp: Date.now()
             };
 
-            certificates.push(newCert);
-            saveData();
-            
-            alert('ส่งข้อมูลสำเร็จ! กรุณารอแอดมินตรวจสอบเพื่ออนุมัติการแสดงผลหน้าเว็บ');
-            document.getElementById('uploadForm').reset();
-            currentUploadBase64 = null;
-            document.getElementById('fileNameDisplay').innerText = "คลิกหรือลากไฟล์รูปภาพมาวางที่นี่";
-            document.getElementById('fileNameDisplay').className = "text-sm text-gray-500";
-            
-            switchView('view-history', document.querySelectorAll('.dock-item')[2]);
+            try {
+                const res = await fetch(BACKEND_URL, { method: 'POST', body: JSON.stringify(payload) });
+                const result = await res.json();
+                if(result.status === 'success') {
+                    alert('ส่งเกียรติบัตรออนไลน์เรียบร้อยแล้ว! รอแอนมินตรวจสอบ');
+                    document.getElementById('uploadForm').reset();
+                    currentUploadBase64 = null;
+                    document.getElementById('fileNameDisplay').innerText = "คลิกหรือลากไฟล์รูปภาพมาวางที่นี่";
+                    document.getElementById('fileNameDisplay').className = "text-sm text-gray-500";
+                    await fetchOnlineData(); // รีเฟรชข้อมูล
+                    switchView('view-history', document.querySelectorAll('.dock-item')[2]);
+                }
+            } catch (err) {
+                alert('อัปเดตล้มเหลว กรุณาลองใหม่');
+            } finally {
+                toggleLoading(false);
+            }
         }
 
-        // --- 7. History Logic ---
         function renderHistory() {
             if(!currentUser) return;
             const tbody = document.getElementById('historyList');
             const myCerts = certificates.filter(c => c.uploaderEmail === currentUser.email).sort((a,b) => b.timestamp - a.timestamp);
-            
-            tbody.innerHTML = '';
-            if(myCerts.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-gray-400">คุณยังไม่เคยอัปโหลดเกียรติบัตร</td></tr>`;
-                return;
-            }
+            tbody.innerHTML = myCerts.length === 0 ? `<tr><td colspan="4" class="py-6 text-center text-gray-400">คุณยังไม่เคยอัปโหลดเกียรติบัตร</td></tr>` : '';
 
             myCerts.forEach(cert => {
-                let statusBadge = '';
-                if(cert.status === 'pending') statusBadge = '<span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold"><i class="fa-solid fa-clock mr-1"></i> รออนุมัติ</span>';
-                if(cert.status === 'approved') statusBadge = '<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold"><i class="fa-solid fa-check mr-1"></i> อนุมัติแล้ว</span>';
-                if(cert.status === 'rejected') statusBadge = '<span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold"><i class="fa-solid fa-xmark mr-1"></i> ไม่อนุมัติ</span>';
-
-                const dateStr = new Date(cert.timestamp).toLocaleDateString('th-TH');
+                let badge = cert.status === 'pending' ? '<span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-semibold">รออนุมัติ</span>' :
+                            cert.status === 'approved' ? '<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">อนุมัติแล้ว</span>' :
+                            '<span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">ไม่อนุมัติ</span>';
 
                 tbody.innerHTML += `
                     <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="py-4 px-6">
-                            <p class="font-semibold text-sm text-gray-800">${cert.title}</p>
-                            <p class="text-xs text-gray-500">${cert.recipient}</p>
-                        </td>
-                        <td class="py-4 px-6 text-sm text-gray-500">${dateStr}</td>
-                        <td class="py-4 px-6">${statusBadge}</td>
-                        <td class="py-4 px-6">
-                            <button onclick="openModal('${cert.id}')" class="text-blue-500 hover:text-blue-700 text-sm font-semibold transition-colors">ดูข้อมูล</button>
-                        </td>
-                    </tr>
-                `;
+                        <td class="py-4 px-6"><p class="font-semibold text-sm">${cert.title}</p><p class="text-xs text-gray-500">${cert.recipient}</p></td>
+                        <td class="py-4 px-6 text-sm text-gray-500">${new Date(Number(cert.timestamp)).toLocaleDateString('th-TH')}</td>
+                        <td class="py-4 px-6">${badge}</td>
+                        <td class="py-4 px-6"><button onclick="openModal('${cert.id}')" class="text-blue-500 font-semibold text-sm">ดูข้อมูล</button></td>
+                    </tr>`;
             });
         }
 
-        // --- 8. Admin Logic ---
         function setAdminTab(status) {
             adminCurrentTab = status;
-            // Update Tab UI
-            ['pending', 'approved', 'rejected'].forEach(tab => {
-                const el = document.getElementById('tab-' + tab);
-                if(tab === status) {
-                    el.className = "px-4 py-1.5 rounded-lg text-sm font-semibold bg-white shadow-sm";
-                } else {
-                    el.className = "px-4 py-1.5 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-100";
-                }
-            });
+            ['pending', 'approved', 'rejected'].forEach(tab => document.getElementById('tab-' + tab).className = tab === status ? "px-4 py-1.5 rounded-lg text-sm font-semibold bg-white shadow-sm" : "px-4 py-1.5 rounded-lg text-sm font-semibold text-gray-600 hover:bg-gray-100");
             renderAdmin();
         }
 
@@ -667,64 +598,42 @@
             if(!currentUser || !currentUser.isAdmin) return;
             const grid = document.getElementById('adminGrid');
             const targetCerts = certificates.filter(c => c.status === adminCurrentTab).sort((a,b) => b.timestamp - a.timestamp);
-
-            grid.innerHTML = '';
-            if(targetCerts.length === 0) {
-                grid.innerHTML = `<div class="col-span-full py-10 text-center text-gray-400">ไม่มีรายการในหมวดหมู่นี้</div>`;
-                return;
-            }
+            grid.innerHTML = targetCerts.length === 0 ? `<div class="col-span-full py-10 text-center text-gray-400">ไม่มีรายการ</div>` : '';
 
             targetCerts.forEach(cert => {
-                let actionButtons = '';
-                if(cert.status === 'pending') {
-                    actionButtons = `
-                        <button onclick="changeStatus('${cert.id}', 'approved')" class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-xl text-sm font-semibold transition-colors">อนุมัติ</button>
-                        <button onclick="changeStatus('${cert.id}', 'rejected')" class="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-xl text-sm font-semibold transition-colors">ไม่อนุมัติ</button>
-                    `;
-                } else if(cert.status === 'approved') {
-                    actionButtons = `<button onclick="changeStatus('${cert.id}', 'rejected')" class="w-full bg-gray-100 hover:bg-red-100 hover:text-red-600 text-gray-600 py-2 rounded-xl text-sm font-semibold transition-colors">เปลี่ยนเป็นไม่อนุมัติ</button>`;
-                } else if(cert.status === 'rejected') {
-                    actionButtons = `<button onclick="changeStatus('${cert.id}', 'approved')" class="w-full bg-gray-100 hover:bg-green-100 hover:text-green-600 text-gray-600 py-2 rounded-xl text-sm font-semibold transition-colors">เปลี่ยนเป็นอนุมัติ</button>`;
-                }
+                let buttons = cert.status === 'pending' ? `
+                    <button onclick="changeStatus('${cert.id}', 'approved')" class="flex-1 bg-green-500 text-white py-2 rounded-xl text-sm font-semibold">อนุมัติ</button>
+                    <button onclick="changeStatus('${cert.id}', 'rejected')" class="flex-1 bg-red-500 text-white py-2 rounded-xl text-sm font-semibold">ปฏิเสธ</button>` :
+                    `<button onclick="changeStatus('${cert.id}', '${cert.status==='approved'?'rejected':'approved'}')" class="w-full bg-gray-100 text-gray-600 py-2 rounded-xl text-sm font-semibold">สลับสถานะ</button>`;
 
                 grid.innerHTML += `
                     <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
                         <div class="flex gap-4 mb-4">
-                            <img src="${cert.image}" class="w-20 h-20 object-cover rounded-lg bg-gray-100 cursor-pointer" onclick="openModal('${cert.id}')">
-                            <div>
-                                <h4 class="font-bold text-sm line-clamp-2">${cert.title}</h4>
-                                <p class="text-xs text-gray-500 mt-1"><i class="fa-solid fa-user"></i> ${cert.recipient}</p>
-                                <p class="text-[10px] text-blue-400 mt-1">ผู้ส่ง: ${cert.uploaderEmail}</p>
-                            </div>
+                            <img src="${cert.image}" class="w-20 h-20 object-cover rounded-lg bg-gray-100 cursor-pointer" onclick="openModal('${cert.id}')" crossorigin="anonymous">
+                            <div class="overflow-hidden"><h4 class="font-bold text-sm truncate">${cert.title}</h4><p class="text-xs text-gray-500 mt-1">${cert.recipient}</p><p class="text-[10px] text-blue-400 mt-1 truncate">โดย: ${cert.uploaderEmail}</p></div>
                         </div>
-                        <div class="flex gap-2">${actionButtons}</div>
-                    </div>
-                `;
+                        <div class="flex gap-2">${buttons}</div>
+                    </div>`;
             });
         }
 
-        function changeStatus(id, newStatus) {
-            const index = certificates.findIndex(c => c.id === id);
-            if(index !== -1) {
-                certificates[index].status = newStatus;
-                saveData();
-                renderAdmin();
-                // ถ้าเด้งแจ้งเตือน
-                const notiWord = newStatus === 'approved' ? 'อนุมัติ' : 'ปฏิเสธ';
-                alert(`ดำเนินการ ${notiWord} รายการนี้เรียบร้อยแล้ว (ผู้ใช้จะเห็นสถานะในหน้าประวัติ)`);
+        async function changeStatus(id, newStatus) {
+            toggleLoading(true);
+            try {
+                const res = await fetch(BACKEND_URL, { method: 'POST', body: JSON.stringify({ action: 'changeStatus', id: id, newStatus: newStatus }) });
+                const result = await res.json();
+                if(result.status === 'success') {
+                    alert('อัปเดตสถานะออนไลน์เรียบร้อย');
+                    await fetchOnlineData();
+                }
+            } catch (err) {
+                alert('อัปเดตสถานะล้มเหลว');
+            } finally {
+                toggleLoading(false);
             }
         }
 
-        function saveData() {
-            // เซฟลง LocalStorage เพื่อใช้จำลองฐานข้อมูล
-            localStorage.setItem('ntun_certs', JSON.stringify(certificates));
-        }
-
-        // Initialize App
-        window.onload = () => {
-            renderCerts();
-        };
-
+        window.onload = () => { fetchOnlineData(); };
     </script>
 </body>
 </html>
