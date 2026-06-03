@@ -354,8 +354,8 @@
     </div>
 
     <script>
-        // ✅ URL หลังบ้านของคุณที่อัปเดตเรียบร้อยแล้ว
-        const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbxzMQaUdxrJd74_36gWRf_AGXXTljaHBu4BNMduAFS5bNkRTK24_zoJ5LD6Rfu4Ha76xQ/exec';
+        // ✅ URL หลังบ้านที่ถูกต้องล่าสุด
+        const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbyr1ukzCEjrP17DQyQDNtFm9h-mXeZJM430nSimQ6meycC67wT-WewWQFzxXGPDMgUyXw/exec';
 
         let currentUser = null;
         
@@ -530,6 +530,7 @@
             }
         }
 
+        // ✅ อัปเดตฟังก์ชัน handleUpload ใส่เงื่อนไขดักจับ Error ที่คุณต้องการแล้วครับ
         async function handleUpload(e) {
             e.preventDefault();
             if (!currentUploadBase64) { alert("กรุณาแนบไฟล์รูปภาพครับ"); return; }
@@ -551,17 +552,21 @@
             try {
                 const res = await fetch(BACKEND_URL, { method: 'POST', body: JSON.stringify(payload) });
                 const result = await res.json();
+                
                 if(result.status === 'success') {
                     alert('ส่งเกียรติบัตรออนไลน์เรียบร้อยแล้ว! รอแอนมินตรวจสอบ');
                     document.getElementById('uploadForm').reset();
                     currentUploadBase64 = null;
                     document.getElementById('fileNameDisplay').innerText = "คลิกหรือลากไฟล์รูปภาพมาวางที่นี่";
                     document.getElementById('fileNameDisplay').className = "text-sm text-gray-500";
-                    await fetchOnlineData(); // รีเฟรชข้อมูล
+                    await fetchOnlineData();
                     switchView('view-history', document.querySelectorAll('.dock-item')[2]);
+                } else {
+                    // 💡 ถ้าหลังบ้านส่ง Error มา จะแสดงเตือนทันทีว่าติดขัดที่คำสั่งใด
+                    alert('Google ส่งข้อความเตือน: ' + (result.message || 'ไม่สามารถบันทึกข้อมูลได้'));
                 }
             } catch (err) {
-                alert('อัปเดตล้มเหลว กรุณาลองใหม่');
+                alert('การเชื่อมต่อเครือข่ายล้มเหลว: ' + err.toString());
             } finally {
                 toggleLoading(false);
             }
@@ -636,4 +641,4 @@
         window.onload = () => { fetchOnlineData(); };
     </script>
 </body>
-</html>
+</html>ๆ
