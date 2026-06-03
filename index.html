@@ -761,10 +761,11 @@ textarea.form-input{resize:vertical;line-height:1.6}
   <button class="dock-btn active" id="dock-browse" onclick="switchView('view-browse','browse')">
     <i class="fa-solid fa-house"></i><span id="dLabel-browse">หน้าแรก</span>
   </button>
-  <button class="dock-btn" id="dock-upload" onclick="authSwitch('view-upload','upload')">
+  <div class="dock-sep" id="userSep" style="display:none"></div>
+  <button class="dock-btn" id="dock-upload" onclick="authSwitch('view-upload','upload')" style="display:none">
     <i class="fa-solid fa-cloud-arrow-up"></i><span id="dLabel-upload">อัปโหลด</span>
   </button>
-  <button class="dock-btn" id="dock-history" onclick="authSwitch('view-history','history')">
+  <button class="dock-btn" id="dock-history" onclick="authSwitch('view-history','history')" style="display:none">
     <i class="fa-solid fa-clock-rotate-left"></i><span id="dLabel-history">ประวัติ</span>
   </button>
   <div class="dock-sep" id="adminSep" style="display:none"></div>
@@ -788,7 +789,7 @@ textarea.form-input{resize:vertical;line-height:1.6}
     <div>
       <div class="viewer-stage" id="viewerStage">
         <div class="cert3d-wrap" id="certWrap">
-          <img id="certImg3D" class="cert3d-img" src="" alt="Certificate" draggable="false" crossorigin="anonymous">
+          <img id="certImg3D" class="cert3d-img" src="" alt="Certificate" draggable="false">
           <div class="cert3d-shine" id="certShine"></div>
           <div class="cert3d-edge"></div>
         </div>
@@ -1055,18 +1056,25 @@ function logout() {
 function updateAuthUI() {
   const gArea = document.getElementById('googleArea');
   const pArea = document.getElementById('profileArea');
-  const dAdmin = document.getElementById('dock-admin');
-  const dSep = document.getElementById('adminSep');
+  const dAdmin  = document.getElementById('dock-admin');
+  const dAdminSep = document.getElementById('adminSep');
+  const dUpload = document.getElementById('dock-upload');
+  const dHistory = document.getElementById('dock-history');
+  const dUserSep = document.getElementById('userSep');
   if (user) {
     gArea.style.display='none'; pArea.style.display='flex';
     document.getElementById('uName').textContent = user.name;
     document.getElementById('uAvatar').src = user.picture;
     document.getElementById('uRole').textContent = user.isAdmin ? t('roleAdmin') : t('roleUser');
-    if (user.isAdmin) { dAdmin.style.display='flex'; dSep.style.display='block'; }
-    else { dAdmin.style.display='none'; dSep.style.display='none'; }
+    // show Upload + History
+    dUpload.style.display='flex'; dHistory.style.display='flex'; dUserSep.style.display='block';
+    if (user.isAdmin) { dAdmin.style.display='flex'; dAdminSep.style.display='block'; }
+    else { dAdmin.style.display='none'; dAdminSep.style.display='none'; }
   } else {
     gArea.style.display='block'; pArea.style.display='none';
-    dAdmin.style.display='none'; dSep.style.display='none';
+    // hide Upload + History + Admin
+    dUpload.style.display='none'; dHistory.style.display='none'; dUserSep.style.display='none';
+    dAdmin.style.display='none'; dAdminSep.style.display='none';
   }
 }
 
@@ -1180,7 +1188,7 @@ function renderCerts() {
     return `
       <div class="cert-card card" onclick="openModal('${c.id}')">
         <div class="cert-thumb-wrap">
-          <img class="cert-thumb" src="${c.image}" alt="${c.title}" loading="lazy" crossorigin="anonymous">
+          <img class="cert-thumb" src="${c.image}" alt="${c.title}" loading="lazy">
         </div>
         <div class="cert-body">
           <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px">
@@ -1349,11 +1357,39 @@ function stopAuto() {
   document.getElementById('autoBtn').classList.remove('active');
   document.getElementById('autoIcon').className='fa-solid fa-play';
 }
-function dlCert() {
+async function dlCert() {
   if (!activeCert) return;
-  const a=document.createElement('a');
-  a.href=activeCert.image; a.target='_blank';
-  a.download=`cert-${activeCert.id}.jpg`; a.click();
+  const src = activeCert.image;
+  try {
+    // Base64 data URL → blob → force download
+    if (src.startsWith('data:')) {
+      const arr = src.split(',');
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const bstr = atob(arr[1]);
+      const u8 = new Uint8Array(bstr.length);
+      for (let i=0; i<bstr.length; i++) u8[i]=bstr.charCodeAt(i);
+      const blob = new Blob([u8], {type: mime});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `cert-${activeCert.id}.jpg`;
+      document.body.appendChild(a); a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 1000);
+    } else {
+      // External URL → fetch then blob
+      const resp = await fetch(src);
+      const blob = await resp.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `cert-${activeCert.id}.jpg`;
+      document.body.appendChild(a); a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 1000);
+    }
+  } catch(e) {
+    // Fallback: open in new tab
+    window.open(src, '_blank');
+  }
 }
 function shareCert() {
   if (!activeCert) return;
@@ -1547,7 +1583,7 @@ function renderAdminList() {
     return `
       <div class="card" style="padding:0;overflow:hidden">
         <div class="admin-row">
-          <img class="admin-thumb" src="${c.image}" onclick="openModal('${c.id}')" crossorigin="anonymous" alt="">
+          <img class="admin-thumb" src="${c.image}" onclick="openModal('${c.id}')" alt="">
           <div style="flex:1;overflow:hidden">
             <h4 style="font-size:14px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:5px" class="clamp2">${c.title}</h4>
             <p style="font-size:12px;color:var(--text3);font-weight:600;margin-bottom:6px" class="truncate"><i class="fa-solid fa-user" style="margin-right:5px;font-size:10px"></i>${c.recipient}</p>
