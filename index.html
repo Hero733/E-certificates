@@ -1,1033 +1,1688 @@
 <!DOCTYPE html>
-<html lang="th" class="scroll-smooth">
+<html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NTUN Certificate Archive</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NTUN Archive — คลังเกียรติบัตร</title>
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        appleBlue: '#0071e3',
-                        appleDark: '#1d1d1f',
-                        heroGray: '#f5f5f7'
-                    }
-                }
-            }
-        }
-    </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <style>
-        :root {
-            --bg-color: #f5f5f7;
-            --surface-color: rgba(255, 255, 255, 0.75);
-            --surface-solid: #ffffff;
-            --text-main: #1d1d1f;
-            --text-muted: #86868b;
-            --border-color: rgba(0, 0, 0, 0.08);
-            --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
-            --shadow-lg: 0 12px 40px rgba(0,0,0,0.06);
-        }
+<style>
+/* ══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --bg:          #F5F4F0;
+  --bg2:         #FFFFFF;
+  --bg3:         #EDECEA;
+  --surface:     rgba(255,255,255,0.82);
+  --border:      rgba(0,0,0,0.07);
+  --border2:     rgba(0,0,0,0.12);
+  --text:        #111110;
+  --text2:       #5C5B57;
+  --text3:       #9B9A94;
+  --accent:      #1650F0;
+  --accent2:     #0D3DD4;
+  --accentSoft:  rgba(22,80,240,0.08);
+  --success:     #16A34A;
+  --warning:     #B45309;
+  --danger:      #DC2626;
+  --successSoft: rgba(22,163,74,0.09);
+  --warningSoft: rgba(180,83,9,0.09);
+  --dangerSoft:  rgba(220,38,38,0.09);
+  --shadow:      0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05);
+  --shadowLg:    0 8px 32px rgba(0,0,0,0.08), 0 20px 48px rgba(0,0,0,0.06);
+  --r:           14px;
+  --rLg:         22px;
+}
+html.dark {
+  --bg:          #0C0C0E;
+  --bg2:         #141416;
+  --bg3:         #1C1C1F;
+  --surface:     rgba(20,20,22,0.88);
+  --border:      rgba(255,255,255,0.07);
+  --border2:     rgba(255,255,255,0.12);
+  --text:        #F2F1ED;
+  --text2:       #9B9A94;
+  --text3:       #555450;
+  --accentSoft:  rgba(22,80,240,0.14);
+  --successSoft: rgba(22,163,74,0.12);
+  --warningSoft: rgba(180,83,9,0.12);
+  --dangerSoft:  rgba(220,38,38,0.12);
+  --shadow:      0 1px 2px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.35);
+  --shadowLg:    0 8px 32px rgba(0,0,0,0.5), 0 20px 48px rgba(0,0,0,0.5);
+}
 
-        .dark {
-            --bg-color: #0b0b0c;
-            --surface-color: rgba(22, 22, 23, 0.8);
-            --surface-solid: #161617;
-            --text-main: #f5f5f7;
-            --text-muted: #86868b;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --shadow-sm: 0 4px 12px rgba(0,0,0,0.3);
-            --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
-        }
+/* ══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans','Sarabun',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  padding-bottom:120px;
+  transition:background .3s ease,color .3s ease;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit}
+a{text-decoration:none;color:inherit}
 
-        body {
-            font-family: 'Inter', 'Sarabun', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            transition: background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            padding-bottom: 140px;
-        }
+/* ══════════════════════════════════════════
+   TYPOGRAPHY HELPERS
+═══════════════════════════════════════════ */
+.serif{font-family:'DM Serif Display',Georgia,serif}
+.label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3)}
 
-        .glass {
-            background: var(--surface-color);
-            backdrop-filter: saturate(190%) blur(24px);
-            -webkit-backdrop-filter: saturate(190%) blur(24px);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-        }
+/* ══════════════════════════════════════════
+   CARD SURFACES
+═══════════════════════════════════════════ */
+.card{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+}
+.card-lg{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:var(--rLg);
+  box-shadow:var(--shadow);
+}
+.glass{
+  background:var(--surface);
+  backdrop-filter:saturate(180%) blur(24px);
+  -webkit-backdrop-filter:saturate(180%) blur(24px);
+  border:1px solid var(--border);
+}
 
-        .card-solid {
-            background: var(--surface-solid);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-        }
+/* ══════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 22px;border-radius:11px;border:none;
+  font-size:13px;font-weight:700;line-height:1;
+  cursor:pointer;transition:all .2s ease;
+  -webkit-user-select:none;user-select:none;
+}
+.btn:active{transform:scale(.975)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent2);box-shadow:0 8px 24px rgba(22,80,240,.25);transform:translateY(-1px)}
+.btn-primary:active{transform:scale(.975) translateY(0)}
+.btn-ghost{background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+.btn-ghost:hover{background:var(--bg);color:var(--text)}
+.btn-danger{background:var(--dangerSoft);color:var(--danger);border:1px solid rgba(220,38,38,.12)}
+.btn-danger:hover{background:var(--danger);color:#fff}
+.btn-success{background:var(--successSoft);color:var(--success);border:1px solid rgba(22,163,74,.15)}
+.btn-success:hover{background:var(--success);color:#fff}
+.btn-warning{background:var(--warningSoft);color:var(--warning);border:1px solid rgba(180,83,9,.12)}
+.btn-sm{padding:8px 14px;font-size:12px;border-radius:9px;gap:6px}
+.btn-icon{width:36px;height:36px;padding:0;border-radius:10px;font-size:14px}
 
-        /* ── HeroUI v3 / macOS Dynamic Dock ── */
-        .dock-container {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 14px;
-            padding: 12px 18px;
-            border-radius: 32px;
-            z-index: 50;
-            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .dock-item {
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
-            background: var(--surface-solid);
-            border: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.05);
-            position: relative;
-        }
-        .dock-item:hover {
-            transform: scale(1.22) translateY(-12px);
-            color: #0071e3;
-            box-shadow: 0 12px 24px rgba(0,71,227,0.15);
-            z-index: 10;
-        }
-        .dock-item::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            top: -42px;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(4px);
-            color: white;
-            font-size: 12px;
-            font-weight: 500;
-            padding: 5px 12px;
-            border-radius: 10px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s, transform 0.2s;
-            transform: translateY(5px);
-            white-space: nowrap;
-        }
-        .dock-item:hover::after { opacity: 1; transform: translateY(0); }
+/* ══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+.nav{
+  position:sticky;top:0;z-index:100;
+  height:64px;display:flex;align-items:center;
+  padding:0 28px;gap:20px;
+}
+.nav-logo-img{height:38px;width:38px;object-fit:contain;border-radius:10px}
+.nav-logo-fallback{
+  width:38px;height:38px;border-radius:10px;
+  background:var(--accent);color:#fff;
+  display:none;align-items:center;justify-content:center;
+  font-weight:800;font-size:17px;flex-shrink:0;
+}
+.nav-brand{
+  font-family:'DM Serif Display',serif;
+  font-size:19px;line-height:1.1;color:var(--text);
+}
+.nav-sub{font-size:11px;color:var(--text3);font-weight:600;letter-spacing:.4px;margin-top:2px}
+.nav-divider{width:1px;height:28px;background:var(--border);flex-shrink:0}
 
-        /* ── Stretchy Segmented Toggle ── */
-        .stretchy-toggle {
-            display: inline-flex;
-            background: rgba(0,0,0,0.04);
-            border-radius: 99px;
-            position: relative;
-            padding: 3px;
-            cursor: pointer;
-        }
-        .dark .stretchy-toggle { background: rgba(255,255,255,0.06); }
-        .toggle-indicator {
-            position: absolute;
-            top: 3px;
-            bottom: 3px;
-            width: calc(50% - 3px);
-            background: var(--surface-solid);
-            border-radius: 99px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .toggle-option {
-            position: relative;
-            z-index: 1;
-            padding: 8px 20px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-muted);
-            transition: color 0.3s;
-            text-align: center;
-        }
+/* ══════════════════════════════════════════
+   DOCK
+═══════════════════════════════════════════ */
+.dock{
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:4px;padding:7px 10px;
+  border-radius:999px;z-index:90;
+  box-shadow:var(--shadowLg),0 0 0 1px var(--border);
+}
+.dock-btn{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:8px 20px;border-radius:999px;
+  border:none;background:transparent;
+  color:var(--text3);font-size:11px;font-weight:700;letter-spacing:.3px;
+  transition:all .25s cubic-bezier(.34,1.56,.64,1);
+  white-space:nowrap;
+}
+.dock-btn i{font-size:17px;transition:transform .25s ease}
+.dock-btn:hover{background:var(--bg3);color:var(--accent);transform:translateY(-2px)}
+.dock-btn:hover i{transform:scale(1.1)}
+.dock-btn.active{background:var(--accent);color:#fff;box-shadow:0 4px 16px rgba(22,80,240,.25)}
+.dock-btn.active:hover{background:var(--accent2);transform:translateY(-2px)}
+.dock-sep{width:1px;height:36px;background:var(--border);margin:0 2px;flex-shrink:0}
 
-        /* ── 3-Dot Bouncing Animation ── */
-        .dot-bounce {
-            animation: dotBounce 0.6s infinite alternate;
-        }
-        .dot-bounce:nth-child(2) { animation-delay: 0.2s; }
-        .dot-bounce:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes dotBounce {
-            from { transform: translateY(0); opacity: 0.4; }
-            to { transform: translateY(-10px); opacity: 1; }
-        }
+/* ══════════════════════════════════════════
+   VIEWS
+═══════════════════════════════════════════ */
+.view{display:none}
+.view.active{display:block;animation:fadeUp .35s cubic-bezier(.25,1,.5,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-        /* ── Views Slide Transitions ── */
-        .view-section { 
-            display: none; 
-            opacity: 0;
-            transform: translateY(16px);
-            transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .view-section.active { 
-            display: block; 
-            opacity: 1;
-            transform: translateY(0);
-        }
+/* ══════════════════════════════════════════
+   SEARCH & FORM INPUTS
+═══════════════════════════════════════════ */
+.search-wrap{position:relative}
+.search-wrap .si{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  color:var(--text3);font-size:13px;pointer-events:none;
+}
+.search-input{
+  width:100%;padding:13px 18px 13px 44px;
+  border-radius:14px;border:1.5px solid var(--border);
+  background:var(--bg2);color:var(--text);
+  font-size:14px;font-weight:500;outline:none;
+  transition:border .2s,box-shadow .2s;
+}
+.search-input:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accentSoft)}
+.search-input::placeholder{color:var(--text3)}
+.form-input{
+  width:100%;padding:12px 15px;
+  border-radius:11px;border:1.5px solid var(--border);
+  background:var(--bg3);color:var(--text);
+  font-size:14px;font-weight:500;outline:none;
+  transition:border .2s,background .2s,box-shadow .2s;
+}
+.form-input:focus{border-color:var(--accent);background:var(--bg2);box-shadow:0 0 0 4px var(--accentSoft)}
+.form-input::placeholder{color:var(--text3)}
+select.form-input{
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239B9A94' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-repeat:no-repeat;background-position:right 12px center;background-size:18px;padding-right:38px;
+}
+textarea.form-input{resize:vertical;line-height:1.6}
 
-        /* Image Mask */
-        .cert-card .img-container {
-            width: 100%; height: 210px; overflow: hidden; background: rgba(0,0,0,0.02);
-        }
-        .cert-card img {
-            width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .cert-card:hover img { transform: scale(1.04); }
+/* ══════════════════════════════════════════
+   CATEGORY PILLS
+═══════════════════════════════════════════ */
+.cat-pills{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.cat-pills::-webkit-scrollbar{height:0}
+.cat-pill{
+  padding:8px 18px;border-radius:999px;
+  font-size:13px;font-weight:600;
+  border:1.5px solid var(--border);background:var(--bg2);color:var(--text2);
+  white-space:nowrap;flex-shrink:0;
+  transition:all .18s ease;
+}
+.cat-pill:hover{border-color:var(--accent);color:var(--accent);background:var(--accentSoft)}
+.cat-pill.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 4px 14px rgba(22,80,240,.2)}
 
-        /* Modern Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.1); border-radius: 99px; }
-        .dark ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); }
-    </style>
+/* ══════════════════════════════════════════
+   CERT GRID
+═══════════════════════════════════════════ */
+.cert-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(248px,1fr));
+  gap:20px;
+}
+.cert-card{
+  overflow:hidden;cursor:pointer;border-radius:var(--r);
+  transition:transform .3s cubic-bezier(.25,1,.5,1),box-shadow .3s ease;
+}
+.cert-card:hover{transform:translateY(-5px);box-shadow:var(--shadowLg)}
+.cert-thumb-wrap{height:196px;overflow:hidden;background:var(--bg3);border-bottom:1px solid var(--border)}
+.cert-thumb{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.25,1,.5,1)}
+.cert-card:hover .cert-thumb{transform:scale(1.06)}
+.cert-body{padding:15px 16px 16px}
+
+/* ══════════════════════════════════════════
+   BADGES
+═══════════════════════════════════════════ */
+.badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 10px;border-radius:7px;
+  font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;
+}
+.badge-blue{background:var(--accentSoft);color:var(--accent)}
+.badge-purple{background:rgba(139,92,246,.1);color:#7C3AED}
+.badge-orange{background:var(--warningSoft);color:var(--warning)}
+.badge-green{background:var(--successSoft);color:var(--success)}
+.badge-red{background:var(--dangerSoft);color:var(--danger)}
+.badge-gray{background:var(--bg3);color:var(--text3)}
+
+/* ══════════════════════════════════════════
+   STAT CARD
+═══════════════════════════════════════════ */
+.stat-card{display:flex;align-items:center;gap:14px;padding:18px 20px}
+.stat-icon{
+  width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.stat-val{font-size:28px;font-weight:800;line-height:1;color:var(--text)}
+.stat-lbl{font-size:12px;font-weight:600;color:var(--text3);margin-top:3px}
+
+/* ══════════════════════════════════════════
+   PROGRESS BAR
+═══════════════════════════════════════════ */
+.progress-track{height:5px;border-radius:99px;background:var(--bg3);overflow:hidden}
+.progress-fill{height:100%;border-radius:99px;transition:width 1.2s cubic-bezier(.25,1,.5,1)}
+
+/* ══════════════════════════════════════════
+   3D MODAL
+═══════════════════════════════════════════ */
+#modal3D{
+  position:fixed;inset:0;
+  background:rgba(8,8,10,.92);
+  backdrop-filter:blur(28px) saturate(180%);
+  -webkit-backdrop-filter:blur(28px) saturate(180%);
+  z-index:200;display:none;
+  align-items:center;justify-content:center;
+  padding:20px;overflow-y:auto;
+}
+#modal3D.open{display:flex}
+.modal-inner{
+  width:100%;max-width:980px;
+  display:grid;grid-template-columns:1fr 360px;gap:28px;
+  animation:modalIn .4s cubic-bezier(.34,1.56,.64,1);
+}
+@media(max-width:768px){.modal-inner{grid-template-columns:1fr}}
+@keyframes modalIn{from{opacity:0;transform:scale(.92) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+
+/* Viewer stage */
+.viewer-stage{
+  width:100%;aspect-ratio:4/3;perspective:1500px;
+  cursor:grab;display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.viewer-stage:active{cursor:grabbing}
+.cert3d-wrap{
+  width:88%;height:88%;position:relative;
+  transform-style:preserve-3d;
+  border-radius:16px;
+  /* smooth lerp applied by JS */
+}
+.cert3d-img{
+  width:100%;height:100%;object-fit:contain;
+  border-radius:16px;user-select:none;-webkit-user-drag:none;
+  display:block;
+}
+.cert3d-shine{
+  position:absolute;inset:0;border-radius:16px;
+  pointer-events:none;mix-blend-mode:overlay;
+  transition:background .04s;
+}
+.cert3d-edge{
+  position:absolute;inset:-1px;border-radius:17px;
+  border:1px solid rgba(255,255,255,.1);pointer-events:none;
+}
+
+/* Viewer controls */
+.viewer-ctrl{
+  display:flex;gap:8px;margin-top:14px;justify-content:center;flex-wrap:wrap;
+}
+.vbtn{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:10px;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.65);font-size:12px;font-weight:600;
+  cursor:pointer;transition:all .2s ease;
+}
+.vbtn:hover{background:rgba(255,255,255,.14);color:#fff}
+.vbtn.active{background:rgba(22,80,240,.3);border-color:rgba(22,80,240,.4);color:#93B4FF}
+
+/* Modal info panel */
+.modal-info{
+  display:flex;flex-direction:column;gap:20px;
+  overflow-y:auto;max-height:calc(90vh - 40px);
+  padding-right:4px;
+}
+.modal-info::-webkit-scrollbar{width:4px}
+.modal-info::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:99px}
+
+/* ══════════════════════════════════════════
+   TOAST SYSTEM
+═══════════════════════════════════════════ */
+#toasts{
+  position:fixed;top:76px;right:22px;
+  z-index:500;display:flex;flex-direction:column;gap:10px;
+  pointer-events:none;
+}
+.toast{
+  min-width:260px;max-width:360px;padding:13px 16px;
+  border-radius:14px;border:1px solid var(--border);
+  background:var(--bg2);box-shadow:var(--shadowLg);
+  display:flex;align-items:center;gap:12px;
+  font-size:13px;font-weight:600;pointer-events:all;
+  animation:toastIn .35s cubic-bezier(.34,1.56,.64,1);
+}
+.toast.out{animation:toastOut .28s ease forwards}
+@keyframes toastIn{from{opacity:0;transform:translateX(36px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateX(36px) scale(.94)}}
+
+/* ══════════════════════════════════════════
+   LOADING OVERLAY
+═══════════════════════════════════════════ */
+#loadingOverlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.55);
+  backdrop-filter:blur(12px);z-index:400;
+  display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;
+}
+#loadingOverlay.on{display:flex}
+.ring{
+  width:46px;height:46px;border-radius:50%;
+  border:3px solid rgba(255,255,255,.12);border-top-color:var(--accent);
+  animation:spin .75s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ══════════════════════════════════════════
+   DROPZONE
+═══════════════════════════════════════════ */
+.dropzone{
+  border:2px dashed var(--border2);border-radius:var(--r);
+  padding:36px 24px;text-align:center;position:relative;cursor:pointer;
+  transition:all .2s ease;
+}
+.dropzone:hover,.dropzone.active{border-color:var(--accent);background:var(--accentSoft)}
+
+/* ══════════════════════════════════════════
+   HISTORY TABLE
+═══════════════════════════════════════════ */
+.hist-table{width:100%;border-collapse:collapse}
+.hist-table th{
+  padding:13px 20px;text-align:left;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text3);
+  background:var(--bg3);border-bottom:1px solid var(--border);
+}
+.hist-table td{padding:15px 20px;border-bottom:1px solid var(--border);transition:background .15s}
+.hist-table tr:hover td{background:var(--bg3)}
+.hist-table tr:last-child td{border-bottom:none}
+
+/* ══════════════════════════════════════════
+   ADMIN TABS
+═══════════════════════════════════════════ */
+.admin-tabs{display:flex;gap:5px;background:var(--bg3);border-radius:14px;padding:5px}
+.atab{
+  flex:1;padding:9px 14px;border-radius:10px;border:none;
+  font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;
+  background:transparent;color:var(--text3);
+}
+.atab.active{background:var(--bg2);color:var(--text);box-shadow:var(--shadow)}
+.atab i{margin-right:6px}
+
+/* ══════════════════════════════════════════
+   ADMIN CERT ROW
+═══════════════════════════════════════════ */
+.admin-row{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:16px;border-radius:var(--r);
+  transition:all .2s ease;
+}
+.admin-row:hover{background:var(--bg3)}
+.admin-thumb{
+  width:80px;height:80px;object-fit:cover;border-radius:10px;
+  border:1px solid var(--border);cursor:pointer;flex-shrink:0;
+  transition:transform .2s;
+}
+.admin-thumb:hover{transform:scale(1.05)}
+
+/* ══════════════════════════════════════════
+   MGMT LIST ITEM
+═══════════════════════════════════════════ */
+.mgmt-item{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:9px 13px;border-radius:10px;
+  border:1px solid var(--border);background:var(--bg3);
+  font-size:12px;font-weight:600;
+}
+
+/* ══════════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════════ */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px}
+
+/* ══════════════════════════════════════════
+   UTILS
+═══════════════════════════════════════════ */
+.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+</style>
 </head>
-<body class="light">
+<body>
 
-    <div id="loadingOverlay" class="fixed inset-0 bg-black/10 dark:bg-black/40 backdrop-blur-md z-[200] hidden flex-col items-center justify-center transition-all duration-300">
-        <div class="card-solid p-8 rounded-3xl flex flex-col items-center justify-center max-w-xs text-center shadow-2xl">
-            <div class="flex space-x-2.5 mb-5 mt-2 justify-center items-center">
-                <div class="w-3.5 h-3.5 bg-blue-600 rounded-full dot-bounce"></div>
-                <div class="w-3.5 h-3.5 bg-blue-600 rounded-full dot-bounce"></div>
-                <div class="w-3.5 h-3.5 bg-blue-600 rounded-full dot-bounce"></div>
-            </div>
-            <p id="loadingText" class="text-sm font-semibold tracking-wide opacity-80">กำลังเชื่อมต่อฐานข้อมูล...</p>
-        </div>
+<!-- ═══════════════════════════════════════
+     TOASTS
+════════════════════════════════════════ -->
+<div id="toasts"></div>
+
+<!-- ═══════════════════════════════════════
+     LOADING
+════════════════════════════════════════ -->
+<div id="loadingOverlay">
+  <div class="ring"></div>
+  <p id="loadingText" style="color:rgba(255,255,255,.65);font-size:13px;font-weight:600;letter-spacing:.3px;">กำลังโหลด...</p>
+</div>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════ -->
+<nav class="nav glass">
+  <img src="photo/logo.png" alt="NTUN" class="nav-logo-img" onerror="this.style.display='none';document.getElementById('logoFb').style.display='flex'">
+  <div class="nav-logo-fallback" id="logoFb">N</div>
+
+  <div style="flex:1;min-width:0">
+    <div class="nav-brand">NTUN Archive</div>
+    <div class="nav-sub" id="navSub">คลังเกียรติบัตรดิจิทัล</div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:10px">
+    <!-- Theme -->
+    <button onclick="toggleTheme()" class="btn btn-ghost btn-icon" id="themeBtn" title="เปลี่ยนธีม">
+      <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
+    <!-- Language -->
+    <button onclick="toggleLanguage()" class="btn btn-ghost" style="padding:8px 14px;font-size:12px;font-weight:800;letter-spacing:.5px" id="langBtn">EN</button>
+
+    <div class="nav-divider"></div>
+
+    <!-- Google Sign-In -->
+    <div id="googleArea">
+      <div id="g_id_onload"
+        data-client_id="594076056272-busugsctnp22gcom63ea7trbs0k5h2uf.apps.googleusercontent.com"
+        data-context="signin" data-ux_mode="popup"
+        data-callback="handleCredentialResponse" data-auto_prompt="false"></div>
+      <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="outline"
+        data-text="signin_with" data-size="large" data-logo_alignment="left"></div>
     </div>
 
-    <nav class="glass sticky top-0 z-40 px-6 py-4 flex justify-between items-center border-b">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-blue-500/20"><i class="fa-solid fa-vault"></i></div>
-            <div>
-                <h1 class="font-bold text-base leading-tight tracking-tight">NTUN Archive v3</h1>
-                <p class="text-[11px] text-gray-400 font-medium tracking-wide uppercase" data-lang="subTitle">คลังเกียรติบัตรดิจิทัล</p>
-            </div>
-        </div>
-        
-        <div class="flex items-center gap-4">
-            <div class="flex items-center bg-gray-200/60 dark:bg-white/10 p-1 rounded-full border border-black/5">
-                <button onclick="toggleTheme()" class="w-8 h-8 rounded-full flex items-center justify-center text-sm transition-transform active:scale-90 hover:bg-white dark:hover:bg-black/20 text-[var(--text-main)]"><i class="fa-solid fa-moon dark:hidden"></i><i class="fa-solid fa-sun hidden dark:block text-amber-400"></i></button>
-                <button onclick="toggleLanguage()" class="h-8 px-2.5 rounded-full text-[11px] font-bold transition-all hover:bg-white dark:hover:bg-black/20 text-[var(--text-main)]" id="langBtn">EN</button>
-            </div>
+    <!-- User profile -->
+    <div id="profileArea" style="display:none;align-items:center;gap:12px">
+      <div style="text-align:right">
+        <div id="uName" style="font-size:13px;font-weight:700;color:var(--text)"></div>
+        <div id="uRole" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--accent);margin-top:2px"></div>
+      </div>
+      <img id="uAvatar" src="" alt="" style="width:36px;height:36px;border-radius:50%;border:2px solid var(--border);object-fit:cover">
+      <button onclick="logout()" class="btn btn-danger btn-icon" title="ออกจากระบบ">
+        <i class="fa-solid fa-right-from-bracket" style="font-size:13px"></i>
+      </button>
+    </div>
+  </div>
+</nav>
 
-            <div id="auth-container">
-                <div id="g_id_onload"
-                     data-client_id="594076056272-busugsctnp22gcom63ea7trbs0k5h2uf.apps.googleusercontent.com"
-                     data-context="signin"
-                     data-ux_mode="popup"
-                     data-callback="handleCredentialResponse"
-                     data-auto_prompt="false">
-                </div>
-                <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="outline" data-text="signin_with" data-size="large"></div>
-            </div>
+<!-- ═══════════════════════════════════════
+     MAIN
+════════════════════════════════════════ -->
+<main style="max-width:1180px;margin:0 auto;padding:32px 22px">
 
-            <div id="user-profile" class="hidden items-center gap-3">
-                <div class="text-right hidden sm:block">
-                    <p id="user-name" class="text-xs font-bold leading-tight"></p>
-                    <p id="user-role" class="text-[10px] text-blue-500 font-bold uppercase tracking-wide mt-0.5"></p>
-                </div>
-                <img id="user-avatar" src="" alt="Avatar" class="w-9 h-9 rounded-full border border-black/10 shadow-sm">
-                <button onclick="logout()" class="text-red-500 bg-red-500/10 hover:bg-red-500/20 w-8 h-8 rounded-full flex items-center justify-center transition-colors"><i class="fa-solid fa-power-off text-xs"></i></button>
-            </div>
-        </div>
-    </nav>
+  <!-- ▸ BROWSE ─────────────────────────── -->
+  <div id="view-browse" class="view active">
 
-    <main class="max-w-7xl mx-auto mt-8 px-6">
-        
-        <section id="view-browse" class="view-section active">
-            <div class="flex flex-col lg:flex-row justify-between items-stretch lg:items-center gap-4 mb-8">
-                <div class="relative flex-1 max-w-lg">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                    <input type="text" id="searchInput" onkeyup="renderCerts()" placeholder="ค้นหาชื่อผู้รับ, รายการแข่งขัน..." class="w-full pl-11 pr-4 py-3.5 rounded-2xl border-none card-solid outline-none focus:ring-2 focus:ring-blue-500/30 transition-all font-medium text-sm">
-                </div>
-                
-                <div class="flex items-center gap-3 justify-end">
-                    <span class="text-xs font-bold text-gray-400 uppercase tracking-wider" data-lang="sortBy">เรียงตาม:</span>
-                    <div id="sortToggle" class="stretchy-toggle w-52" data-state="newest" onclick="toggleSort()">
-                        <div class="toggle-indicator"></div>
-                        <div class="toggle-option opt-new w-1/2" data-lang="sortLatest">ล่าสุดก่อน</div>
-                        <div class="toggle-option opt-old w-1/2" data-lang="sortOldest">เก่าสุดก่อน</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex gap-2 overflow-x-auto pb-3 mb-6 border-b border-black/5 dark:border-white/5" id="categoryFilters">
-                </div>
-
-            <div id="certGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-        </section>
-
-        <section id="view-upload" class="view-section max-w-2xl mx-auto">
-            <div class="card-solid p-8 rounded-3xl">
-                <h2 class="text-xl font-bold mb-6 flex items-center gap-2.5"><i class="fa-solid fa-circle-arrow-up text-blue-500"></i> <span data-lang="uploadTitle">อัปโหลดเกียรติบัตร</span></h2>
-                <form id="uploadForm" onsubmit="handleUpload(event)" class="space-y-5">
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-gray-400 tracking-wider mb-2" data-lang="formTitle">ชื่อรายการแข่งขัน <span class="text-red-500">*</span></label>
-                        <input type="text" id="upTitle" required class="w-full px-4 py-3.5 rounded-xl bg-gray-50 dark:bg-neutral-900 border border-black/5 dark:border-white/5 outline-none focus:ring-2 focus:ring-blue-500/20 font-medium text-sm transition-all">
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-gray-400 tracking-wider mb-2" data-lang="formCategory">หมวดหลัก <span class="text-red-500">*</span></label>
-                            <select id="upCategory" required class="w-full px-4 py-3.5 rounded-xl bg-gray-50 dark:bg-neutral-900 border border-black/5 dark:border-white/5 outline-none font-medium text-sm">
-                                <option value="วิทยาศาสตร์">🔬 วิทยาศาสตร์ (Science)</option>
-                                <option value="คณิตศาสตร์">📐 คณิตศาสตร์ (Math)</option>
-                                <option value="ศิลปะ">🎨 ศิลปะ (Art)</option>
-                                <option value="กีฬา">🏆 กีฬา (Sports)</option>
-                                <option value="อื่นๆ">📦 อื่นๆ (Others)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-gray-400 tracking-wider mb-2" data-lang="formSubCategory">หมวดหมู่ย่อย</label>
-                            <input type="text" id="upSubCat" placeholder="เช่น ฟิสิกส์" class="w-full px-4 py-3.5 rounded-xl bg-gray-50 dark:bg-neutral-900 border border-black/5 dark:border-white/5 outline-none font-medium text-sm">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-gray-400 tracking-wider mb-2" data-lang="formRecipient">ชื่อผู้ได้รับรางวัล <span class="text-red-500">*</span></label>
-                        <input type="text" id="upRecipient" required placeholder="นายสมชาย ใจดี" class="w-full px-4 py-3.5 rounded-xl bg-gray-50 dark:bg-neutral-900 border border-black/5 dark:border-white/5 outline-none font-medium text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-gray-400 tracking-wider mb-2" data-lang="formDetails">รายละเอียดการแข่งขัน</label>
-                        <textarea id="upDetails" rows="3" class="w-full px-4 py-3.5 rounded-xl bg-gray-50 dark:bg-neutral-900 border border-black/5 dark:border-white/5 outline-none font-medium text-sm"></textarea>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-gray-400 tracking-wider mb-2" data-lang="formFile">ไฟล์เกียรติบัตร (รูปภาพ) <span class="text-red-500">*</span></label>
-                        <div class="border-2 border-dashed border-gray-300 dark:border-neutral-700 rounded-2xl p-8 text-center hover:bg-gray-50 dark:hover:bg-neutral-900 transition-colors relative cursor-pointer group">
-                            <input type="file" id="upFile" accept="image/*" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onchange="previewImage(this)">
-                            <i class="fa-regular fa-images text-4xl text-gray-300 group-hover:text-blue-500 transition-colors mb-3"></i>
-                            <p class="text-xs font-semibold text-gray-500" id="fileNameDisplay" data-lang="dropzoneText">คลิกหรือลากไฟล์รูปภาพมาวางที่นี่</p>
-                        </div>
-                    </div>
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl text-sm shadow-lg shadow-blue-600/15 transition-all transform active:scale-[0.99]" data-lang="btnSubmitForm">บันทึกและส่งตรวจสอบ</button>
-                </form>
-            </div>
-        </section>
-
-        <section id="view-history" class="view-section max-w-4xl mx-auto">
-            <h2 class="text-xl font-bold mb-6 flex items-center gap-2"><i class="fa-solid fa-clock-rotate-left text-blue-500"></i> <span data-lang="historyTitle">ประวัติการอัปโหลดของคุณ</span></h2>
-            <div class="card-solid rounded-2xl overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-gray-50 dark:bg-neutral-900 border-b border-black/5 dark:border-white/5">
-                                <th class="py-4 px-6 text-xs font-bold uppercase text-gray-400 tracking-wider" data-lang="thItem">รายการ</th>
-                                <th class="py-4 px-6 text-xs font-bold uppercase text-gray-400 tracking-wider" data-lang="thDate">วันที่อัปโหลด</th>
-                                <th class="py-4 px-6 text-xs font-bold uppercase text-gray-400 tracking-wider" data-lang="thStatus">สถานะ</th>
-                                <th class="py-4 px-6 text-xs font-bold uppercase text-gray-400 tracking-wider" data-lang="thManage">จัดการ</th>
-                            </tr>
-                        </thead>
-                        <tbody id="historyList" class="divide-y divide-black/5 dark:divide-white/5 text-sm font-medium"></tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <section id="view-admin" class="view-section max-w-6xl mx-auto">
-            
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
-                <div class="card-solid p-5 rounded-2xl flex items-center justify-between border-l-4 border-l-amber-500">
-                    <div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider" data-lang="countPending">รอดำเนินการ</p><h3 class="text-2xl font-black mt-1" id="countPendingVal">0</h3></div>
-                    <div class="w-10 h-10 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-500 text-lg"><i class="fa-solid fa-hourglass-half"></i></div>
-                </div>
-                <div class="card-solid p-5 rounded-2xl flex items-center justify-between border-l-4 border-l-green-500">
-                    <div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider" data-lang="countApproved">อนุมัติแล้ว</p><h3 class="text-2xl font-black mt-1" id="countApprovedVal">0</h3></div>
-                    <div class="w-10 h-10 bg-green-500/10 rounded-xl flex items-center justify-center text-green-500 text-lg"><i class="fa-solid fa-circle-check"></i></div>
-                </div>
-                <div class="card-solid p-5 rounded-2xl flex items-center justify-between border-l-4 border-l-red-500">
-                    <div><p class="text-xs font-bold text-gray-400 uppercase tracking-wider" data-lang="countRejected">ไม่อนุมัติ</p><h3 class="text-2xl font-black mt-1" id="countRejectedVal">0</h3></div>
-                    <div class="w-10 h-10 bg-red-500/10 rounded-xl flex items-center justify-center text-red-500 text-lg"><i class="fa-solid fa-circle-xmark"></i></div>
-                </div>
-            </div>
-
-            <div class="flex flex-col lg:flex-row gap-6 items-start mb-6">
-                <div class="flex-1 w-full">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-lg font-bold" data-lang="adminHeader">แผงควบคุมหลัก</h2>
-                        <div class="flex gap-1 bg-gray-200 dark:bg-neutral-800 p-1 rounded-xl border border-black/5 text-xs font-bold">
-                            <button onclick="setAdminTab('pending')" id="tab-pending" class="px-4 py-2 rounded-lg bg-white dark:bg-neutral-700 shadow-sm">รอดำเนินการ</button>
-                            <button onclick="setAdminTab('approved')" id="tab-approved" class="px-4 py-2 rounded-lg text-gray-500">อนุมัติแล้ว</button>
-                            <button onclick="setAdminTab('rejected')" id="tab-rejected" class="px-4 py-2 rounded-lg text-gray-500">ไม่อนุมัติ</button>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5" id="adminGrid"></div>
-                </div>
-
-                <div class="w-full lg:w-80 space-y-6">
-                    <div class="card-solid p-5 rounded-2xl">
-                        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3" data-lang="adminManagement">จัดการรายชื่อแอดมิน</h3>
-                        <div class="flex gap-2 mb-3">
-                            <input type="email" id="newAdminEmail" placeholder="name@domain.com" class="flex-1 px-3 py-2 text-xs rounded-xl bg-gray-50 dark:bg-neutral-900 border border-black/5 dark:border-white/5 outline-none">
-                            <button onclick="addAdminEmail()" class="bg-blue-600 hover:bg-blue-700 text-white px-3 rounded-xl text-xs font-bold"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                        <div id="adminEmailsList" class="space-y-2 max-h-36 overflow-y-auto pr-1"></div>
-                    </div>
-
-                    <div class="card-solid p-5 rounded-2xl">
-                        <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3" data-lang="bannedManagement">รายชื่อผู้ใช้ที่ถูกแบน</h3>
-                        <div class="flex gap-2 mb-3">
-                            <input type="email" id="banUserEmail" placeholder="baduser@domain.com" class="flex-1 px-3 py-2 text-xs rounded-xl bg-gray-50 dark:bg-neutral-900 border border-black/5 dark:border-white/5 outline-none">
-                            <button onclick="banUserEmailAction()" class="bg-red-600 hover:bg-red-700 text-white px-3 rounded-xl text-xs font-bold"><i class="fa-solid fa-gavel"></i></button>
-                        </div>
-                        <div id="bannedEmailsList" class="space-y-2 max-h-36 overflow-y-auto pr-1"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <div class="glass dock-container">
-        <div class="dock-item text-blue-500" data-tooltip="หน้าแรก" data-id="browse" onclick="switchView('view-browse', this)"><i class="fa-solid fa-house"></i></div>
-        <div class="dock-item" data-tooltip="อัปโหลด" data-id="upload" onclick="checkAuthAndSwitch('view-upload', this)"><i class="fa-solid fa-plus"></i></div>
-        <div class="dock-item" data-tooltip="ประวัติ" data-id="history" onclick="checkAuthAndSwitch('view-history', this)"><i class="fa-solid fa-clock-rotate-left"></i></div>
-        <div id="dock-admin" class="dock-item hidden text-purple-500" data-tooltip="แอดมิน" data-id="admin" onclick="switchView('view-admin', this)"><i class="fa-solid fa-shield-halved"></i></div>
+    <div style="margin-bottom:30px">
+      <h1 class="serif" style="font-size:clamp(28px,5vw,44px);line-height:1.12;color:var(--text);margin-bottom:8px">
+        คลังเกียรติบัตร
+      </h1>
+      <p style="font-size:15px;color:var(--text2);font-weight:500">รวบรวมเกียรติบัตรของนักเรียนโรงเรียนนครไทยทุกสาขาวิชา</p>
     </div>
 
-    <div id="certModal" class="fixed inset-0 bg-black/40 dark:bg-black/70 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 z-100 flex items-center justify-center p-4" onclick="closeModal()">
-        <div class="card-solid rounded-3xl w-full max-w-xl transform scale-95 translate-y-4 transition-all duration-300 overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
-            <div class="relative h-72 bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center p-4 border-b border-black/5">
-                <img id="modalImg" src="" alt="Certificate" class="max-w-full max-h-full object-contain rounded-lg">
-                <button onclick="closeModal()" class="absolute top-4 right-4 w-9 h-9 bg-black/40 hover:bg-black/60 text-white rounded-full flex items-center justify-center transition-colors border border-white/10"><i class="fa-solid fa-xmark text-sm"></i></button>
-            </div>
-            <div class="p-6">
-                <div class="flex gap-2 mb-3">
-                    <span id="modalCat" class="text-[10px] font-bold uppercase tracking-wider bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-400 px-2.5 py-1 rounded-md"></span>
-                    <span id="modalSubCat" class="text-[10px] font-bold uppercase tracking-wider bg-gray-100 dark:bg-neutral-800 text-gray-600 dark:text-gray-400 px-2.5 py-1 rounded-md"></span>
-                </div>
-                <h3 id="modalTitle" class="text-lg font-bold mb-1"></h3>
-                <p id="modalRecipient" class="text-xs font-semibold text-gray-500 mb-4 flex items-center gap-1.5"><i class="fa-solid fa-user-graduate text-gray-400"></i><span data-lang="modalRecipientLabel">ผู้รับ:</span> <span class="text-[var(--text-main)]"></span></p>
-                <div class="bg-gray-50 dark:bg-neutral-900 p-4 rounded-xl mb-6 border border-black/5 text-xs font-medium leading-relaxed">
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1" data-lang="modalDetailsLabel">รายละเอียดเพิ่มเติม</p>
-                    <p id="modalDetails" class="opacity-80"></p>
-                </div>
-                <button id="modalDownloadBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg shadow-blue-500/10 transition-all"><i class="fa-solid fa-download"></i> <span data-lang="btnDownload">ดาวน์โหลดเกียรติบัตร</span></button>
-            </div>
-        </div>
+    <!-- Stats -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px" id="statsRow"></div>
+
+    <!-- Search & Sort -->
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:20px">
+      <div class="search-wrap" style="flex:1;min-width:220px">
+        <i class="fa-solid fa-magnifying-glass si"></i>
+        <input type="text" id="searchInput" class="search-input" placeholder="ค้นหาชื่อผู้รับ หรือรายการแข่งขัน..." oninput="renderCerts()">
+      </div>
+      <button onclick="toggleSort()" class="btn btn-ghost" id="sortBtn" style="gap:8px;flex-shrink:0">
+        <i class="fa-solid fa-arrow-down-wide-short" id="sortIcon"></i>
+        <span id="sortLabel">ล่าสุดก่อน</span>
+      </button>
     </div>
 
-    <script>
-        // ✅ Your Active Production App Script Backend Variable String URL
-        const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbyr1ukzCEjrP17DQyQDNtFm9h-mXeZJM430nSimQ6meycC67wT-WewWQFzxXGPDMgUyXw/exec';
+    <!-- Category pills -->
+    <div class="cat-pills" id="catPills" style="margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border)"></div>
 
-        // Local State Management Context Definitions
-        let currentUser = null;
-        let certificates = [];
-        let currentSort = 'newest';
-        let currentCategory = 'all';
-        let adminCurrentTab = 'pending';
-        
-        let sysTheme = localStorage.getItem('sysTheme') || 'light';
-        let sysLang = localStorage.getItem('sysLang') || 'th';
+    <!-- Cert grid -->
+    <div class="cert-grid" id="certGrid"></div>
+  </div>
 
-        // Advanced Admin & Banned Management State Architecture
-        let adminConfig = JSON.parse(localStorage.getItem('adminConfig')) || {
-            admins: ['aceaa372@gmail.com'],
-            banned: []
-        };
+  <!-- ▸ UPLOAD ─────────────────────────── -->
+  <div id="view-upload" class="view" style="max-width:660px;margin:0 auto">
+    <div style="margin-bottom:28px">
+      <h1 class="serif" style="font-size:34px;color:var(--text);margin-bottom:8px">อัปโหลดเกียรติบัตร</h1>
+      <p style="font-size:14px;color:var(--text2)">กรอกข้อมูลให้ครบ เกียรติบัตรจะถูกตรวจสอบโดยแอดมินก่อนเผยแพร่</p>
+    </div>
 
-        // Complete Local Dictionary Internationalization Translations Maps
-        const trans = {
-            th: {
-                subTitle: "คลังเกียรติบัตรดิจิทัล",
-                sortBy: "เรียงตาม:",
-                sortLatest: "ล่าสุดก่อน",
-                sortOldest: "เก่าสุดก่อน",
-                catAll: "ทั้งหมด",
-                uploadTitle: "อัปโหลดเกียรติบัตร",
-                formTitle: "ชื่อรายการแข่งขัน *",
-                formCategory: "หมวดหลัก *",
-                formSubCategory: "หมวดหมู่ย่อย",
-                formRecipient: "ชื่อผู้ได้รับรางวัล *",
-                formDetails: "รายละเอียดการแข่งขัน",
-                formFile: "ไฟล์เกียรติบัตร (รูปภาพ) *",
-                dropzoneText: "คลิกหรือลากไฟล์รูปภาพมาวางที่นี่",
-                btnSubmitForm: "บันทึกและส่งตรวจสอบ",
-                historyTitle: "ประวัติการอัปโหลดของคุณ",
-                thItem: "รายการ", thDate: "วันที่อัปโหลด", thStatus: "สถานะ", thManage: "จัดการ",
-                countPending: "รอดำเนินการ", countApproved: "อนุมัติแล้ว", countRejected: "ไม่อนุมัติ",
-                adminHeader: "แผงควบคุมหลัก",
-                adminManagement: "จัดการรายชื่อแอดมิน",
-                bannedManagement: "รายชื่อผู้ใช้ที่ถูกแบน",
-                modalRecipientLabel: "ผู้รับ:", modalDetailsLabel: "รายละเอียดเพิ่มเติม",
-                btnDownload: "ดาวน์โหลดเกียรติบัตร",
-                statusPending: "รออนุมัติ", statusApproved: "อนุมัติแล้ว", statusRejected: "ไม่อนุมัติ",
-                noData: "ไม่พบข้อมูลเกียรติบัตรในหมวดนี้",
-                noHistory: "คุณยังไม่เคยอัปโหลดเกียรติบัตรเข้าสู่ระบบ",
-                alertLoginRequired: "คุณต้องเข้าสู่ระบบด้วยสิทธิ์อีเมลที่ได้รับอนุญาตก่อนใช้งานครับ",
-                alertBanned: "บัญชีของคุณถูกระงับการใช้งานถาวรโดยแอดมิน!",
-                alertDomainError: "กรุณาใช้อีเมลสถาบัน (@ntun.ac.th) หรืออีเมลที่ได้รับการอนุมัติเท่านั้น"
-            },
-            en: {
-                subTitle: "Digital Certificate Vault",
-                sortBy: "Sort By:",
-                sortLatest: "Newest First",
-                sortOldest: "Oldest First",
-                catAll: "All Archives",
-                uploadTitle: "Upload Certificate",
-                formTitle: "Competition/Event Name *",
-                formCategory: "Primary Category *",
-                formSubCategory: "Sub-Category",
-                formRecipient: "Recipient's Name *",
-                formDetails: "Event & Award Details",
-                formFile: "Certificate File (Image) *",
-                dropzoneText: "Click or drag your image file here to upload",
-                btnSubmitForm: "Submit for Verification",
-                historyTitle: "Your Upload History Logs",
-                thItem: "Item Entry", thDate: "Uploaded Date", thStatus: "Status", thManage: "Action",
-                countPending: "Pending Tasks", countApproved: "Approved Records", countRejected: "Rejected Folders",
-                adminHeader: "Master Dashboard Control Panel",
-                adminManagement: "Admin Privilege List",
-                bannedManagement: "Suspended User Accounts",
-                modalRecipientLabel: "Recipient:", modalDetailsLabel: "Additional Context Details",
-                btnDownload: "Download Certificate File",
-                statusPending: "Pending Approval", statusApproved: "Approved Pass", statusRejected: "Rejected Dismiss",
-                noData: "No certificate archives found matching criteria",
-                noHistory: "You have not submitted any certificates yet",
-                alertLoginRequired: "You must sign in using an authorized account profile to continue.",
-                alertBanned: "Your user access has been permanently revoked by an administrator!",
-                alertDomainError: "Please use your institutional account (@ntun.ac.th) or a whitelisted email"
-            }
-        };
+    <div class="card-lg" style="padding:30px">
+      <form id="uploadForm" onsubmit="handleUpload(event)">
 
-        // Application State View Initialization Core Engine Hooks
-        window.onload = () => {
-            initAppSession();
-            applyTheme();
-            applyLanguage();
-            fetchOnlineData();
-        };
+        <div style="margin-bottom:18px">
+          <label class="label" style="display:block;margin-bottom:8px">ชื่อรายการแข่งขัน / กิจกรรม <span style="color:var(--danger)">*</span></label>
+          <input type="text" id="upTitle" class="form-input" placeholder="เช่น การแข่งขันโอลิมปิกวิชาการ ครั้งที่ 20" required>
+        </div>
 
-        function toggleTheme() {
-            sysTheme = sysTheme === 'light' ? 'dark' : 'light';
-            localStorage.setItem('sysTheme', sysTheme);
-            applyTheme();
-        }
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px">
+          <div>
+            <label class="label" style="display:block;margin-bottom:8px">หมวดหมู่หลัก <span style="color:var(--danger)">*</span></label>
+            <select id="upCategory" class="form-input" required>
+              <option value="วิทยาศาสตร์">วิทยาศาสตร์</option>
+              <option value="คณิตศาสตร์">คณิตศาสตร์</option>
+              <option value="ศิลปะ">ศิลปะ</option>
+              <option value="กีฬา">กีฬา</option>
+              <option value="อื่นๆ">อื่นๆ</option>
+            </select>
+          </div>
+          <div>
+            <label class="label" style="display:block;margin-bottom:8px">หมวดหมู่ย่อย</label>
+            <input type="text" id="upSubCat" class="form-input" placeholder="เช่น ฟิสิกส์, ดนตรี">
+          </div>
+        </div>
 
-        function applyTheme() {
-            const b = document.body;
-            if (sysTheme === 'dark') { b.classList.add('dark'); b.classList.remove('light'); }
-            else { b.classList.remove('dark'); b.classList.add('light'); }
-        }
+        <div style="margin-bottom:18px">
+          <label class="label" style="display:block;margin-bottom:8px">ชื่อผู้รับรางวัล <span style="color:var(--danger)">*</span></label>
+          <input type="text" id="upRecipient" class="form-input" placeholder="ชื่อ-นามสกุล ผู้รับรางวัล" required>
+        </div>
 
-        function toggleLanguage() {
-            sysLang = sysLang === 'th' ? 'en' : 'th';
-            localStorage.setItem('sysLang', sysLang);
-            applyLanguage();
-            renderCategoryFilterPills();
-            renderCerts();
-            renderHistory();
-            renderAdminDashboard();
-        }
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px">
+          <div>
+            <label class="label" style="display:block;margin-bottom:8px">ปีการศึกษา</label>
+            <input type="text" id="upYear" class="form-input" placeholder="เช่น 2567">
+          </div>
+          <div>
+            <label class="label" style="display:block;margin-bottom:8px">ระดับการแข่งขัน</label>
+            <select id="upLevel" class="form-input">
+              <option value="">-- ไม่ระบุ --</option>
+              <option value="ระดับโรงเรียน">ระดับโรงเรียน</option>
+              <option value="ระดับเขต">ระดับเขต</option>
+              <option value="ระดับจังหวัด">ระดับจังหวัด</option>
+              <option value="ระดับภาค">ระดับภาค</option>
+              <option value="ระดับชาติ">ระดับชาติ</option>
+              <option value="ระดับนานาชาติ">ระดับนานาชาติ</option>
+            </select>
+          </div>
+        </div>
 
-        function applyLanguage() {
-            document.getElementById('langBtn').innerText = sysLang === 'th' ? 'EN' : 'TH';
-            document.querySelectorAll('[data-lang]').forEach(el => {
-                const key = el.getAttribute('data-lang');
-                if(trans[sysLang][key]) el.innerText = trans[sysLang][key];
-            });
-            const sInput = document.getElementById('searchInput');
-            if(sInput) sInput.placeholder = sysLang === 'th' ? "ค้นหาชื่อผู้รับ, รายการแข่งขัน..." : "Search recipient, competitions...";
-            renderCategoryFilterPills();
-        }
+        <div style="margin-bottom:18px">
+          <label class="label" style="display:block;margin-bottom:8px">รายละเอียดเพิ่มเติม</label>
+          <textarea id="upDetails" class="form-input" rows="3" placeholder="รางวัลที่ได้รับ, วันที่, สถานที่จัดงาน ฯลฯ"></textarea>
+        </div>
 
-        function toggleLoading(show, customMsg = '') {
-            const overlay = document.getElementById('loadingOverlay');
-            const txt = document.getElementById('loadingText');
-            if(customMsg) txt.innerText = customMsg;
-            else txt.innerText = sysLang === 'th' ? 'กำลังเชื่อมต่อฐานข้อมูล...' : 'Synchronizing database engine...';
-            
-            if(show) { overlay.classList.remove('hidden'); overlay.classList.add('flex'); }
-            else { overlay.classList.add('hidden'); overlay.classList.remove('flex'); }
-        }
+        <div style="margin-bottom:28px">
+          <label class="label" style="display:block;margin-bottom:8px">ไฟล์เกียรติบัตร (รูปภาพ) <span style="color:var(--danger)">*</span></label>
+          <div class="dropzone" id="dropzone">
+            <input type="file" id="upFile" accept="image/*" required
+              style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer"
+              onchange="previewImage(this)">
+            <div id="dzContent">
+              <div style="width:52px;height:52px;border-radius:14px;background:var(--accentSoft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+              </div>
+              <p style="font-size:14px;font-weight:700;color:var(--text2);margin-bottom:5px">คลิกหรือลากไฟล์มาวางที่นี่</p>
+              <p style="font-size:12px;color:var(--text3)">รองรับ JPG, PNG, WEBP ขนาดไม่เกิน 10MB</p>
+            </div>
+            <div id="dzPreview" style="display:none">
+              <img id="previewImg" style="max-height:160px;border-radius:12px;margin:0 auto;object-fit:contain">
+              <p id="previewName" style="font-size:12px;font-weight:700;color:var(--accent);margin-top:12px;text-align:center"></p>
+            </div>
+          </div>
+        </div>
 
-        // Persistent 24-Hours Authentication Session Core Storage Validation Mechanics
-        function initAppSession() {
-            const cachedSession = localStorage.getItem('user_session');
-            const sessionTime = localStorage.getItem('session_timestamp');
-            const now = Date.now();
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;font-size:14px">
+          <i class="fa-solid fa-paper-plane"></i> ส่งเพื่อตรวจสอบ
+        </button>
+      </form>
+    </div>
+  </div>
 
-            if (cachedSession && sessionTime && (now - sessionTime < 24 * 60 * 60 * 1000)) {
-                currentUser = JSON.parse(cachedSession);
-                // Re-verify if the user has been banned mid-session
-                if(adminConfig.banned.includes(currentUser.email)) {
-                    localStorage.removeItem('user_session');
-                    currentUser = null;
-                    alert(trans[sysLang].alertBanned);
-                } else {
-                    // Refresh custom runtime admin privilege statuses 
-                    if(adminConfig.admins.includes(currentUser.email)) currentUser.isAdmin = true;
-                    updateAuthUI();
-                }
-            } else {
-                localStorage.removeItem('user_session');
-                localStorage.removeItem('session_timestamp');
-            }
-        }
+  <!-- ▸ HISTORY ─────────────────────────── -->
+  <div id="view-history" class="view" style="max-width:820px;margin:0 auto">
+    <div style="margin-bottom:28px">
+      <h1 class="serif" style="font-size:34px;color:var(--text);margin-bottom:8px">ประวัติการอัปโหลด</h1>
+      <p style="font-size:14px;color:var(--text2)">รายการเกียรติบัตรที่คุณเคยส่งเข้าระบบ</p>
+    </div>
+    <div class="card-lg" style="overflow:hidden">
+      <table class="hist-table">
+        <thead>
+          <tr>
+            <th>รายการ</th>
+            <th style="display:none" class="dt-col">วันที่อัปโหลด</th>
+            <th>สถานะ</th>
+            <th style="text-align:center">ดู</th>
+          </tr>
+        </thead>
+        <tbody id="historyList"></tbody>
+      </table>
+    </div>
+  </div>
 
-        function parseJwt(token) {
-            var base64Url = token.split('.')[1];
-            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            return JSON.parse(decodeURIComponent(window.atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')));
-        }
+  <!-- ▸ ADMIN ─────────────────────────── -->
+  <div id="view-admin" class="view">
+    <div style="margin-bottom:28px;display:flex;align-items:center;gap:14px">
+      <div style="width:42px;height:42px;border-radius:12px;background:rgba(139,92,246,.1);color:#7C3AED;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <div>
+        <h1 class="serif" style="font-size:32px;color:var(--text);line-height:1.1">แผงควบคุมแอดมิน</h1>
+        <p style="font-size:14px;color:var(--text2);margin-top:4px">จัดการเกียรติบัตรและผู้ใช้งานทั้งหมดในระบบ</p>
+      </div>
+    </div>
 
-        function handleCredentialResponse(response) {
-            const payload = parseJwt(response.credential);
-            const email = payload.email.toLowerCase();
+    <!-- Admin stat cards -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px" id="adminStats"></div>
 
-            if(adminConfig.banned.includes(email)) {
-                alert(trans[sysLang].alertBanned);
-                return;
-            }
+    <!-- Two-column layout -->
+    <div style="display:grid;grid-template-columns:1fr 300px;gap:22px;align-items:start">
 
-            const isAllowedDomain = email.endsWith('@ntun.ac.th');
-            const isExplicitAdmin = adminConfig.admins.includes(email);
+      <!-- Left: cert list -->
+      <div>
+        <!-- Tabs -->
+        <div class="admin-tabs" style="margin-bottom:16px">
+          <button class="atab active" id="tab-pending" onclick="setAdminTab('pending')">
+            <i class="fa-solid fa-hourglass-half" style="color:var(--warning)"></i>รออนุมัติ
+            <span id="badge-pending" style="margin-left:4px;background:var(--warningSoft);color:var(--warning);padding:2px 7px;border-radius:6px;font-size:11px">0</span>
+          </button>
+          <button class="atab" id="tab-approved" onclick="setAdminTab('approved')">
+            <i class="fa-solid fa-circle-check" style="color:var(--success)"></i>อนุมัติ
+            <span id="badge-approved" style="margin-left:4px;background:var(--successSoft);color:var(--success);padding:2px 7px;border-radius:6px;font-size:11px">0</span>
+          </button>
+          <button class="atab" id="tab-rejected" onclick="setAdminTab('rejected')">
+            <i class="fa-solid fa-circle-xmark" style="color:var(--danger)"></i>ไม่อนุมัติ
+            <span id="badge-rejected" style="margin-left:4px;background:var(--dangerSoft);color:var(--danger);padding:2px 7px;border-radius:6px;font-size:11px">0</span>
+          </button>
+        </div>
 
-            if (isAllowedDomain || isExplicitAdmin) {
-                currentUser = { 
-                    name: payload.name, 
-                    email: email, 
-                    picture: payload.picture, 
-                    isAdmin: isExplicitAdmin 
-                };
-                
-                localStorage.setItem('user_session', JSON.stringify(currentUser));
-                localStorage.setItem('session_timestamp', Date.now().toString());
-                
-                updateAuthUI();
-                renderHistory();
-                renderAdminDashboard();
-                alert(sysLang === 'th' ? `เข้าสู่ระบบสำเร็จ: สวัสดีครับ ${payload.name}` : `Welcome back, ${payload.name}`);
-            } else {
-                alert(trans[sysLang].alertDomainError);
-                logout();
-            }
-        }
+        <!-- Admin search -->
+        <div class="search-wrap" style="margin-bottom:14px">
+          <i class="fa-solid fa-magnifying-glass si"></i>
+          <input type="text" id="adminSearch" class="search-input" placeholder="ค้นหา..." oninput="renderAdminList()" style="font-size:13px;padding:11px 16px 11px 42px">
+        </div>
 
-        function logout() {
-            currentUser = null;
-            localStorage.removeItem('user_session');
-            localStorage.removeItem('session_timestamp');
-            updateAuthUI();
-            switchView('view-browse', document.querySelector('.dock-item'));
-        }
+        <!-- Cert list -->
+        <div id="adminGrid" style="display:flex;flex-direction:column;gap:10px"></div>
+      </div>
 
-        function updateAuthUI() {
-            const authContainer = document.getElementById('auth-container');
-            const userProfile = document.getElementById('user-profile');
-            const adminDock = document.getElementById('dock-admin');
+      <!-- Right: panels -->
+      <div style="display:flex;flex-direction:column;gap:16px;position:sticky;top:76px">
 
-            if (currentUser) {
-                authContainer.classList.add('hidden');
-                userProfile.className = 'flex items-center gap-3';
-                document.getElementById('user-name').innerText = currentUser.name;
-                document.getElementById('user-avatar').src = currentUser.picture;
-                
-                if (currentUser.isAdmin) {
-                    document.getElementById('user-role').innerText = "Administrator";
-                    adminDock.classList.remove('hidden');
-                } else {
-                    document.getElementById('user-role').innerText = "Verified User";
-                    adminDock.classList.add('hidden');
-                }
-            } else {
-                authContainer.classList.remove('hidden');
-                userProfile.className = 'hidden';
-                adminDock.classList.add('hidden');
-            }
-        }
+        <!-- System overview -->
+        <div class="card-lg" style="padding:20px">
+          <p class="label" style="margin-bottom:14px"><i class="fa-solid fa-chart-pie" style="margin-right:6px;color:var(--accent)"></i>ภาพรวมระบบ</p>
+          <div id="adminProgress" style="display:flex;flex-direction:column;gap:14px"></div>
+        </div>
 
-        // Network Integration Communications Architecture Engines (Fetch and Refresh)
-        async function fetchOnlineData() {
-            if(!BACKEND_URL) return;
-            toggleLoading(true);
-            try {
-                const response = await fetch(BACKEND_URL);
-                certificates = await response.json();
-                renderCerts();
-                renderHistory();
-                renderAdminDashboard();
-            } catch (error) {
-                console.error("Error fetching database metrics:", error);
-            } finally {
-                toggleLoading(false);
-            }
-        }
+        <!-- Admin List -->
+        <div class="card-lg" style="padding:20px">
+          <p class="label" style="margin-bottom:12px"><i class="fa-solid fa-user-shield" style="margin-right:6px;color:var(--accent)"></i>รายชื่อแอดมิน</p>
+          <div style="display:flex;gap:8px;margin-bottom:12px">
+            <input type="email" id="newAdminEmail" class="form-input" placeholder="อีเมลแอดมินใหม่" style="font-size:12px;padding:9px 12px">
+            <button onclick="addAdminEmail()" class="btn btn-primary btn-icon" title="เพิ่ม"><i class="fa-solid fa-plus"></i></button>
+          </div>
+          <div id="adminList" style="display:flex;flex-direction:column;gap:6px;max-height:180px;overflow-y:auto"></div>
+        </div>
 
-        function switchView(viewId, dockElement) {
-            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
-            const activeView = document.getElementById(viewId);
-            activeView.classList.add('active');
-            
-            document.querySelectorAll('.dock-item').forEach(el => el.style.color = 'var(--text-muted)');
-            if(dockElement) {
-                dockElement.style.color = dockElement.id === 'dock-admin' ? '#a855f7' : '#0071e3';
-            }
-        }
+        <!-- Banned -->
+        <div class="card-lg" style="padding:20px">
+          <p class="label" style="margin-bottom:12px"><i class="fa-solid fa-ban" style="margin-right:6px;color:var(--danger)"></i>รายชื่อถูกแบน</p>
+          <div style="display:flex;gap:8px;margin-bottom:12px">
+            <input type="email" id="banEmail" class="form-input" placeholder="อีเมลที่ต้องการแบน" style="font-size:12px;padding:9px 12px">
+            <button onclick="banUserAction()" class="btn btn-danger btn-icon" title="แบน"><i class="fa-solid fa-gavel"></i></button>
+          </div>
+          <div id="bannedList" style="display:flex;flex-direction:column;gap:6px;max-height:180px;overflow-y:auto"></div>
+        </div>
 
-        function checkAuthAndSwitch(viewId, dockElement) {
-            if (!currentUser) { alert(trans[sysLang].alertLoginRequired); return; }
-            switchView(viewId, dockElement);
-        }
+        <!-- Export -->
+        <button onclick="exportCSV()" class="btn btn-ghost" style="width:100%;justify-content:center;padding:12px">
+          <i class="fa-solid fa-file-csv"></i> ส่งออกข้อมูล CSV
+        </button>
+      </div>
+    </div>
+  </div>
 
-        function toggleSort() {
-            currentSort = currentSort === 'newest' ? 'oldest' : 'newest';
-            document.getElementById('sortToggle').setAttribute('data-state', currentSort);
-            renderCerts();
-        }
+</main>
 
-        function renderCategoryFilterPills() {
-            const wrapper = document.getElementById('categoryFilters');
-            const cats = ['all', 'วิทยาศาสตร์', 'คณิตศาสตร์', 'ศิลปะ', 'กีฬา', 'อื่นๆ'];
-            const labels = {
-                th: ['ทั้งหมด', '🔬 วิทยาศาสตร์', '📐 คณิตศาสตร์', '🎨 ศิลปะ', '🏆 กีฬา', '📦 อื่นๆ'],
-                en: ['All Archives', '🔬 Science', '📐 Mathematics', '🎨 Arts & Crafts', '🏆 Sports', '📦 Others']
-            };
-            
-            wrapper.innerHTML = '';
-            cats.forEach((cat, index) => {
-                const isActive = currentCategory === cat;
-                const cls = isActive ? 
-                    "px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-blue-600 text-white shadow-md shadow-blue-500/10 shrink-0" : 
-                    "px-5 py-2.5 rounded-full text-xs font-bold bg-white dark:bg-neutral-900 text-gray-500 hover:bg-gray-100 dark:hover:bg-neutral-800 shadow-sm border border-black/5 dark:border-white/5 shrink-0";
-                
-                wrapper.innerHTML += `<button onclick="setCategory('${cat}')" class="${cls}">${labels[sysLang][index]}</button>`;
-            });
-        }
+<!-- ═══════════════════════════════════════
+     DOCK
+════════════════════════════════════════ -->
+<div class="dock glass">
+  <button class="dock-btn active" id="dock-browse" onclick="switchView('view-browse','browse')">
+    <i class="fa-solid fa-house"></i><span id="dLabel-browse">หน้าแรก</span>
+  </button>
+  <button class="dock-btn" id="dock-upload" onclick="authSwitch('view-upload','upload')">
+    <i class="fa-solid fa-cloud-arrow-up"></i><span id="dLabel-upload">อัปโหลด</span>
+  </button>
+  <button class="dock-btn" id="dock-history" onclick="authSwitch('view-history','history')">
+    <i class="fa-solid fa-clock-rotate-left"></i><span id="dLabel-history">ประวัติ</span>
+  </button>
+  <div class="dock-sep" id="adminSep" style="display:none"></div>
+  <button class="dock-btn" id="dock-admin" onclick="switchView('view-admin','admin')" style="display:none;color:#7C3AED">
+    <i class="fa-solid fa-shield-halved"></i><span id="dLabel-admin">แอดมิน</span>
+  </button>
+</div>
 
-        function setCategory(cat) {
-            currentCategory = cat;
-            renderCategoryFilterPills();
-            renderCerts();
-        }
+<!-- ═══════════════════════════════════════
+     3D CERTIFICATE MODAL
+════════════════════════════════════════ -->
+<div id="modal3D">
+  <!-- Close -->
+  <button onclick="closeModal()" style="position:fixed;top:18px;right:18px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10" onmouseenter="this.style.background='rgba(255,255,255,.15)'" onmouseleave="this.style.background='rgba(255,255,255,.08)'">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
 
-        function renderCerts() {
-            const grid = document.getElementById('certGrid');
-            const searchVal = document.getElementById('searchInput').value.toLowerCase();
-            let filtered = certificates.filter(c => c.status === 'approved');
+  <div class="modal-inner">
 
-            if (currentCategory !== 'all') filtered = filtered.filter(c => c.category === currentCategory);
-            if (searchVal) filtered = filtered.filter(c => c.title.toLowerCase().includes(searchVal) || c.recipient.toLowerCase().includes(searchVal));
+    <!-- Left: 3D viewer -->
+    <div>
+      <div class="viewer-stage" id="viewerStage">
+        <div class="cert3d-wrap" id="certWrap">
+          <img id="certImg3D" class="cert3d-img" src="" alt="Certificate" draggable="false" crossorigin="anonymous">
+          <div class="cert3d-shine" id="certShine"></div>
+          <div class="cert3d-edge"></div>
+        </div>
+      </div>
 
-            filtered.sort((a, b) => currentSort === 'newest' ? b.timestamp - a.timestamp : a.timestamp - b.timestamp);
-            
-            if(filtered.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-16 text-gray-400 text-xs font-semibold tracking-wide">${trans[sysLang].noData}</div>`;
-                return;
-            }
-            
-            grid.innerHTML = '';
-            filtered.forEach(cert => {
-                grid.innerHTML += `
-                    <div class="cert-card card-solid rounded-2xl overflow-hidden cursor-pointer hover:shadow-xl dark:hover:shadow-black/40 transition-all duration-300" onclick="openModal('${cert.id}')">
-                        <div class="img-container relative"><img src="${cert.image}" alt="Certificate" crossorigin="anonymous" loading="lazy"></div>
-                        <div class="p-4">
-                            <span class="text-[9px] font-black uppercase tracking-wider bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded">${cert.category}</span>
-                            <h3 class="font-bold text-sm leading-tight mt-2.5 mb-1.5 truncate">${cert.title}</h3>
-                            <p class="text-xs text-gray-400 truncate font-semibold"><i class="fa-solid fa-user-graduate mr-1 opacity-60"></i> ${cert.recipient}</p>
-                        </div>
-                    </div>`;
-            });
-        }
+      <div class="viewer-ctrl">
+        <button class="vbtn" onclick="resetView()"><i class="fa-solid fa-rotate-left"></i> รีเซ็ต</button>
+        <button class="vbtn" id="autoBtn" onclick="toggleAuto()"><i class="fa-solid fa-play" id="autoIcon"></i> หมุนอัตโนมัติ</button>
+        <button class="vbtn" onclick="dlCert()"><i class="fa-solid fa-download"></i> บันทึก</button>
+      </div>
+      <p style="text-align:center;font-size:11px;color:rgba(255,255,255,.3);margin-top:10px;font-weight:600">
+        <i class="fa-solid fa-hand-pointer" style="margin-right:5px"></i>ลากเพื่อหมุน · Scroll เพื่อซูม
+      </p>
+    </div>
 
-        function openModal(id) {
-            const cert = certificates.find(c => c.id === id);
-            if(!cert) return;
+    <!-- Right: info -->
+    <div class="modal-info">
+      <div id="modalBadges" style="display:flex;gap:7px;flex-wrap:wrap"></div>
 
-            document.getElementById('modalImg').src = cert.image;
-            document.getElementById('modalCat').innerText = cert.category;
-            document.getElementById('modalSubCat').style.display = cert.subCategory ? 'inline-block' : 'none';
-            if(cert.subCategory) document.getElementById('modalSubCat').innerText = cert.subCategory;
+      <div>
+        <h2 id="modalTitle" class="serif" style="font-size:26px;color:#fff;line-height:1.2;margin-bottom:14px"></h2>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:9px">
+            <i class="fa-solid fa-user-graduate" style="color:rgba(255,255,255,.3);font-size:13px;width:14px"></i>
+            <span style="font-size:13px;font-weight:600;color:rgba(255,255,255,.5)">ผู้รับรางวัล</span>
+            <span id="modalRecipient" style="font-size:13px;font-weight:700;color:#fff"></span>
+          </div>
+          <div id="modalYearRow" style="display:none;align-items:center;gap:9px">
+            <i class="fa-regular fa-calendar" style="color:rgba(255,255,255,.3);font-size:13px;width:14px"></i>
+            <span style="font-size:13px;font-weight:600;color:rgba(255,255,255,.5)">ปีการศึกษา</span>
+            <span id="modalYear" style="font-size:13px;font-weight:700;color:#fff"></span>
+          </div>
+        </div>
+      </div>
 
-            document.getElementById('modalTitle').innerText = cert.title;
-            document.querySelector('#modalRecipient span:nth-child(2)').innerText = cert.recipient;
-            document.getElementById('modalDetails').innerText = cert.details || (sysLang === 'th' ? 'ไม่มีรายละเอียดเพิ่มเติม' : 'No extra details provided');
-            
-            document.getElementById('modalDownloadBtn').onclick = () => window.open(cert.image, '_blank');
-            
-            const overlay = document.getElementById('certModal');
-            overlay.classList.remove('pointer-events-none');
-            overlay.classList.add('opacity-100');
-            overlay.firstElementChild.classList.remove('scale-95', 'translate-y-4');
-        }
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px">
+        <p class="label" style="color:rgba(255,255,255,.3);margin-bottom:8px">รายละเอียด</p>
+        <p id="modalDetails" style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.75;font-weight:500"></p>
+      </div>
 
-        function closeModal() {
-            const overlay = document.getElementById('certModal');
-            overlay.classList.add('pointer-events-none');
-            overlay.classList.remove('opacity-100');
-            overlay.firstElementChild.classList.add('scale-95', 'translate-y-4');
-        }
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:auto">
+        <button onclick="dlCert()" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;font-size:14px">
+          <i class="fa-solid fa-download"></i> ดาวน์โหลดเกียรติบัตร
+        </button>
+        <button onclick="shareCert()" style="width:100%;padding:12px;border-radius:11px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s" onmouseenter="this.style.background='rgba(255,255,255,.1)'" onmouseleave="this.style.background='rgba(255,255,255,.05)'">
+          <i class="fa-solid fa-share-nodes"></i> แชร์
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
-        let currentUploadBase64 = null;
-        function previewImage(input) {
-            const file = input.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = e => {
-                    currentUploadBase64 = e.target.result;
-                    document.getElementById('fileNameDisplay').innerText = (sysLang === 'th' ? `เลือกไฟล์แล้ว: ` : `Selected: `) + file.name;
-                    document.getElementById('fileNameDisplay').className = "text-xs text-blue-500 font-bold tracking-wide";
-                };
-                reader.readAsDataURL(file);
-            }
-        }
+<!-- Google SDK -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
-        async function handleUpload(e) {
-            e.preventDefault();
-            if(!currentUser) return;
-            if(adminConfig.banned.includes(currentUser.email)) { alert(trans[sysLang].alertBanned); return; }
-            if (!currentUploadBase64) { alert("Error: File payload lost"); return; }
-            
-            toggleLoading(true, sysLang === 'th' ? 'กำลังอัปโหลดไฟล์ไปยังเซิร์ฟเวอร์...' : 'Uploading secure bundle package...');
+<script>
+/* ════════════════════════════════════════
+   CONFIG
+════════════════════════════════════════ */
+const BACKEND = 'https://script.google.com/macros/s/AKfycbyr1ukzCEjrP17DQyQDNtFm9h-mXeZJM430nSimQ6meycC67wT-WewWQFzxXGPDMgUyXw/exec';
 
-            const payload = {
-                action: 'upload',
-                id: 'cert_' + Date.now(),
-                title: document.getElementById('upTitle').value,
-                category: document.getElementById('upCategory').value,
-                subCategory: document.getElementById('upSubCat').value,
-                recipient: document.getElementById('upRecipient').value,
-                details: document.getElementById('upDetails').value,
-                image: currentUploadBase64,
-                uploaderEmail: currentUser.email,
-                timestamp: Date.now()
-            };
+/* ════════════════════════════════════════
+   STATE
+════════════════════════════════════════ */
+let user = null;
+let certs = [];
+let sort = 'newest';
+let category = 'all';
+let adminTab = 'pending';
+let activeCert = null;
+let uploadB64 = null;
+let theme = localStorage.getItem('theme') || 'light';
+let lang = localStorage.getItem('lang') || 'th';
 
-            try {
-                const res = await fetch(BACKEND_URL, { method: 'POST', body: JSON.stringify(payload) });
-                const result = await res.json();
-                
-                if(result.status === 'success') {
-                    alert(sysLang === 'th' ? 'ส่งบันทึกเกียรติบัตรเรียบร้อยแล้ว! รอแอดมินตรวจสอบ' : 'Certificate package submitted safely for approval');
-                    document.getElementById('uploadForm').reset();
-                    currentUploadBase64 = null;
-                    document.getElementById('fileNameDisplay').innerText = trans[sysLang].dropzoneText;
-                    document.getElementById('fileNameDisplay').className = "text-xs font-semibold text-gray-500";
-                    await fetchOnlineData();
-                    switchView('view-history', document.querySelectorAll('.dock-item')[2]);
-                } else {
-                    alert('Error message from cloud backend: ' + result.message);
-                }
-            } catch (err) {
-                alert('Fetch pipe connection failed: ' + err.toString());
-            } finally {
-                toggleLoading(false);
-            }
-        }
+let adminCfg = JSON.parse(
+  localStorage.getItem('adminCfg') ||
+  '{"admins":["aceaa372@gmail.com"],"banned":[]}'
+);
 
-        function renderHistory() {
-            if(!currentUser) return;
-            const tbody = document.getElementById('historyList');
-            const myCerts = certificates.filter(c => c.uploaderEmail === currentUser.email).sort((a,b) => b.timestamp - a.timestamp);
-            
-            if(myCerts.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="py-12 text-center text-gray-400 text-xs font-bold tracking-wide">${trans[sysLang].noHistory}</td></tr>`;
-                return;
-            }
+/* ════════════════════════════════════════
+   TRANSLATIONS
+════════════════════════════════════════ */
+const T = {
+  th: {
+    navSub:'คลังเกียรติบัตรดิจิทัล',
+    searchPh:'ค้นหาชื่อผู้รับ หรือรายการแข่งขัน...',
+    adminSearchPh:'ค้นหา...',
+    sortNew:'ล่าสุดก่อน', sortOld:'เก่าสุดก่อน',
+    catAll:'ทั้งหมด',
+    catNames:{'วิทยาศาสตร์':'วิทยาศาสตร์','คณิตศาสตร์':'คณิตศาสตร์','ศิลปะ':'ศิลปะ','กีฬา':'กีฬา','อื่นๆ':'อื่นๆ'},
+    sPending:'รออนุมัติ', sApproved:'อนุมัติแล้ว', sRejected:'ไม่อนุมัติ',
+    noData:'ยังไม่มีเกียรติบัตรในหมวดนี้', noHistory:'ยังไม่เคยอัปโหลดเกียรติบัตร',
+    needLogin:'กรุณาเข้าสู่ระบบก่อนใช้งาน',
+    banned:'บัญชีของคุณถูกระงับโดยแอดมิน',
+    domainErr:'กรุณาใช้อีเมลสถาบัน @ntun.ac.th หรืออีเมลที่ได้รับอนุมัติ',
+    welcome:n=>`ยินดีต้อนรับ ${n}`,
+    noDetail:'ไม่มีรายละเอียดเพิ่มเติม',
+    statTotal:'เกียรติบัตรทั้งหมด', statApproved:'อนุมัติแล้ว', statCats:'หมวดหมู่',
+    delConfirm:'ยืนยันการลบเกียรติบัตรนี้อย่างถาวร?',
+    banConfirm:e=>`แบนผู้ใช้ ${e} ?`,
+    uploadOk:'ส่งเกียรติบัตรเรียบร้อย รอแอดมินตรวจสอบ',
+    roleAdmin:'ผู้ดูแลระบบ', roleUser:'ผู้ใช้งาน',
+    dBrowse:'หน้าแรก', dUpload:'อัปโหลด', dHistory:'ประวัติ', dAdmin:'แอดมิน',
+    signedOut:'ออกจากระบบแล้ว', linkCopied:'คัดลอกลิงก์แล้ว',
+    statusUpdated:'อัปเดตสถานะเรียบร้อย', deleted:'ลบเรียบร้อยแล้ว',
+    exported:'ส่งออกข้อมูลเรียบร้อย', cannotBanOwner:'ไม่สามารถแบน Owner ได้',
+    alreadyAdmin:'อีเมลนี้มีสิทธิ์แอดมินอยู่แล้ว',
+    invalidEmail:'กรุณากรอกอีเมลที่ถูกต้อง',
+    noFile:'กรุณาเลือกไฟล์รูปภาพ',
+  },
+  en: {
+    navSub:'Digital Certificate Vault',
+    searchPh:'Search recipient or competition name...',
+    adminSearchPh:'Search...',
+    sortNew:'Newest First', sortOld:'Oldest First',
+    catAll:'All',
+    catNames:{'วิทยาศาสตร์':'Science','คณิตศาสตร์':'Mathematics','ศิลปะ':'Arts','กีฬา':'Sports','อื่นๆ':'Others'},
+    sPending:'Pending', sApproved:'Approved', sRejected:'Rejected',
+    noData:'No certificates found', noHistory:'No upload history yet',
+    needLogin:'Please sign in to continue',
+    banned:'Your account has been suspended',
+    domainErr:'Please use your @ntun.ac.th email or approved account',
+    welcome:n=>`Welcome, ${n}`,
+    noDetail:'No additional details',
+    statTotal:'Total Certificates', statApproved:'Approved', statCats:'Categories',
+    delConfirm:'Permanently delete this certificate?',
+    banConfirm:e=>`Ban user ${e}?`,
+    uploadOk:'Certificate submitted. Awaiting admin review.',
+    roleAdmin:'Administrator', roleUser:'Verified User',
+    dBrowse:'Home', dUpload:'Upload', dHistory:'History', dAdmin:'Admin',
+    signedOut:'Signed out', linkCopied:'Link copied',
+    statusUpdated:'Status updated', deleted:'Deleted successfully',
+    exported:'Data exported', cannotBanOwner:'Cannot ban the owner',
+    alreadyAdmin:'Email already has admin access',
+    invalidEmail:'Enter a valid email',
+    noFile:'Please select an image file',
+  }
+};
+const t = k => {
+  const v = T[lang][k];
+  return typeof v === 'function' ? v : v || k;
+};
 
-            tbody.innerHTML = '';
-            myCerts.forEach(cert => {
-                let badge = cert.status === 'pending' ? `<span class="bg-amber-500/10 text-amber-500 px-3 py-1 rounded-full text-[10px] font-bold tracking-wide uppercase">${trans[sysLang].statusPending}</span>` :
-                            cert.status === 'approved' ? `<span class="bg-green-500/10 text-green-500 px-3 py-1 rounded-full text-[10px] font-bold tracking-wide uppercase">${trans[sysLang].statusApproved}</span>` :
-                            `<span class="bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-[10px] font-bold tracking-wide uppercase">${trans[sysLang].statusRejected}</span>`;
+/* ════════════════════════════════════════
+   INIT
+════════════════════════════════════════ */
+window.onload = () => {
+  applyTheme(); applyLang();
+  initSession();
+  fetchData();
+};
 
-                tbody.innerHTML += `
-                    <tr class="hover:bg-gray-50 dark:hover:bg-neutral-900/40 transition-colors">
-                        <td class="py-4 px-6"><p class="font-bold text-sm text-[var(--text-main)]">${cert.title}</p><p class="text-xs text-gray-400 mt-0.5">${cert.recipient}</p></td>
-                        <td class="py-4 px-6 text-xs text-gray-400 font-semibold">${new Date(Number(cert.timestamp)).toLocaleDateString(sysLang === 'th' ? 'th-TH' : 'en-US')}</td>
-                        <td class="py-4 px-6">${badge}</td>
-                        <td class="py-4 px-6"><button onclick="openModal('${cert.id}')" class="text-blue-500 hover:text-blue-600 font-bold text-xs uppercase tracking-wide">View</button></td>
-                    </tr>`;
-            });
-        }
+/* ════════════════════════════════════════
+   THEME & LANGUAGE
+════════════════════════════════════════ */
+function toggleTheme() {
+  theme = theme === 'light' ? 'dark' : 'light';
+  localStorage.setItem('theme', theme);
+  applyTheme();
+}
+function applyTheme() {
+  document.documentElement.classList.toggle('dark', theme === 'dark');
+  const icon = document.getElementById('themeIcon');
+  if (icon) icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+}
 
-        // Expanded Advanced Admin Core System Functions
-        function setAdminTab(status) {
-            adminCurrentTab = status;
-            ['pending', 'approved', 'rejected'].forEach(tab => {
-                const el = document.getElementById('tab-' + tab);
-                if(tab === status) {
-                    el.className = "px-4 py-2 rounded-lg bg-white dark:bg-neutral-700 shadow-sm text-[var(--text-main)]";
-                } else {
-                    el.className = "px-4 py-2 rounded-lg text-gray-400";
-                }
-            });
-            renderAdminDashboard();
-        }
+function toggleLanguage() {
+  lang = lang === 'th' ? 'en' : 'th';
+  localStorage.setItem('lang', lang);
+  applyLang(); renderAll();
+}
+function applyLang() {
+  const lb = document.getElementById('langBtn');
+  if (lb) lb.textContent = lang === 'th' ? 'EN' : 'TH';
 
-        function renderAdminDashboard() {
-            // Matrix Counter Calculators
-            document.getElementById('countPendingVal').innerText = certificates.filter(c => c.status === 'pending').length;
-            document.getElementById('countApprovedVal').innerText = certificates.filter(c => c.status === 'approved').length;
-            document.getElementById('countRejectedVal').innerText = certificates.filter(c => c.status === 'rejected').length;
+  const ns = document.getElementById('navSub');
+  if (ns) ns.textContent = t('navSub');
 
-            renderAdminConfigLists();
-            if(!currentUser || !currentUser.isAdmin) return;
+  const si = document.getElementById('searchInput');
+  if (si) si.placeholder = t('searchPh');
 
-            const grid = document.getElementById('adminGrid');
-            const targetCerts = certificates.filter(c => c.status === adminCurrentTab).sort((a,b) => b.timestamp - a.timestamp);
-            
-            if(targetCerts.length === 0) {
-                grid.innerHTML = `<div class="col-span-full py-12 text-center text-gray-400 text-xs font-bold tracking-wide">No folders listed here</div>`;
-                return;
-            }
+  const as = document.getElementById('adminSearch');
+  if (as) as.placeholder = t('adminSearchPh');
 
-            grid.innerHTML = '';
-            targetCerts.forEach(cert => {
-                let actionControls = cert.status === 'pending' ? `
-                    <button onclick="changeStatus('${cert.id}', 'approved')" class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-xl text-xs font-bold shadow-md shadow-green-500/10">อนุมัติ</button>
-                    <button onclick="changeStatus('${cert.id}', 'rejected')" class="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-xl text-xs font-bold shadow-md shadow-red-500/10">ปฏิเสธ</button>` :
-                    `<button onclick="changeStatus('${cert.id}', '${cert.status === 'approved' ? 'rejected' : 'approved'}')" class="flex-1 bg-gray-100 dark:bg-neutral-800 text-[var(--text-main)] py-2 rounded-xl text-xs font-bold">สลับสถานะ</button>`;
+  const sl = document.getElementById('sortLabel');
+  if (sl) sl.textContent = sort === 'newest' ? t('sortNew') : t('sortOld');
 
-                grid.innerHTML += `
-                    <div class="card-solid rounded-2xl p-4 flex flex-col justify-between relative group">
-                        <button onclick="masterDeleteCert('${cert.id}')" class="absolute top-3 right-3 w-7 h-7 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 z-10 shadow-sm"><i class="fa-solid fa-trash-can text-[10px]"></i></button>
-                        
-                        <div class="flex gap-4 mb-4">
-                            <img src="${cert.image}" class="w-20 h-20 object-cover rounded-xl bg-gray-100 cursor-pointer border border-black/5" onclick="openModal('${cert.id}')" crossorigin="anonymous">
-                            <div class="overflow-hidden">
-                                <h4 class="font-bold text-sm truncate text-[var(--text-main)]">${cert.title}</h4>
-                                <p class="text-xs text-gray-400 mt-0.5 font-medium truncate">ผู้รับ: ${cert.recipient}</p>
-                                <div class="flex items-center gap-1.5 mt-2">
-                                    <span class="text-[9px] bg-purple-500/10 text-purple-500 font-bold px-1.5 py-0.5 rounded truncate max-w-[150px]" title="${cert.uploaderEmail}">BY: ${cert.uploaderEmail}</span>
-                                    <button onclick="banFromConsole('${cert.uploaderEmail}')" class="text-[9px] text-red-500 font-black hover:underline uppercase tracking-wider shrink-0">BAN</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex gap-2">${actionControls}</div>
-                    </div>`;
-            });
-        }
+  ['browse','upload','history','admin'].forEach(k => {
+    const el = document.getElementById('dLabel-'+k);
+    if (el) el.textContent = T[lang]['d'+k[0].toUpperCase()+k.slice(1)] || k;
+  });
+}
 
-        async function changeStatus(id, newStatus) {
-            toggleLoading(true, sysLang === 'th' ? 'กำลังอัปเดตสถานะเกียรติบัตร...' : 'Modifying structural status...');
-            try {
-                const res = await fetch(BACKEND_URL, { method: 'POST', body: JSON.stringify({ action: 'changeStatus', id: id, newStatus: newStatus }) });
-                const result = await res.json();
-                if(result.status === 'success') {
-                    await fetchOnlineData();
-                }
-            } catch (err) {
-                alert('Pipeline mutation error');
-            } finally {
-                toggleLoading(false);
-            }
-        }
+/* ════════════════════════════════════════
+   TOAST
+════════════════════════════════════════ */
+function toast(msg, type='info', ms=3500) {
+  const icon = {success:'fa-circle-check',error:'fa-circle-xmark',warning:'fa-triangle-exclamation',info:'fa-circle-info'}[type]||'fa-circle-info';
+  const col  = {success:'var(--success)',error:'var(--danger)',warning:'var(--warning)',info:'var(--accent)'}[type]||'var(--accent)';
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.innerHTML = `
+    <div style="width:30px;height:30px;border-radius:8px;background:rgba(0,0,0,.04);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <i class="fa-solid ${icon}" style="color:${col};font-size:14px"></i>
+    </div>
+    <span style="flex:1;color:var(--text)">${msg}</span>
+    <button onclick="rmToast(this.parentElement)" style="background:none;border:none;color:var(--text3);cursor:pointer;font-size:15px;padding:0;display:flex;align-items:center"><i class="fa-solid fa-xmark"></i></button>`;
+  document.getElementById('toasts').appendChild(el);
+  setTimeout(()=>rmToast(el), ms);
+}
+function rmToast(el) {
+  if (!el||!el.parentElement) return;
+  el.classList.add('out');
+  setTimeout(()=>el.remove(), 300);
+}
 
-        // Dynamic Advanced Admin Access Control Engine Lists
-        function renderAdminConfigLists() {
-            const adminBox = document.getElementById('adminEmailsList');
-            adminBox.innerHTML = '';
-            adminConfig.admins.forEach(email => {
-                adminBox.innerHTML += `
-                    <div class="flex justify-between items-center bg-gray-50 dark:bg-neutral-900 px-3 py-2 rounded-xl text-xs font-semibold border border-black/5">
-                        <span class="truncate pr-2">${email}</span>
-                        ${email !== 'aceaa372@gmail.com' ? `<button onclick="removeAdminEmail('${email}')" class="text-red-500 hover:text-red-600"><i class="fa-solid fa-circle-minus"></i></button>` : '<span class="text-[9px] font-black text-blue-500 uppercase">Owner</span>'}
-                    </div>`;
-            });
+/* ════════════════════════════════════════
+   LOADING
+════════════════════════════════════════ */
+function setLoading(on, msg='') {
+  const ov = document.getElementById('loadingOverlay');
+  const tx = document.getElementById('loadingText');
+  if (msg) tx.textContent = msg;
+  ov.classList.toggle('on', on);
+}
 
-            const banBox = document.getElementById('bannedEmailsList');
-            banBox.innerHTML = '';
-            if(adminConfig.banned.length === 0) {
-                banBox.innerHTML = `<p class="text-[10px] text-gray-400 text-center py-2">ไม่มีผู้ใช้ที่ถูกแบน</p>`;
-            }
-            adminConfig.banned.forEach(email => {
-                banBox.innerHTML += `
-                    <div class="flex justify-between items-center bg-red-500/5 dark:bg-red-500/10 text-red-600 dark:text-red-400 px-3 py-2 rounded-xl text-xs font-semibold border border-red-500/10">
-                        <span class="truncate pr-2">${email}</span>
-                        <button onclick="unbanUserEmailAction('${email}')" class="text-gray-400 hover:text-green-500 text-[10px] font-black uppercase tracking-wider">Unban</button>
-                    </div>`;
-            });
-        }
+/* ════════════════════════════════════════
+   AUTH
+════════════════════════════════════════ */
+function initSession() {
+  const c = localStorage.getItem('session');
+  const ts = localStorage.getItem('sessionTs');
+  if (c && ts && Date.now() - +ts < 864e5) {
+    user = JSON.parse(c);
+    if (adminCfg.banned.includes(user.email)) {
+      toast(t('banned'),'error'); user=null; localStorage.removeItem('session'); return;
+    }
+    user.isAdmin = adminCfg.admins.includes(user.email);
+    updateAuthUI();
+  }
+}
+function parseJwt(tok) {
+  const b = tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');
+  return JSON.parse(decodeURIComponent(atob(b).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join('')));
+}
+function handleCredentialResponse(res) {
+  const p = parseJwt(res.credential);
+  const email = p.email.toLowerCase();
+  if (adminCfg.banned.includes(email)) { toast(t('banned'),'error'); return; }
+  const ok = email.endsWith('@ntun.ac.th') || adminCfg.admins.includes(email);
+  if (!ok) { toast(t('domainErr'),'error'); return; }
+  user = { name:p.name, email, picture:p.picture, isAdmin:adminCfg.admins.includes(email) };
+  localStorage.setItem('session', JSON.stringify(user));
+  localStorage.setItem('sessionTs', String(Date.now()));
+  updateAuthUI();
+  renderHistory(); renderAdminDashboard();
+  toast(T[lang].welcome(p.name.split(' ')[0]),'success');
+}
+function logout() {
+  user=null; localStorage.removeItem('session'); localStorage.removeItem('sessionTs');
+  updateAuthUI(); switchView('view-browse','browse');
+  toast(t('signedOut'),'info');
+}
+function updateAuthUI() {
+  const gArea = document.getElementById('googleArea');
+  const pArea = document.getElementById('profileArea');
+  const dAdmin = document.getElementById('dock-admin');
+  const dSep = document.getElementById('adminSep');
+  if (user) {
+    gArea.style.display='none'; pArea.style.display='flex';
+    document.getElementById('uName').textContent = user.name;
+    document.getElementById('uAvatar').src = user.picture;
+    document.getElementById('uRole').textContent = user.isAdmin ? t('roleAdmin') : t('roleUser');
+    if (user.isAdmin) { dAdmin.style.display='flex'; dSep.style.display='block'; }
+    else { dAdmin.style.display='none'; dSep.style.display='none'; }
+  } else {
+    gArea.style.display='block'; pArea.style.display='none';
+    dAdmin.style.display='none'; dSep.style.display='none';
+  }
+}
 
-        function addAdminEmail() {
-            const input = document.getElementById('newAdminEmail');
-            const email = input.value.trim().toLowerCase();
-            if(!email) return;
-            if(!adminConfig.admins.includes(email)) {
-                adminConfig.admins.push(email);
-                saveAdminConfig();
-                input.value = '';
-                alert(`เปิดสิทธิ์แอดมินให้ระบบเรียบร้อย: ${email}`);
-            }
-        }
+/* ════════════════════════════════════════
+   DATA
+════════════════════════════════════════ */
+async function fetchData() {
+  setLoading(true, lang==='th'?'กำลังโหลดเกียรติบัตร...':'Loading certificates...');
+  try {
+    const r = await fetch(BACKEND);
+    certs = await r.json();
+    renderAll();
+  } catch(e) {
+    toast(lang==='th'?'ไม่สามารถเชื่อมต่อฐานข้อมูลได้':'Database connection failed','error');
+    certs = [];
+    renderAll();
+  } finally { setLoading(false); }
+}
 
-        function removeAdminEmail(email) {
-            adminConfig.admins = adminConfig.admins.filter(e => e !== email);
-            saveAdminConfig();
-            alert(`ถอนสิทธิ์แอดมินเรียบร้อยแล้ว`);
-        }
+function renderAll() {
+  renderStats(); renderCatPills(); renderCerts();
+  renderHistory(); renderAdminDashboard();
+}
 
-        function banUserEmailAction() {
-            const input = document.getElementById('banUserEmail');
-            const email = input.value.trim().toLowerCase();
-            if(!email || email === 'aceaa372@gmail.com') return;
-            if(!adminConfig.banned.includes(email)) {
-                adminConfig.banned.push(email);
-                saveAdminConfig();
-                input.value = '';
-                alert(`แบนบัญชีผู้ใช้นี้เรียบร้อยแล้ว: ${email}`);
-            }
-        }
+/* ════════════════════════════════════════
+   VIEW SWITCHING
+════════════════════════════════════════ */
+function switchView(viewId, dockId) {
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(viewId).classList.add('active');
+  document.querySelectorAll('.dock-btn').forEach(b=>b.classList.remove('active'));
+  const d = document.getElementById('dock-'+dockId);
+  if (d) d.classList.add('active');
+  if (viewId==='view-history') renderHistory();
+  if (viewId==='view-admin') renderAdminDashboard();
+}
+function authSwitch(viewId, dockId) {
+  if (!user) { toast(t('needLogin'),'warning'); return; }
+  switchView(viewId, dockId);
+}
 
-        function banFromConsole(email) {
-            if(confirm(`คุณต้องการแบนผู้ใช้ ${email} ใช่หรือไม่? สิทธิ์การเข้าถึงทั้งหมดจะถูกบล็อกทันที`)) {
-                if(!adminConfig.banned.includes(email.toLowerCase())) {
-                    adminConfig.banned.push(email.toLowerCase());
-                    saveAdminConfig();
-                    alert(`ระงับการใช้งานถาวรเรียบร้อย`);
-                }
-            }
-        }
+/* ════════════════════════════════════════
+   STATS
+════════════════════════════════════════ */
+function renderStats() {
+  const approved = certs.filter(c=>c.status==='approved');
+  const cats = [...new Set(approved.map(c=>c.category))];
+  const data = [
+    { val:certs.length, lbl:t('statTotal'), icon:'fa-certificate', col:'var(--accent)', bg:'var(--accentSoft)' },
+    { val:approved.length, lbl:t('statApproved'), icon:'fa-circle-check', col:'var(--success)', bg:'var(--successSoft)' },
+    { val:cats.length, lbl:t('statCats'), icon:'fa-layer-group', col:'#7C3AED', bg:'rgba(139,92,246,.1)' },
+  ];
+  document.getElementById('statsRow').innerHTML = data.map(s=>`
+    <div class="card stat-card">
+      <div class="stat-icon" style="background:${s.bg};color:${s.col}"><i class="fa-solid ${s.icon}"></i></div>
+      <div><div class="stat-val">${s.val}</div><div class="stat-lbl">${s.lbl}</div></div>
+    </div>`).join('');
+}
 
-        function unbanUserEmailAction(email) {
-            adminConfig.banned = adminConfig.banned.filter(e => e !== email);
-            saveAdminConfig();
-            alert(`ปลดแบนผู้ใช้งานเรียบร้อยแล้ว`);
-        }
+/* ════════════════════════════════════════
+   CATEGORY PILLS
+════════════════════════════════════════ */
+const CAT_ICONS = { all:'fa-border-all','วิทยาศาสตร์':'fa-flask','คณิตศาสตร์':'fa-square-root-variable','ศิลปะ':'fa-palette','กีฬา':'fa-trophy','อื่นๆ':'fa-box-archive' };
+const ALL_CATS = ['all','วิทยาศาสตร์','คณิตศาสตร์','ศิลปะ','กีฬา','อื่นๆ'];
 
-        function saveAdminConfig() {
-            localStorage.setItem('adminConfig', JSON.stringify(adminConfig));
-            // Sync current runtime profiles configuration variables
-            if(currentUser) {
-                currentUser.isAdmin = adminConfig.admins.includes(currentUser.email);
-                localStorage.setItem('user_session', JSON.stringify(currentUser));
-                updateAuthUI();
-            }
-            renderAdminDashboard();
-        }
+function renderCatPills() {
+  const wrap = document.getElementById('catPills');
+  if (!wrap) return;
+  wrap.innerHTML = ALL_CATS.map(cat => {
+    const lbl = cat==='all' ? t('catAll') : (T[lang].catNames[cat]||cat);
+    const cnt = cat==='all'
+      ? certs.filter(c=>c.status==='approved').length
+      : certs.filter(c=>c.status==='approved'&&c.category===cat).length;
+    return `<button class="cat-pill ${category===cat?'active':''}" onclick="setCategory('${cat}')">
+      <i class="fa-solid ${CAT_ICONS[cat]||'fa-tag'}" style="margin-right:6px;font-size:11px"></i>${lbl}
+      <span style="margin-left:5px;opacity:.55;font-size:11px">${cnt}</span>
+    </button>`;
+  }).join('');
+}
+function setCategory(cat) { category=cat; renderCatPills(); renderCerts(); }
 
-        async function masterDeleteCert(id) {
-            if(!confirm(sysLang === 'th' ? "ยืนยันการลบเกียรติบัตรนี้อย่างถาวรออกจากระบบคลังข้อมูลดิจิทัล?" : "Are you sure you want to permanently erase this certificate log folder?")) return;
-            toggleLoading(true, sysLang === 'th' ? 'กำลังทำลายไฟล์เอกสารดิจิทัล...' : 'Purging permanent record database payload...');
-            try {
-                // Sends structured deletion request payload to backend macro script endpoint interface
-                const res = await fetch(BACKEND_URL, { method: 'POST', body: JSON.stringify({ action: 'delete', id: id }) });
-                const result = await res.json();
-                if(result.status === 'success' || result.status === 'ok' || true) { 
-                    // Fallback filtering to guarantee smooth reactivity updates UI state even on diverse script branches configurations
-                    certificates = certificates.filter(c => c.id !== id);
-                    await fetchOnlineData();
-                }
-            } catch(e) {
-                certificates = certificates.filter(c => c.id !== id);
-                renderCerts(); renderHistory(); renderAdminDashboard();
-                toggleLoading(false);
-            }
-        }
-    </script>
+/* ════════════════════════════════════════
+   CERT GRID
+════════════════════════════════════════ */
+function renderCerts() {
+  const grid = document.getElementById('certGrid');
+  if (!grid) return;
+  const q = (document.getElementById('searchInput')?.value||'').toLowerCase();
+  let filtered = certs.filter(c=>c.status==='approved');
+  if (category!=='all') filtered = filtered.filter(c=>c.category===category);
+  if (q) filtered = filtered.filter(c=>
+    (c.title||'').toLowerCase().includes(q) ||
+    (c.recipient||'').toLowerCase().includes(q) ||
+    (c.subCategory||'').toLowerCase().includes(q)
+  );
+  filtered.sort((a,b)=> sort==='newest' ? b.timestamp-a.timestamp : a.timestamp-b.timestamp);
+
+  if (!filtered.length) {
+    grid.innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:72px 20px">
+        <div style="width:62px;height:62px;border-radius:18px;background:var(--bg3);margin:0 auto 18px;display:flex;align-items:center;justify-content:center">
+          <i class="fa-solid fa-certificate" style="font-size:26px;color:var(--text3)"></i>
+        </div>
+        <p style="font-size:16px;font-weight:700;color:var(--text2);margin-bottom:5px">${t('noData')}</p>
+        <p style="font-size:13px;color:var(--text3)">ลองเปลี่ยนหมวดหมู่หรือคำค้นหา</p>
+      </div>`;
+    return;
+  }
+  grid.innerHTML = filtered.map(c => {
+    const catLbl = lang==='en' ? (T.en.catNames[c.category]||c.category) : c.category;
+    return `
+      <div class="cert-card card" onclick="openModal('${c.id}')">
+        <div class="cert-thumb-wrap">
+          <img class="cert-thumb" src="${c.image}" alt="${c.title}" loading="lazy" crossorigin="anonymous">
+        </div>
+        <div class="cert-body">
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px">
+            <span class="badge badge-blue"><i class="fa-solid ${CAT_ICONS[c.category]||'fa-tag'}"></i> ${catLbl}</span>
+            ${c.level?`<span class="badge badge-purple">${c.level}</span>`:''}
+          </div>
+          <h3 style="font-size:14px;font-weight:700;color:var(--text);line-height:1.45;margin-bottom:8px" class="clamp2">${c.title}</h3>
+          <p style="font-size:12px;color:var(--text3);font-weight:600" class="truncate">
+            <i class="fa-solid fa-user-graduate" style="margin-right:5px;font-size:10px"></i>${c.recipient}
+          </p>
+          ${c.year?`<p style="font-size:11px;color:var(--text3);font-weight:500;margin-top:5px"><i class="fa-regular fa-calendar" style="margin-right:4px"></i>${c.year}</p>`:''}
+        </div>
+      </div>`;
+  }).join('');
+}
+function toggleSort() {
+  sort = sort==='newest'?'oldest':'newest';
+  document.getElementById('sortLabel').textContent = t(sort==='newest'?'sortNew':'sortOld');
+  document.getElementById('sortIcon').className = sort==='newest'?'fa-solid fa-arrow-down-wide-short':'fa-solid fa-arrow-up-wide-short';
+  renderCerts();
+}
+
+/* ════════════════════════════════════════
+   3D MODAL — ENGINE
+════════════════════════════════════════ */
+let rx=0,ry=0,trx=0,try_=0,zoom=1;
+let dragging=false,dragX=0,dragY=0;
+let rafId=null, autoRafId=null, isAuto=false;
+
+function openModal(id) {
+  const c = certs.find(x=>x.id===id);
+  if (!c) return;
+  activeCert = c;
+
+  document.getElementById('certImg3D').src = c.image;
+  document.getElementById('modalTitle').textContent = c.title;
+  document.getElementById('modalRecipient').textContent = c.recipient;
+  document.getElementById('modalDetails').textContent = c.details || t('noDetail');
+
+  // Badges
+  const catLbl = lang==='en'?(T.en.catNames[c.category]||c.category):c.category;
+  let badgeHTML = `<span class="badge badge-blue"><i class="fa-solid ${CAT_ICONS[c.category]||'fa-tag'}"></i> ${catLbl}</span>`;
+  if (c.subCategory) badgeHTML += `<span class="badge badge-gray">${c.subCategory}</span>`;
+  if (c.level) badgeHTML += `<span class="badge badge-purple">${c.level}</span>`;
+  document.getElementById('modalBadges').innerHTML = badgeHTML;
+
+  // Year
+  const yr = document.getElementById('modalYearRow');
+  if (c.year) { document.getElementById('modalYear').textContent=c.year; yr.style.display='flex'; }
+  else yr.style.display='none';
+
+  // Reset
+  rx=0;ry=0;trx=0;try_=0;zoom=1;isAuto=false;
+  document.getElementById('autoBtn').classList.remove('active');
+  document.getElementById('autoIcon').className='fa-solid fa-play';
+
+  document.getElementById('modal3D').classList.add('open');
+  document.body.style.overflow='hidden';
+  startRenderLoop(); bind3D();
+}
+function closeModal() {
+  stopAuto(); stopRenderLoop();
+  document.getElementById('modal3D').classList.remove('open');
+  document.body.style.overflow='';
+  unbind3D();
+}
+document.getElementById('modal3D').addEventListener('click', e=>{
+  if(e.target===e.currentTarget) closeModal();
+});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+/* ─── Render loop ─── */
+function startRenderLoop() {
+  if (rafId) cancelAnimationFrame(rafId);
+  function loop() {
+    const lerp = .1;
+    rx += (trx-rx)*lerp;
+    ry += (try_-ry)*lerp;
+    applyTransform();
+    rafId = requestAnimationFrame(loop);
+  }
+  rafId = requestAnimationFrame(loop);
+}
+function stopRenderLoop() {
+  if (rafId) { cancelAnimationFrame(rafId); rafId=null; }
+}
+
+function applyTransform() {
+  const wrap = document.getElementById('certWrap');
+  const shine = document.getElementById('certShine');
+  if (!wrap) return;
+  wrap.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale3d(${zoom},${zoom},${zoom})`;
+  wrap.style.boxShadow = `
+    ${ry*.4}px ${-rx*.4}px 24px rgba(0,0,0,.5),
+    ${ry*1.2}px ${-rx*1.2}px 64px rgba(0,0,0,.3)
+  `;
+  const nx = (ry+50)/100, ny = (-rx+50)/100;
+  shine.style.background = `radial-gradient(circle at ${Math.max(0,Math.min(100,nx*100)).toFixed(1)}% ${Math.max(0,Math.min(100,ny*100)).toFixed(1)}%, rgba(255,255,255,.32) 0%, rgba(255,255,255,.04) 45%, transparent 72%)`;
+}
+
+/* ─── Interaction ─── */
+function bind3D() {
+  const s = document.getElementById('viewerStage');
+  s.addEventListener('mousedown', md3D);
+  s.addEventListener('mousemove', mm3D);
+  s.addEventListener('mouseup', mu3D);
+  s.addEventListener('mouseleave', mu3D);
+  s.addEventListener('wheel', mw3D, {passive:true});
+  s.addEventListener('touchstart', ts3D, {passive:true});
+  s.addEventListener('touchmove', tm3D, {passive:true});
+  s.addEventListener('touchend', mu3D);
+}
+function unbind3D() {
+  const s = document.getElementById('viewerStage');
+  s.removeEventListener('mousedown', md3D);
+  s.removeEventListener('mousemove', mm3D);
+  s.removeEventListener('mouseup', mu3D);
+  s.removeEventListener('mouseleave', mu3D);
+  s.removeEventListener('wheel', mw3D);
+  s.removeEventListener('touchstart', ts3D);
+  s.removeEventListener('touchmove', tm3D);
+  s.removeEventListener('touchend', mu3D);
+}
+
+let tx0=0,ty0=0; // touch start
+function md3D(e) { dragging=true; dragX=e.clientX; dragY=e.clientY; stopAuto(); }
+function mm3D(e) {
+  if (!dragging) {
+    // Hover tilt
+    const s = e.currentTarget.getBoundingClientRect();
+    const dx=(e.clientX-s.left-s.width/2)/(s.width/2);
+    const dy=(e.clientY-s.top-s.height/2)/(s.height/2);
+    trx = -dy*14; try_= dx*18;
+    return;
+  }
+  const dx=e.clientX-dragX, dy=e.clientY-dragY;
+  dragX=e.clientX; dragY=e.clientY;
+  try_ += dx*.6; trx  -= dy*.45;
+  trx = Math.max(-88,Math.min(88,trx));
+}
+function mu3D() { dragging=false; }
+function mw3D(e) { zoom = Math.max(.5,Math.min(2.5,zoom-e.deltaY*.001)); }
+function ts3D(e) { tx0=e.touches[0].clientX; ty0=e.touches[0].clientY; dragging=true; stopAuto(); }
+function tm3D(e) {
+  if (!dragging) return;
+  const dx=e.touches[0].clientX-tx0, dy=e.touches[0].clientY-ty0;
+  tx0=e.touches[0].clientX; ty0=e.touches[0].clientY;
+  try_ += dx*.6; trx -= dy*.45;
+  trx = Math.max(-88,Math.min(88,trx));
+}
+
+/* ─── Controls ─── */
+function resetView() { trx=0; try_=0; zoom=1; }
+function toggleAuto() { isAuto?stopAuto():startAuto(); }
+function startAuto() {
+  isAuto=true;
+  document.getElementById('autoBtn').classList.add('active');
+  document.getElementById('autoIcon').className='fa-solid fa-pause';
+  let a = try_;
+  function spin() { if(!isAuto)return; a+=.45; try_=a; autoRafId=requestAnimationFrame(spin); }
+  spin();
+}
+function stopAuto() {
+  isAuto=false;
+  if (autoRafId) { cancelAnimationFrame(autoRafId); autoRafId=null; }
+  document.getElementById('autoBtn').classList.remove('active');
+  document.getElementById('autoIcon').className='fa-solid fa-play';
+}
+function dlCert() {
+  if (!activeCert) return;
+  const a=document.createElement('a');
+  a.href=activeCert.image; a.target='_blank';
+  a.download=`cert-${activeCert.id}.jpg`; a.click();
+}
+function shareCert() {
+  if (!activeCert) return;
+  if (navigator.share) {
+    navigator.share({title:activeCert.title,url:activeCert.image}).catch(()=>{});
+  } else {
+    navigator.clipboard?.writeText(activeCert.image).then(()=>toast(t('linkCopied'),'success'));
+  }
+}
+
+/* ════════════════════════════════════════
+   UPLOAD
+════════════════════════════════════════ */
+function previewImage(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const rd = new FileReader();
+  rd.onload = e => {
+    uploadB64 = e.target.result;
+    document.getElementById('previewImg').src = e.target.result;
+    document.getElementById('previewName').textContent = file.name;
+    document.getElementById('dzPreview').style.display='block';
+    document.getElementById('dzContent').style.display='none';
+    document.getElementById('dropzone').classList.add('active');
+  };
+  rd.readAsDataURL(file);
+}
+async function handleUpload(e) {
+  e.preventDefault();
+  if (!user) { toast(t('needLogin'),'warning'); return; }
+  if (!uploadB64) { toast(t('noFile'),'warning'); return; }
+  setLoading(true, lang==='th'?'กำลังอัปโหลด...':'Uploading...');
+  const payload = {
+    action:'upload',
+    id:'cert_'+Date.now(),
+    title:document.getElementById('upTitle').value,
+    category:document.getElementById('upCategory').value,
+    subCategory:document.getElementById('upSubCat').value,
+    recipient:document.getElementById('upRecipient').value,
+    details:document.getElementById('upDetails').value,
+    year:document.getElementById('upYear').value,
+    level:document.getElementById('upLevel').value,
+    image:uploadB64,
+    uploaderEmail:user.email,
+    timestamp:Date.now()
+  };
+  try {
+    const r = await fetch(BACKEND,{method:'POST',body:JSON.stringify(payload)});
+    const result = await r.json();
+    if (result.status==='success') {
+      toast(t('uploadOk'),'success',5000);
+      document.getElementById('uploadForm').reset();
+      uploadB64=null;
+      document.getElementById('dzPreview').style.display='none';
+      document.getElementById('dzContent').style.display='block';
+      document.getElementById('dropzone').classList.remove('active');
+      await fetchData();
+      switchView('view-history','history');
+    } else { toast('Error: '+result.message,'error'); }
+  } catch { toast(lang==='th'?'เชื่อมต่อเซิร์ฟเวอร์ไม่ได้':'Server error','error'); }
+  finally { setLoading(false); }
+}
+
+/* ════════════════════════════════════════
+   HISTORY
+════════════════════════════════════════ */
+function renderHistory() {
+  const tbody = document.getElementById('historyList');
+  if (!tbody) return;
+  if (!user) {
+    tbody.innerHTML=`<tr><td colspan="4" style="padding:40px;text-align:center;color:var(--text3);font-size:14px">${t('needLogin')}</td></tr>`;
+    return;
+  }
+  const mine = certs.filter(c=>c.uploaderEmail===user.email).sort((a,b)=>b.timestamp-a.timestamp);
+  if (!mine.length) {
+    tbody.innerHTML=`<tr><td colspan="4" style="padding:60px 20px;text-align:center">
+      <i class="fa-solid fa-inbox" style="font-size:36px;color:var(--text3);display:block;margin-bottom:14px"></i>
+      <p style="font-size:14px;font-weight:700;color:var(--text2)">${t('noHistory')}</p>
+    </td></tr>`;
+    return;
+  }
+  const sConf = {
+    pending:  {lbl:t('sPending'),  cls:'badge-orange', icon:'fa-hourglass-half'},
+    approved: {lbl:t('sApproved'), cls:'badge-green',  icon:'fa-circle-check'},
+    rejected: {lbl:t('sRejected'), cls:'badge-red',    icon:'fa-circle-xmark'},
+  };
+  tbody.innerHTML = mine.map(c=>{
+    const sc = sConf[c.status]||sConf.pending;
+    const date = new Date(+c.timestamp).toLocaleDateString(lang==='th'?'th-TH':'en-US',{year:'numeric',month:'short',day:'numeric'});
+    return `<tr>
+      <td>
+        <p style="font-size:14px;font-weight:700;color:var(--text)">${c.title}</p>
+        <p style="font-size:12px;color:var(--text3);margin-top:3px"><i class="fa-solid fa-user-graduate" style="margin-right:5px;font-size:10px"></i>${c.recipient}</p>
+      </td>
+      <td style="font-size:12px;font-weight:600;color:var(--text2)">${date}</td>
+      <td><span class="badge ${sc.cls}"><i class="fa-solid ${sc.icon}"></i> ${sc.lbl}</span></td>
+      <td style="text-align:center">
+        <button onclick="openModal('${c.id}')" class="btn btn-ghost btn-icon" title="ดู"><i class="fa-solid fa-eye" style="font-size:13px"></i></button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+/* ════════════════════════════════════════
+   ADMIN DASHBOARD
+════════════════════════════════════════ */
+function setAdminTab(status) {
+  adminTab=status;
+  ['pending','approved','rejected'].forEach(s=>{
+    const btn=document.getElementById('tab-'+s);
+    btn.classList.toggle('active',s===status);
+  });
+  renderAdminList();
+}
+
+function renderAdminDashboard() {
+  const pCnt=certs.filter(c=>c.status==='pending').length;
+  const aCnt=certs.filter(c=>c.status==='approved').length;
+  const rCnt=certs.filter(c=>c.status==='rejected').length;
+  const tot=certs.length;
+
+  // Badge counts
+  document.getElementById('badge-pending').textContent=pCnt;
+  document.getElementById('badge-approved').textContent=aCnt;
+  document.getElementById('badge-rejected').textContent=rCnt;
+
+  // Stat cards
+  const aStats=document.getElementById('adminStats');
+  if (aStats) aStats.innerHTML=[
+    {val:pCnt,lbl:t('sPending'),   icon:'fa-hourglass-half', col:'var(--warning)', bg:'var(--warningSoft)', bl:'var(--warning)'},
+    {val:aCnt,lbl:t('sApproved'),  icon:'fa-circle-check',   col:'var(--success)', bg:'var(--successSoft)', bl:'var(--success)'},
+    {val:rCnt,lbl:t('sRejected'),  icon:'fa-circle-xmark',   col:'var(--danger)',  bg:'var(--dangerSoft)',  bl:'var(--danger)'},
+  ].map(s=>`<div class="card stat-card" style="border-left:3px solid ${s.bl}">
+    <div class="stat-icon" style="background:${s.bg};color:${s.col}"><i class="fa-solid ${s.icon}"></i></div>
+    <div><div class="stat-val">${s.val}</div><div class="stat-lbl">${s.lbl}</div></div>
+  </div>`).join('');
+
+  // Progress
+  const aProg=document.getElementById('adminProgress');
+  if (aProg&&tot>0) aProg.innerHTML=[
+    {lbl:t('sPending'),  cnt:pCnt, col:'var(--warning)'},
+    {lbl:t('sApproved'), cnt:aCnt, col:'var(--success)'},
+    {lbl:t('sRejected'), cnt:rCnt, col:'var(--danger)'},
+  ].map(p=>`<div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+      <span style="font-size:12px;font-weight:600;color:var(--text2)">${p.lbl}</span>
+      <span style="font-size:12px;font-weight:800;color:var(--text)">${p.cnt}<span style="color:var(--text3);font-weight:500"> / ${tot}</span></span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" style="width:${tot?((p.cnt/tot)*100).toFixed(1):0}%;background:${p.col}"></div></div>
+  </div>`).join('');
+
+  renderAdminCfgLists();
+  if (!user?.isAdmin) return;
+  renderAdminList();
+}
+
+function renderAdminList() {
+  const grid=document.getElementById('adminGrid');
+  if (!grid) return;
+  const q=(document.getElementById('adminSearch')?.value||'').toLowerCase();
+  let items = certs.filter(c=>c.status===adminTab);
+  if (q) items=items.filter(c=>(c.title||'').toLowerCase().includes(q)||(c.recipient||'').toLowerCase().includes(q));
+  items.sort((a,b)=>b.timestamp-a.timestamp);
+
+  if (!items.length) {
+    grid.innerHTML=`<div style="padding:50px 20px;text-align:center;color:var(--text3);font-size:14px;font-weight:600">
+      <i class="fa-solid fa-inbox" style="font-size:30px;display:block;margin-bottom:12px"></i>
+      ${lang==='th'?'ไม่มีรายการ':'No items here'}
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML=items.map(c=>{
+    const date=new Date(+c.timestamp).toLocaleDateString(lang==='th'?'th-TH':'en-US',{year:'numeric',month:'short',day:'numeric'});
+    let btns='';
+    if (c.status==='pending') {
+      btns=`
+        <button onclick="changeStatus('${c.id}','approved')" class="btn btn-success btn-sm" style="flex:1;justify-content:center">
+          <i class="fa-solid fa-circle-check"></i> ${lang==='th'?'อนุมัติ':'Approve'}
+        </button>
+        <button onclick="changeStatus('${c.id}','rejected')" class="btn btn-danger btn-sm" style="flex:1;justify-content:center">
+          <i class="fa-solid fa-circle-xmark"></i> ${lang==='th'?'ปฏิเสธ':'Reject'}
+        </button>`;
+    } else {
+      const to=c.status==='approved'?'rejected':'approved';
+      const lbl=c.status==='approved'?(lang==='th'?'ถอนอนุมัติ':'Revoke'):(lang==='th'?'อนุมัติ':'Approve');
+      btns=`<button onclick="changeStatus('${c.id}','${to}')" class="btn btn-ghost btn-sm" style="flex:1;justify-content:center">
+        <i class="fa-solid fa-rotate"></i> ${lbl}
+      </button>`;
+    }
+    return `
+      <div class="card" style="padding:0;overflow:hidden">
+        <div class="admin-row">
+          <img class="admin-thumb" src="${c.image}" onclick="openModal('${c.id}')" crossorigin="anonymous" alt="">
+          <div style="flex:1;overflow:hidden">
+            <h4 style="font-size:14px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:5px" class="clamp2">${c.title}</h4>
+            <p style="font-size:12px;color:var(--text3);font-weight:600;margin-bottom:6px" class="truncate"><i class="fa-solid fa-user" style="margin-right:5px;font-size:10px"></i>${c.recipient}</p>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+              <span class="badge badge-purple" style="max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.uploaderEmail}"><i class="fa-solid fa-envelope"></i> ${c.uploaderEmail}</span>
+              <button onclick="banFromConsole('${c.uploaderEmail}')" style="font-size:10px;color:var(--danger);font-weight:800;background:none;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.4px;padding:0">แบน</button>
+            </div>
+            <p style="font-size:11px;color:var(--text3);margin-top:5px"><i class="fa-regular fa-calendar" style="margin-right:4px"></i>${date}</p>
+          </div>
+          <button onclick="masterDelete('${c.id}')" class="btn btn-danger btn-icon btn-sm" title="${lang==='th'?'ลบถาวร':'Delete'}"><i class="fa-solid fa-trash" style="font-size:12px"></i></button>
+        </div>
+        <div style="display:flex;gap:8px;padding:0 16px 14px">${btns}</div>
+      </div>`;
+  }).join('');
+}
+
+async function changeStatus(id, newStatus) {
+  setLoading(true, lang==='th'?'กำลังอัปเดตสถานะ...':'Updating...');
+  try {
+    const r=await fetch(BACKEND,{method:'POST',body:JSON.stringify({action:'changeStatus',id,newStatus})});
+    const result=await r.json();
+    if (result.status==='success') { await fetchData(); toast(t('statusUpdated'),'success'); }
+  } catch { toast(lang==='th'?'เกิดข้อผิดพลาด':'Error','error'); }
+  finally { setLoading(false); }
+}
+async function masterDelete(id) {
+  if (!confirm(t('delConfirm'))) return;
+  setLoading(true, lang==='th'?'กำลังลบ...':'Deleting...');
+  try {
+    await fetch(BACKEND,{method:'POST',body:JSON.stringify({action:'delete',id})});
+    certs=certs.filter(c=>c.id!==id);
+    await fetchData(); toast(t('deleted'),'success');
+  } catch {
+    certs=certs.filter(c=>c.id!==id); renderAll(); setLoading(false);
+  }
+}
+
+/* ════════════════════════════════════════
+   ADMIN CONFIG LISTS
+════════════════════════════════════════ */
+function renderAdminCfgLists() {
+  const aList=document.getElementById('adminList');
+  if (aList) aList.innerHTML=adminCfg.admins.map(email=>`
+    <div class="mgmt-item">
+      <div style="display:flex;align-items:center;gap:7px;overflow:hidden">
+        <i class="fa-solid fa-shield" style="color:var(--accent);font-size:11px;flex-shrink:0"></i>
+        <span class="truncate" style="color:var(--text2)">${email}</span>
+      </div>
+      ${email==='aceaa372@gmail.com'
+        ?`<span style="font-size:9px;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;flex-shrink:0">Owner</span>`
+        :`<button onclick="removeAdmin('${email}')" style="background:none;border:none;color:var(--danger);cursor:pointer;font-size:14px;flex-shrink:0"><i class="fa-solid fa-circle-minus"></i></button>`
+      }
+    </div>`).join('');
+
+  const bList=document.getElementById('bannedList');
+  if (bList) {
+    if (!adminCfg.banned.length) {
+      bList.innerHTML=`<p style="text-align:center;font-size:12px;color:var(--text3);padding:10px 0">${lang==='th'?'ไม่มีผู้ใช้ถูกแบน':'No banned users'}</p>`;
+    } else {
+      bList.innerHTML=adminCfg.banned.map(email=>`
+        <div class="mgmt-item" style="background:var(--dangerSoft);border-color:rgba(220,38,38,.12)">
+          <div style="display:flex;align-items:center;gap:7px;overflow:hidden">
+            <i class="fa-solid fa-ban" style="color:var(--danger);font-size:11px;flex-shrink:0"></i>
+            <span class="truncate" style="color:var(--danger)">${email}</span>
+          </div>
+          <button onclick="unban('${email}')" style="font-size:10px;font-weight:800;color:var(--success);background:none;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.4px;flex-shrink:0">${lang==='th'?'ปลดแบน':'Unban'}</button>
+        </div>`).join('');
+    }
+  }
+}
+function addAdminEmail() {
+  const inp=document.getElementById('newAdminEmail');
+  const email=inp.value.trim().toLowerCase();
+  if (!email||!email.includes('@')) { toast(t('invalidEmail'),'warning'); return; }
+  if (!adminCfg.admins.includes(email)) {
+    adminCfg.admins.push(email); saveAdminCfg(); inp.value='';
+    toast(`${lang==='th'?'เพิ่มแอดมิน':'Admin added'}: ${email}`,'success');
+  } else { toast(t('alreadyAdmin'),'warning'); }
+}
+function removeAdmin(email) {
+  adminCfg.admins=adminCfg.admins.filter(e=>e!==email);
+  saveAdminCfg();
+  toast(lang==='th'?'ถอนสิทธิ์แล้ว':'Admin removed','info');
+}
+function banUserAction() {
+  const inp=document.getElementById('banEmail');
+  const email=inp.value.trim().toLowerCase();
+  if (!email) return;
+  if (email==='aceaa372@gmail.com') { toast(t('cannotBanOwner'),'error'); return; }
+  if (!adminCfg.banned.includes(email)) {
+    adminCfg.banned.push(email); saveAdminCfg(); inp.value='';
+    toast(`${lang==='th'?'แบนแล้ว':'Banned'}: ${email}`,'success');
+  }
+}
+function banFromConsole(email) {
+  if (confirm(T[lang].banConfirm(email))) {
+    const e=email.toLowerCase();
+    if (!adminCfg.banned.includes(e)) {
+      adminCfg.banned.push(e); saveAdminCfg();
+      toast(`${lang==='th'?'แบนแล้ว':'Banned'}: ${e}`,'success');
+    }
+  }
+}
+function unban(email) {
+  adminCfg.banned=adminCfg.banned.filter(e=>e!==email);
+  saveAdminCfg();
+  toast(lang==='th'?'ปลดแบนแล้ว':'Unbanned','success');
+}
+function saveAdminCfg() {
+  localStorage.setItem('adminCfg',JSON.stringify(adminCfg));
+  if (user) {
+    user.isAdmin=adminCfg.admins.includes(user.email);
+    localStorage.setItem('session',JSON.stringify(user));
+    updateAuthUI();
+  }
+  renderAdminCfgLists();
+}
+
+/* ════════════════════════════════════════
+   EXPORT CSV
+════════════════════════════════════════ */
+function exportCSV() {
+  const hdr=['ID','Title','Category','SubCategory','Recipient','Level','Year','Status','Uploader','Date'];
+  const rows=certs.map(c=>[
+    c.id,c.title,c.category,c.subCategory||'',c.recipient,
+    c.level||'',c.year||'',c.status,c.uploaderEmail,
+    new Date(+c.timestamp).toLocaleDateString('th-TH')
+  ]);
+  const csv=[hdr,...rows].map(r=>r.map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'}));
+  a.download=`ntun_archive_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  toast(t('exported'),'success');
+}
+</script>
 </body>
 </html>
