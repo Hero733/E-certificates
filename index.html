@@ -7,108 +7,83 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;600;700&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 /* ══════════════════════════════════════════
-   ONEUI 8.5 + HEROUI DESIGN TOKENS
+   DESIGN TOKENS
 ═══════════════════════════════════════════ */
 :root {
-  /* Light */
-  --bg:          #F2F2F7;
+  --bg:          #F5F4F0;
   --bg2:         #FFFFFF;
-  --bg3:         #E8E8ED;
-  --bg4:         #F8F8FC;
-  --surface:     rgba(255,255,255,0.78);
-  --surfaceHigh: rgba(255,255,255,0.95);
-  --border:      rgba(0,0,0,0.08);
-  --border2:     rgba(0,0,0,0.14);
-  --text:        #0A0A0F;
-  --text2:       #48484A;
-  --text3:       #8E8E93;
-  --accent:      #1B62F5;
-  --accent2:     #0A4DE0;
-  --accentRgb:   27,98,245;
-  --accentSoft:  rgba(27,98,245,0.09);
-  --success:     #30B050;
-  --successRgb:  48,176,80;
-  --warning:     #C07010;
-  --warningRgb:  192,112,16;
-  --danger:      #E02020;
-  --dangerRgb:   224,32,32;
-  --purple:      #6B30D0;
-  --purpleSoft:  rgba(107,48,208,0.09);
-  --successSoft: rgba(48,176,80,0.10);
-  --warningSoft: rgba(192,112,16,0.10);
-  --dangerSoft:  rgba(224,32,32,0.10);
-  --shadow:      0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
-  --shadowMd:    0 4px 20px rgba(0,0,0,0.08), 0 12px 40px rgba(0,0,0,0.06);
-  --shadowLg:    0 12px 48px rgba(0,0,0,0.10), 0 32px 80px rgba(0,0,0,0.07);
-  --r:           16px;
-  --rLg:         24px;
-  --rXl:         32px;
-  --nav-h:       60px;
-  --dock-h:      72px;
-  --blur:        saturate(200%) blur(28px);
+  --bg3:         #EDECEA;
+  --surface:     rgba(255,255,255,0.82);
+  --border:      rgba(0,0,0,0.07);
+  --border2:     rgba(0,0,0,0.12);
+  --text:        #111110;
+  --text2:       #5C5B57;
+  --text3:       #9B9A94;
+  --accent:      #1650F0;
+  --accent2:     #0D3DD4;
+  --accentSoft:  rgba(22,80,240,0.08);
+  --success:     #16A34A;
+  --warning:     #B45309;
+  --danger:      #DC2626;
+  --successSoft: rgba(22,163,74,0.09);
+  --warningSoft: rgba(180,83,9,0.09);
+  --dangerSoft:  rgba(220,38,38,0.09);
+  --shadow:      0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05);
+  --shadowLg:    0 8px 32px rgba(0,0,0,0.08), 0 20px 48px rgba(0,0,0,0.06);
+  --r:           14px;
+  --rLg:         22px;
 }
 html.dark {
-  --bg:          #0A0A0F;
-  --bg2:         #111117;
-  --bg3:         #1C1C24;
-  --bg4:         #16161E;
-  --surface:     rgba(17,17,23,0.88);
-  --surfaceHigh: rgba(28,28,36,0.98);
+  --bg:          #0C0C0E;
+  --bg2:         #141416;
+  --bg3:         #1C1C1F;
+  --surface:     rgba(20,20,22,0.88);
   --border:      rgba(255,255,255,0.07);
-  --border2:     rgba(255,255,255,0.13);
-  --text:        #F5F5FA;
-  --text2:       #AEAEB8;
-  --text3:       #5A5A68;
-  --accentSoft:  rgba(27,98,245,0.16);
-  --purpleSoft:  rgba(107,48,208,0.16);
-  --successSoft: rgba(48,176,80,0.13);
-  --warningSoft: rgba(192,112,16,0.13);
-  --dangerSoft:  rgba(224,32,32,0.13);
-  --shadow:      0 1px 3px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.45);
-  --shadowMd:    0 4px 20px rgba(0,0,0,0.6), 0 12px 40px rgba(0,0,0,0.55);
-  --shadowLg:    0 12px 48px rgba(0,0,0,0.7), 0 32px 80px rgba(0,0,0,0.65);
+  --border2:     rgba(255,255,255,0.12);
+  --text:        #F2F1ED;
+  --text2:       #9B9A94;
+  --text3:       #555450;
+  --accentSoft:  rgba(22,80,240,0.14);
+  --successSoft: rgba(22,163,74,0.12);
+  --warningSoft: rgba(180,83,9,0.12);
+  --dangerSoft:  rgba(220,38,38,0.12);
+  --shadow:      0 1px 2px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.35);
+  --shadowLg:    0 8px 32px rgba(0,0,0,0.5), 0 20px 48px rgba(0,0,0,0.5);
 }
 
 /* ══════════════════════════════════════════
    RESET & BASE
 ═══════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth}
 body{
-  font-family:'IBM Plex Sans Thai','DM Sans',sans-serif;
+  font-family:'DM Sans','Sarabun',sans-serif;
   background:var(--bg);
   color:var(--text);
   min-height:100vh;
-  padding-bottom:calc(var(--dock-h) + 28px);
+  padding-bottom:120px;
+  transition:background .3s ease,color .3s ease;
   -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  transition:background 0.4s cubic-bezier(.4,0,.2,1), color 0.4s cubic-bezier(.4,0,.2,1);
 }
 img{display:block;max-width:100%}
-button{font-family:inherit;cursor:pointer;border:none;background:none}
+button{font-family:inherit;cursor:pointer}
 input,select,textarea{font-family:inherit}
 a{text-decoration:none;color:inherit}
 
 /* ══════════════════════════════════════════
-   TYPOGRAPHY
+   TYPOGRAPHY HELPERS
 ═══════════════════════════════════════════ */
-.serif{font-family:'Noto Serif Thai','DM Serif Display',Georgia,serif;font-weight:700}
-.label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;color:var(--text3)}
+.serif{font-family:'DM Serif Display',Georgia,serif}
+.label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3)}
 
 /* ══════════════════════════════════════════
-   GLASS SURFACE
+   CARD SURFACES
 ═══════════════════════════════════════════ */
-.glass{
-  background:var(--surface);
-  backdrop-filter:var(--blur);
-  -webkit-backdrop-filter:var(--blur);
-  border:1px solid var(--border);
-}
 .card{
   background:var(--bg2);
   border:1px solid var(--border);
@@ -121,213 +96,166 @@ a{text-decoration:none;color:inherit}
   border-radius:var(--rLg);
   box-shadow:var(--shadow);
 }
+.glass{
+  background:var(--surface);
+  backdrop-filter:saturate(180%) blur(24px);
+  -webkit-backdrop-filter:saturate(180%) blur(24px);
+  border:1px solid var(--border);
+}
 
 /* ══════════════════════════════════════════
-   HEROUI BUTTONS
+   BUTTONS
 ═══════════════════════════════════════════ */
 .btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:7px;
-  padding:10px 20px;border-radius:12px;border:none;
-  font-size:13px;font-weight:600;line-height:1;
-  cursor:pointer;
-  transition:background .18s ease, box-shadow .18s ease, transform .14s cubic-bezier(.34,1.56,.64,1);
-  -webkit-user-select:none;user-select:none;position:relative;overflow:hidden;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 22px;border-radius:11px;border:none;
+  font-size:13px;font-weight:700;line-height:1;
+  cursor:pointer;transition:all .2s ease;
+  -webkit-user-select:none;user-select:none;
 }
-.btn::after{
-  content:'';position:absolute;inset:0;border-radius:inherit;
-  background:transparent;
-  transition:background .15s ease;
-}
-.btn:hover::after{background:rgba(255,255,255,0.07)}
-.btn:active{transform:scale(.96)}
-.btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 12px rgba(var(--accentRgb),.3)}
-.btn-primary:hover{background:var(--accent2);box-shadow:0 6px 24px rgba(var(--accentRgb),.4);transform:translateY(-1px)}
-.btn-primary:active{transform:scale(.96) translateY(0)}
+.btn:active{transform:scale(.975)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent2);box-shadow:0 8px 24px rgba(22,80,240,.25);transform:translateY(-1px)}
+.btn-primary:active{transform:scale(.975) translateY(0)}
 .btn-ghost{background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
-.btn-ghost:hover{background:var(--bg);color:var(--text);border-color:var(--border2)}
-.btn-danger{background:var(--dangerSoft);color:var(--danger);border:1px solid rgba(var(--dangerRgb),.15)}
+.btn-ghost:hover{background:var(--bg);color:var(--text)}
+.btn-danger{background:var(--dangerSoft);color:var(--danger);border:1px solid rgba(220,38,38,.12)}
 .btn-danger:hover{background:var(--danger);color:#fff}
-.btn-success{background:var(--successSoft);color:var(--success);border:1px solid rgba(var(--successRgb),.15)}
+.btn-success{background:var(--successSoft);color:var(--success);border:1px solid rgba(22,163,74,.15)}
 .btn-success:hover{background:var(--success);color:#fff}
-.btn-warning{background:var(--warningSoft);color:var(--warning);border:1px solid rgba(var(--warningRgb),.15)}
-.btn-sm{padding:7px 14px;font-size:12px;border-radius:10px;gap:5px}
-.btn-icon{width:36px;height:36px;padding:0;border-radius:11px;font-size:14px;flex-shrink:0}
-.btn-icon-lg{width:44px;height:44px;padding:0;border-radius:14px;font-size:16px;flex-shrink:0}
+.btn-warning{background:var(--warningSoft);color:var(--warning);border:1px solid rgba(180,83,9,.12)}
+.btn-sm{padding:8px 14px;font-size:12px;border-radius:9px;gap:6px}
+.btn-icon{width:36px;height:36px;padding:0;border-radius:10px;font-size:14px}
 
 /* ══════════════════════════════════════════
-   NAVIGATION — OneUI 8.5 style
+   NAV
 ═══════════════════════════════════════════ */
 .nav{
-  position:sticky;top:0;z-index:200;
-  height:var(--nav-h);display:flex;align-items:center;
-  padding:0 20px;gap:14px;
-  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:100;
+  height:64px;display:flex;align-items:center;
+  padding:0 28px;gap:20px;
 }
-.nav-logo-img{height:34px;width:34px;object-fit:contain;border-radius:10px;flex-shrink:0}
+.nav-logo-img{height:38px;width:38px;object-fit:contain;border-radius:10px}
 .nav-logo-fallback{
-  width:34px;height:34px;border-radius:10px;
-  background:linear-gradient(135deg,var(--accent),var(--purple));
-  color:#fff;
+  width:38px;height:38px;border-radius:10px;
+  background:var(--accent);color:#fff;
   display:none;align-items:center;justify-content:center;
-  font-weight:800;font-size:16px;flex-shrink:0;
+  font-weight:800;font-size:17px;flex-shrink:0;
 }
-.nav-brand{font-family:'Noto Serif Thai',serif;font-size:17px;font-weight:700;line-height:1.1;color:var(--text)}
-.nav-sub{font-size:10px;color:var(--text3);font-weight:600;letter-spacing:.3px;margin-top:1px}
-.nav-divider{width:1px;height:24px;background:var(--border2);flex-shrink:0;margin:0 2px}
+.nav-brand{
+  font-family:'DM Serif Display',serif;
+  font-size:19px;line-height:1.1;color:var(--text);
+}
+.nav-sub{font-size:11px;color:var(--text3);font-weight:600;letter-spacing:.4px;margin-top:2px}
+.nav-divider{width:1px;height:28px;background:var(--border);flex-shrink:0}
 
 /* ══════════════════════════════════════════
-   BOTTOM DOCK — OneUI pill style
+   DOCK
 ═══════════════════════════════════════════ */
 .dock{
-  position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
-  display:flex;align-items:center;gap:2px;padding:6px 8px;
-  border-radius:999px;z-index:190;
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:4px;padding:7px 10px;
+  border-radius:999px;z-index:90;
   box-shadow:var(--shadowLg),0 0 0 1px var(--border);
-  backdrop-filter:var(--blur);
-  -webkit-backdrop-filter:var(--blur);
-  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
 }
 .dock-btn{
-  display:flex;flex-direction:column;align-items:center;gap:3px;
-  padding:7px 18px;border-radius:999px;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:8px 20px;border-radius:999px;
   border:none;background:transparent;
-  color:var(--text3);font-size:10px;font-weight:700;letter-spacing:.3px;
-  transition:all .22s cubic-bezier(.34,1.56,.64,1);
+  color:var(--text3);font-size:11px;font-weight:700;letter-spacing:.3px;
+  transition:all .25s cubic-bezier(.34,1.56,.64,1);
   white-space:nowrap;
 }
-.dock-btn i{font-size:16px;transition:transform .22s cubic-bezier(.34,1.56,.64,1)}
-.dock-btn:hover{color:var(--accent);transform:translateY(-2px)}
-.dock-btn:hover i{transform:scale(1.12)}
-.dock-btn.active{background:var(--accent);color:#fff;box-shadow:0 4px 18px rgba(var(--accentRgb),.35)}
-.dock-btn.active:hover{background:var(--accent2)}
-.dock-sep{width:1px;height:32px;background:var(--border);margin:0 2px;flex-shrink:0;opacity:.6}
+.dock-btn i{font-size:17px;transition:transform .25s ease}
+.dock-btn:hover{background:var(--bg3);color:var(--accent);transform:translateY(-2px)}
+.dock-btn:hover i{transform:scale(1.1)}
+.dock-btn.active{background:var(--accent);color:#fff;box-shadow:0 4px 16px rgba(22,80,240,.25)}
+.dock-btn.active:hover{background:var(--accent2);transform:translateY(-2px)}
+.dock-sep{width:1px;height:36px;background:var(--border);margin:0 2px;flex-shrink:0}
 
 /* ══════════════════════════════════════════
-   VIEW TRANSITIONS — smooth page switching
+   VIEWS
 ═══════════════════════════════════════════ */
-.view{display:none;opacity:0}
-.view.active{
-  display:block;
-  animation:viewIn .32s cubic-bezier(.25,1,.5,1) forwards;
-}
-@keyframes viewIn{
-  from{opacity:0;transform:translateY(12px) scale(.995)}
-  to{opacity:1;transform:translateY(0) scale(1)}
-}
+.view{display:none}
+.view.active{display:block;animation:fadeUp .35s cubic-bezier(.25,1,.5,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
 /* ══════════════════════════════════════════
-   SKELETON LOADING
-═══════════════════════════════════════════ */
-@keyframes shimmer{
-  0%{background-position:-200% 0}
-  100%{background-position:200% 0}
-}
-.skeleton{
-  background:linear-gradient(90deg,var(--bg3) 25%,var(--bg4) 50%,var(--bg3) 75%);
-  background-size:200% 100%;
-  animation:shimmer 1.4s ease infinite;
-  border-radius:8px;
-}
-.skel-card{border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
-.skel-img{height:196px;background:linear-gradient(90deg,var(--bg3) 25%,var(--bg4) 50%,var(--bg3) 75%);background-size:200% 100%;animation:shimmer 1.4s ease infinite}
-.skel-body{padding:15px 16px 16px;background:var(--bg2)}
-.skel-line{height:12px;border-radius:6px;margin-bottom:8px}
-.skel-line.wide{width:85%}
-.skel-line.mid{width:60%}
-.skel-line.short{width:40%}
-.skel-badge{height:18px;width:70px;border-radius:6px;margin-bottom:10px}
-
-/* ══════════════════════════════════════════
-   SEARCH & FORM
+   SEARCH & FORM INPUTS
 ═══════════════════════════════════════════ */
 .search-wrap{position:relative}
 .search-wrap .si{
-  position:absolute;left:15px;top:50%;transform:translateY(-50%);
-  color:var(--text3);font-size:13px;pointer-events:none;transition:color .2s;
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  color:var(--text3);font-size:13px;pointer-events:none;
 }
-.search-wrap:focus-within .si{color:var(--accent)}
 .search-input{
-  width:100%;padding:12px 18px 12px 42px;
-  border-radius:var(--r);border:1.5px solid var(--border);
+  width:100%;padding:13px 18px 13px 44px;
+  border-radius:14px;border:1.5px solid var(--border);
   background:var(--bg2);color:var(--text);
   font-size:14px;font-weight:500;outline:none;
-  transition:border .18s,box-shadow .18s,background .18s;
+  transition:border .2s,box-shadow .2s;
 }
-.search-input:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accentSoft);background:var(--surfaceHigh)}
+.search-input:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accentSoft)}
 .search-input::placeholder{color:var(--text3)}
 .form-input{
-  width:100%;padding:12px 14px;
-  border-radius:12px;border:1.5px solid var(--border);
+  width:100%;padding:12px 15px;
+  border-radius:11px;border:1.5px solid var(--border);
   background:var(--bg3);color:var(--text);
-  font-size:13.5px;font-weight:500;outline:none;
-  transition:border .18s,background .18s,box-shadow .18s;
+  font-size:14px;font-weight:500;outline:none;
+  transition:border .2s,background .2s,box-shadow .2s;
 }
 .form-input:focus{border-color:var(--accent);background:var(--bg2);box-shadow:0 0 0 4px var(--accentSoft)}
 .form-input::placeholder{color:var(--text3)}
 select.form-input{
   appearance:none;
-  background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%238E8E93' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-  background-repeat:no-repeat;background-position:right 12px center;background-size:18px;padding-right:36px;
+  background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239B9A94' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-repeat:no-repeat;background-position:right 12px center;background-size:18px;padding-right:38px;
 }
-textarea.form-input{resize:vertical;line-height:1.65}
+textarea.form-input{resize:vertical;line-height:1.6}
 
 /* ══════════════════════════════════════════
    CATEGORY PILLS
 ═══════════════════════════════════════════ */
-.cat-pills{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+.cat-pills{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
 .cat-pills::-webkit-scrollbar{height:0}
 .cat-pill{
-  padding:8px 16px;border-radius:999px;
-  font-size:12.5px;font-weight:600;
+  padding:8px 18px;border-radius:999px;
+  font-size:13px;font-weight:600;
   border:1.5px solid var(--border);background:var(--bg2);color:var(--text2);
   white-space:nowrap;flex-shrink:0;
-  transition:all .18s cubic-bezier(.34,1.56,.64,1);
+  transition:all .18s ease;
 }
-.cat-pill:hover{border-color:var(--accent);color:var(--accent);background:var(--accentSoft);transform:translateY(-1px)}
-.cat-pill.active{
-  background:var(--accent);color:#fff;border-color:var(--accent);
-  box-shadow:0 4px 16px rgba(var(--accentRgb),.28);
-  transform:translateY(-1px);
-}
+.cat-pill:hover{border-color:var(--accent);color:var(--accent);background:var(--accentSoft)}
+.cat-pill.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 4px 14px rgba(22,80,240,.2)}
 
 /* ══════════════════════════════════════════
-   CERT GRID — card hover lift
+   CERT GRID
 ═══════════════════════════════════════════ */
 .cert-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-  gap:18px;
+  grid-template-columns:repeat(auto-fill,minmax(248px,1fr));
+  gap:20px;
 }
 .cert-card{
-  overflow:hidden;cursor:pointer;
-  border-radius:var(--r);
-  border:1px solid var(--border);
-  background:var(--bg2);
-  box-shadow:var(--shadow);
-  transition:transform .28s cubic-bezier(.25,1,.5,1), box-shadow .28s ease;
-  will-change:transform;
+  overflow:hidden;cursor:pointer;border-radius:var(--r);
+  transition:transform .3s cubic-bezier(.25,1,.5,1),box-shadow .3s ease;
 }
-.cert-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:var(--shadowLg)}
-.cert-thumb-wrap{height:192px;overflow:hidden;background:var(--bg3);border-bottom:1px solid var(--border);position:relative}
-.cert-thumb{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform .5s cubic-bezier(.25,1,.5,1);
-  opacity:0;transition:opacity .4s ease,transform .5s cubic-bezier(.25,1,.5,1);
-}
-.cert-thumb.loaded{opacity:1}
-.cert-card:hover .cert-thumb{transform:scale(1.07)}
-.cert-body{padding:14px 16px 16px}
+.cert-card:hover{transform:translateY(-5px);box-shadow:var(--shadowLg)}
+.cert-thumb-wrap{height:196px;overflow:hidden;background:var(--bg3);border-bottom:1px solid var(--border)}
+.cert-thumb{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.25,1,.5,1)}
+.cert-card:hover .cert-thumb{transform:scale(1.06)}
+.cert-body{padding:15px 16px 16px}
 
 /* ══════════════════════════════════════════
    BADGES
 ═══════════════════════════════════════════ */
 .badge{
-  display:inline-flex;align-items:center;gap:4px;
-  padding:3px 9px;border-radius:7px;
-  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.55px;
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 10px;border-radius:7px;
+  font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;
 }
 .badge-blue{background:var(--accentSoft);color:var(--accent)}
-.badge-purple{background:var(--purpleSoft);color:var(--purple)}
+.badge-purple{background:rgba(139,92,246,.1);color:#7C3AED}
 .badge-orange{background:var(--warningSoft);color:var(--warning)}
 .badge-green{background:var(--successSoft);color:var(--success)}
 .badge-red{background:var(--dangerSoft);color:var(--danger)}
@@ -336,84 +264,87 @@ textarea.form-input{resize:vertical;line-height:1.65}
 /* ══════════════════════════════════════════
    STAT CARD
 ═══════════════════════════════════════════ */
-.stat-card{display:flex;align-items:center;gap:14px;padding:18px 20px;transition:transform .2s ease,box-shadow .2s ease}
-.stat-card:hover{transform:translateY(-2px);box-shadow:var(--shadowMd)}
+.stat-card{display:flex;align-items:center;gap:14px;padding:18px 20px}
 .stat-icon{
-  width:46px;height:46px;border-radius:14px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;font-size:19px;
+  width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
 }
 .stat-val{font-size:28px;font-weight:800;line-height:1;color:var(--text)}
-.stat-lbl{font-size:11.5px;font-weight:600;color:var(--text3);margin-top:3px}
+.stat-lbl{font-size:12px;font-weight:600;color:var(--text3);margin-top:3px}
 
 /* ══════════════════════════════════════════
    PROGRESS BAR
 ═══════════════════════════════════════════ */
 .progress-track{height:5px;border-radius:99px;background:var(--bg3);overflow:hidden}
-.progress-fill{height:100%;border-radius:99px;transition:width 1s cubic-bezier(.25,1,.5,1)}
+.progress-fill{height:100%;border-radius:99px;transition:width 1.2s cubic-bezier(.25,1,.5,1)}
 
 /* ══════════════════════════════════════════
    3D MODAL
 ═══════════════════════════════════════════ */
 #modal3D{
   position:fixed;inset:0;
-  background:rgba(4,4,8,.95);
-  backdrop-filter:blur(32px) saturate(160%);
-  -webkit-backdrop-filter:blur(32px) saturate(160%);
-  z-index:300;display:none;
+  background:rgba(8,8,10,.92);
+  backdrop-filter:blur(28px) saturate(180%);
+  -webkit-backdrop-filter:blur(28px) saturate(180%);
+  z-index:200;display:none;
   align-items:center;justify-content:center;
   padding:20px;overflow-y:auto;
-  transition:opacity .25s ease;
 }
-#modal3D.open{display:flex;animation:modalBgIn .25s ease forwards}
-@keyframes modalBgIn{from{opacity:0}to{opacity:1}}
+#modal3D.open{display:flex}
 .modal-inner{
-  width:100%;max-width:1000px;
-  display:grid;grid-template-columns:1fr 340px;gap:28px;
-  animation:modalCardIn .38s cubic-bezier(.34,1.56,.64,1);
+  width:100%;max-width:980px;
+  display:grid;grid-template-columns:1fr 360px;gap:28px;
+  animation:modalIn .4s cubic-bezier(.34,1.56,.64,1);
 }
-@media(max-width:780px){.modal-inner{grid-template-columns:1fr}}
-@keyframes modalCardIn{from{opacity:0;transform:scale(.9) translateY(24px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@media(max-width:768px){.modal-inner{grid-template-columns:1fr}}
+@keyframes modalIn{from{opacity:0;transform:scale(.92) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
 
+/* Viewer stage */
 .viewer-stage{
-  width:100%;aspect-ratio:4/3;perspective:1800px;
+  width:100%;aspect-ratio:4/3;perspective:1500px;
   cursor:grab;display:flex;align-items:center;justify-content:center;
   position:relative;
 }
 .viewer-stage:active{cursor:grabbing}
 .cert3d-wrap{
-  width:90%;height:90%;position:relative;
+  width:88%;height:88%;position:relative;
   transform-style:preserve-3d;
-  border-radius:18px;
-  filter:drop-shadow(0 24px 64px rgba(0,0,0,.6));
+  border-radius:16px;
+  /* smooth lerp applied by JS */
 }
 .cert3d-img{
   width:100%;height:100%;object-fit:contain;
-  border-radius:18px;user-select:none;-webkit-user-drag:none;
+  border-radius:16px;user-select:none;-webkit-user-drag:none;
   display:block;
 }
 .cert3d-shine{
-  position:absolute;inset:0;border-radius:18px;
+  position:absolute;inset:0;border-radius:16px;
   pointer-events:none;mix-blend-mode:overlay;
+  transition:background .04s;
 }
 .cert3d-edge{
-  position:absolute;inset:-1px;border-radius:19px;
-  border:1px solid rgba(255,255,255,.12);pointer-events:none;
+  position:absolute;inset:-1px;border-radius:17px;
+  border:1px solid rgba(255,255,255,.1);pointer-events:none;
 }
 
-.viewer-ctrl{display:flex;gap:8px;margin-top:16px;justify-content:center;flex-wrap:wrap}
+/* Viewer controls */
+.viewer-ctrl{
+  display:flex;gap:8px;margin-top:14px;justify-content:center;flex-wrap:wrap;
+}
 .vbtn{
   display:flex;align-items:center;gap:6px;
-  padding:8px 16px;border-radius:11px;
+  padding:8px 16px;border-radius:10px;
   border:1px solid rgba(255,255,255,.1);
   background:rgba(255,255,255,.06);
-  color:rgba(255,255,255,.6);font-size:12px;font-weight:600;
-  cursor:pointer;transition:all .18s ease;
+  color:rgba(255,255,255,.65);font-size:12px;font-weight:600;
+  cursor:pointer;transition:all .2s ease;
 }
-.vbtn:hover{background:rgba(255,255,255,.13);color:#fff;border-color:rgba(255,255,255,.2)}
-.vbtn.active{background:rgba(var(--accentRgb),.28);border-color:rgba(var(--accentRgb),.45);color:#93B4FF}
+.vbtn:hover{background:rgba(255,255,255,.14);color:#fff}
+.vbtn.active{background:rgba(22,80,240,.3);border-color:rgba(22,80,240,.4);color:#93B4FF}
 
+/* Modal info panel */
 .modal-info{
-  display:flex;flex-direction:column;gap:18px;
+  display:flex;flex-direction:column;gap:20px;
   overflow-y:auto;max-height:calc(90vh - 40px);
   padding-right:4px;
 }
@@ -421,42 +352,40 @@ textarea.form-input{resize:vertical;line-height:1.65}
 .modal-info::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:99px}
 
 /* ══════════════════════════════════════════
-   TOAST
+   TOAST SYSTEM
 ═══════════════════════════════════════════ */
 #toasts{
-  position:fixed;top:70px;right:18px;
-  z-index:500;display:flex;flex-direction:column;gap:9px;
-  pointer-events:none;max-width:360px;
+  position:fixed;top:76px;right:22px;
+  z-index:500;display:flex;flex-direction:column;gap:10px;
+  pointer-events:none;
 }
 .toast{
-  min-width:250px;padding:12px 15px;
-  border-radius:16px;border:1px solid var(--border);
-  background:var(--surfaceHigh);
-  backdrop-filter:saturate(180%) blur(20px);
-  -webkit-backdrop-filter:saturate(180%) blur(20px);
-  box-shadow:var(--shadowLg);
-  display:flex;align-items:center;gap:11px;
+  min-width:260px;max-width:360px;padding:13px 16px;
+  border-radius:14px;border:1px solid var(--border);
+  background:var(--bg2);box-shadow:var(--shadowLg);
+  display:flex;align-items:center;gap:12px;
   font-size:13px;font-weight:600;pointer-events:all;
-  animation:toastIn .3s cubic-bezier(.34,1.56,.64,1);
+  animation:toastIn .35s cubic-bezier(.34,1.56,.64,1);
 }
-.toast.out{animation:toastOut .25s ease forwards}
-@keyframes toastIn{from{opacity:0;transform:translateX(28px) scale(.92)}to{opacity:1;transform:none}}
-@keyframes toastOut{to{opacity:0;transform:translateX(28px) scale(.92)}}
+.toast.out{animation:toastOut .28s ease forwards}
+@keyframes toastIn{from{opacity:0;transform:translateX(36px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateX(36px) scale(.94)}}
 
 /* ══════════════════════════════════════════
-   LOADING — shimmer progress bar style
+   LOADING OVERLAY
 ═══════════════════════════════════════════ */
-#topBar{
-  position:fixed;top:0;left:0;right:0;height:3px;z-index:999;
-  background:linear-gradient(90deg,transparent,var(--accent),var(--purple),var(--accent),transparent);
-  background-size:200% 100%;
-  animation:barSlide 1.2s linear infinite;
-  display:none;
-  border-radius:0 0 2px 2px;
-  box-shadow:0 0 12px rgba(var(--accentRgb),.5);
+#loadingOverlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.55);
+  backdrop-filter:blur(12px);z-index:400;
+  display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;
 }
-#topBar.on{display:block}
-@keyframes barSlide{0%{background-position:-100% 0}100%{background-position:200% 0}}
+#loadingOverlay.on{display:flex}
+.ring{
+  width:46px;height:46px;border-radius:50%;
+  border:3px solid rgba(255,255,255,.12);border-top-color:var(--accent);
+  animation:spin .75s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 /* ══════════════════════════════════════════
    DROPZONE
@@ -464,7 +393,7 @@ textarea.form-input{resize:vertical;line-height:1.65}
 .dropzone{
   border:2px dashed var(--border2);border-radius:var(--r);
   padding:36px 24px;text-align:center;position:relative;cursor:pointer;
-  transition:all .2s ease;background:var(--bg3);
+  transition:all .2s ease;
 }
 .dropzone:hover,.dropzone.active{border-color:var(--accent);background:var(--accentSoft)}
 
@@ -473,92 +402,84 @@ textarea.form-input{resize:vertical;line-height:1.65}
 ═══════════════════════════════════════════ */
 .hist-table{width:100%;border-collapse:collapse}
 .hist-table th{
-  padding:12px 18px;text-align:left;
-  font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text3);
+  padding:13px 20px;text-align:left;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text3);
   background:var(--bg3);border-bottom:1px solid var(--border);
 }
-.hist-table td{padding:14px 18px;border-bottom:1px solid var(--border);transition:background .12s}
+.hist-table td{padding:15px 20px;border-bottom:1px solid var(--border);transition:background .15s}
 .hist-table tr:hover td{background:var(--bg3)}
 .hist-table tr:last-child td{border-bottom:none}
 
 /* ══════════════════════════════════════════
    ADMIN TABS
 ═══════════════════════════════════════════ */
-.admin-tabs{display:flex;gap:4px;background:var(--bg3);border-radius:16px;padding:5px}
+.admin-tabs{display:flex;gap:5px;background:var(--bg3);border-radius:14px;padding:5px}
 .atab{
-  flex:1;padding:9px 12px;border-radius:12px;border:none;
-  font-size:12.5px;font-weight:700;cursor:pointer;transition:all .2s cubic-bezier(.25,1,.5,1);
+  flex:1;padding:9px 14px;border-radius:10px;border:none;
+  font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;
   background:transparent;color:var(--text3);
 }
 .atab.active{background:var(--bg2);color:var(--text);box-shadow:var(--shadow)}
-.atab i{margin-right:5px}
+.atab i{margin-right:6px}
 
-.admin-row{display:flex;gap:12px;align-items:flex-start;padding:14px;transition:background .15s;border-radius:var(--r)}
+/* ══════════════════════════════════════════
+   ADMIN CERT ROW
+═══════════════════════════════════════════ */
+.admin-row{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:16px;border-radius:var(--r);
+  transition:all .2s ease;
+}
 .admin-row:hover{background:var(--bg3)}
-.admin-thumb{width:76px;height:76px;object-fit:cover;border-radius:11px;border:1px solid var(--border);cursor:pointer;flex-shrink:0;transition:transform .2s cubic-bezier(.34,1.56,.64,1)}
-.admin-thumb:hover{transform:scale(1.07)}
+.admin-thumb{
+  width:80px;height:80px;object-fit:cover;border-radius:10px;
+  border:1px solid var(--border);cursor:pointer;flex-shrink:0;
+  transition:transform .2s;
+}
+.admin-thumb:hover{transform:scale(1.05)}
 
+/* ══════════════════════════════════════════
+   MGMT LIST ITEM
+═══════════════════════════════════════════ */
 .mgmt-item{
   display:flex;align-items:center;justify-content:space-between;gap:8px;
-  padding:9px 12px;border-radius:11px;border:1px solid var(--border);background:var(--bg3);
+  padding:9px 13px;border-radius:10px;
+  border:1px solid var(--border);background:var(--bg3);
   font-size:12px;font-weight:600;
 }
 
 /* ══════════════════════════════════════════
    SCROLLBAR
 ═══════════════════════════════════════════ */
-::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px}
-::-webkit-scrollbar-thumb:hover{background:var(--text3)}
 
 /* ══════════════════════════════════════════
    UTILS
 ═══════════════════════════════════════════ */
 .truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-
-/* ══════════════════════════════════════════
-   HERO SECTION
-═══════════════════════════════════════════ */
-.hero-wrap{
-  position:relative;margin-bottom:32px;padding:36px 0 28px;
-}
-.hero-wrap::before{
-  content:'';position:absolute;top:0;left:-22px;right:-22px;bottom:0;
-  background:radial-gradient(ellipse 80% 60% at 20% 50%,rgba(var(--accentRgb),.07),transparent 60%),
-             radial-gradient(ellipse 60% 50% at 80% 30%,rgba(107,48,208,.06),transparent 60%);
-  pointer-events:none;
-}
-
-/* Upload progress ring */
-.upload-ring-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px}
-.upload-ring{position:relative;width:80px;height:80px}
-.upload-ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
-.upload-ring-bg{stroke:var(--bg3);stroke-width:6;fill:none}
-.upload-ring-fg{stroke:var(--accent);stroke-width:6;fill:none;stroke-linecap:round;stroke-dasharray:220;stroke-dashoffset:220;transition:stroke-dashoffset .3s ease}
-.upload-ring-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--accent)}
-
-/* Image loaded state */
-.cert-img-wrap{position:relative;height:192px;overflow:hidden;background:var(--bg3);border-bottom:1px solid var(--border)}
-.cert-img-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--text3);transition:opacity .3s}
-
-@media(max-width:640px){
-  .modal-inner{grid-template-columns:1fr}
-  .cert-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
-  .cert-thumb-wrap,.cert-img-wrap{height:140px}
-}
 </style>
 </head>
 <body>
 
-<!-- TOP PROGRESS BAR -->
-<div id="topBar"></div>
-
-<!-- TOASTS -->
+<!-- ═══════════════════════════════════════
+     TOASTS
+════════════════════════════════════════ -->
 <div id="toasts"></div>
 
-<!-- NAV -->
+<!-- ═══════════════════════════════════════
+     LOADING
+════════════════════════════════════════ -->
+<div id="loadingOverlay">
+  <div class="ring"></div>
+  <p id="loadingText" style="color:rgba(255,255,255,.65);font-size:13px;font-weight:600;letter-spacing:.3px;">กำลังโหลด...</p>
+</div>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════ -->
 <nav class="nav glass">
   <img src="photo/logo.png" alt="NTUN" class="nav-logo-img" onerror="this.style.display='none';document.getElementById('logoFb').style.display='flex'">
   <div class="nav-logo-fallback" id="logoFb">N</div>
@@ -568,13 +489,17 @@ textarea.form-input{resize:vertical;line-height:1.65}
     <div class="nav-sub" id="navSub">คลังเกียรติบัตรดิจิทัล</div>
   </div>
 
-  <div style="display:flex;align-items:center;gap:8px">
+  <div style="display:flex;align-items:center;gap:10px">
+    <!-- Theme -->
     <button onclick="toggleTheme()" class="btn btn-ghost btn-icon" id="themeBtn" title="เปลี่ยนธีม">
       <i class="fa-solid fa-moon" id="themeIcon"></i>
     </button>
-    <button onclick="toggleLanguage()" class="btn btn-ghost" style="padding:7px 13px;font-size:12px;font-weight:800;letter-spacing:.5px" id="langBtn">EN</button>
+    <!-- Language -->
+    <button onclick="toggleLanguage()" class="btn btn-ghost" style="padding:8px 14px;font-size:12px;font-weight:800;letter-spacing:.5px" id="langBtn">EN</button>
+
     <div class="nav-divider"></div>
 
+    <!-- Google Sign-In -->
     <div id="googleArea">
       <div id="g_id_onload"
         data-client_id="594076056272-busugsctnp22gcom63ea7trbs0k5h2uf.apps.googleusercontent.com"
@@ -584,37 +509,43 @@ textarea.form-input{resize:vertical;line-height:1.65}
         data-text="signin_with" data-size="large" data-logo_alignment="left"></div>
     </div>
 
-    <div id="profileArea" style="display:none;align-items:center;gap:10px">
+    <!-- User profile -->
+    <div id="profileArea" style="display:none;align-items:center;gap:12px">
       <div style="text-align:right">
-        <div id="uName" style="font-size:12.5px;font-weight:700;color:var(--text)"></div>
-        <div id="uRole" style="font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--accent);margin-top:1px"></div>
+        <div id="uName" style="font-size:13px;font-weight:700;color:var(--text)"></div>
+        <div id="uRole" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--accent);margin-top:2px"></div>
       </div>
-      <img id="uAvatar" src="" alt="" style="width:34px;height:34px;border-radius:50%;border:2px solid var(--accent);object-fit:cover">
+      <img id="uAvatar" src="" alt="" style="width:36px;height:36px;border-radius:50%;border:2px solid var(--border);object-fit:cover">
       <button onclick="logout()" class="btn btn-danger btn-icon" title="ออกจากระบบ">
-        <i class="fa-solid fa-right-from-bracket" style="font-size:12px"></i>
+        <i class="fa-solid fa-right-from-bracket" style="font-size:13px"></i>
       </button>
     </div>
   </div>
 </nav>
 
-<!-- MAIN -->
-<main style="max-width:1180px;margin:0 auto;padding:24px 18px">
+<!-- ═══════════════════════════════════════
+     MAIN
+════════════════════════════════════════ -->
+<main style="max-width:1180px;margin:0 auto;padding:32px 22px">
 
-  <!-- BROWSE VIEW -->
+  <!-- ▸ BROWSE ─────────────────────────── -->
   <div id="view-browse" class="view active">
-    <div class="hero-wrap">
-      <h1 class="serif" style="font-size:clamp(28px,5vw,46px);line-height:1.1;margin-bottom:10px">
+
+    <div style="margin-bottom:30px">
+      <h1 class="serif" style="font-size:clamp(28px,5vw,44px);line-height:1.12;color:var(--text);margin-bottom:8px">
         คลังเกียรติบัตร
       </h1>
-      <p style="font-size:15px;color:var(--text2);font-weight:500;max-width:520px">รวบรวมเกียรติบัตรของนักเรียนโรงเรียนนครไทยทุกสาขาวิชา</p>
+      <p style="font-size:15px;color:var(--text2);font-weight:500">รวบรวมเกียรติบัตรของนักเรียนโรงเรียนนครไทยทุกสาขาวิชา</p>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px" id="statsRow"></div>
+    <!-- Stats -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px" id="statsRow"></div>
 
-    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:18px">
-      <div class="search-wrap" style="flex:1;min-width:200px">
+    <!-- Search & Sort -->
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:20px">
+      <div class="search-wrap" style="flex:1;min-width:220px">
         <i class="fa-solid fa-magnifying-glass si"></i>
-        <input type="text" id="searchInput" class="search-input" placeholder="ค้นหาชื่อผู้รับ หรือรายการแข่งขัน..." oninput="debouncedRender()">
+        <input type="text" id="searchInput" class="search-input" placeholder="ค้นหาชื่อผู้รับ หรือรายการแข่งขัน..." oninput="renderCerts()">
       </div>
       <button onclick="toggleSort()" class="btn btn-ghost" id="sortBtn" style="gap:8px;flex-shrink:0">
         <i class="fa-solid fa-arrow-down-wide-short" id="sortIcon"></i>
@@ -622,25 +553,31 @@ textarea.form-input{resize:vertical;line-height:1.65}
       </button>
     </div>
 
-    <div class="cat-pills" id="catPills" style="margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)"></div>
+    <!-- Category pills -->
+    <div class="cat-pills" id="catPills" style="margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border)"></div>
+
+    <!-- Cert grid -->
     <div class="cert-grid" id="certGrid"></div>
   </div>
 
-  <!-- UPLOAD VIEW -->
+  <!-- ▸ UPLOAD ─────────────────────────── -->
   <div id="view-upload" class="view" style="max-width:660px;margin:0 auto">
     <div style="margin-bottom:28px">
-      <h1 class="serif" style="font-size:36px;margin-bottom:8px">อัปโหลดเกียรติบัตร</h1>
+      <h1 class="serif" style="font-size:34px;color:var(--text);margin-bottom:8px">อัปโหลดเกียรติบัตร</h1>
       <p style="font-size:14px;color:var(--text2)">กรอกข้อมูลให้ครบ เกียรติบัตรจะถูกตรวจสอบโดยแอดมินก่อนเผยแพร่</p>
     </div>
-    <div class="card-lg" style="padding:28px">
+
+    <div class="card-lg" style="padding:30px">
       <form id="uploadForm" onsubmit="handleUpload(event)">
-        <div style="margin-bottom:16px">
-          <label class="label" style="display:block;margin-bottom:7px">ชื่อรายการแข่งขัน / กิจกรรม <span style="color:var(--danger)">*</span></label>
+
+        <div style="margin-bottom:18px">
+          <label class="label" style="display:block;margin-bottom:8px">ชื่อรายการแข่งขัน / กิจกรรม <span style="color:var(--danger)">*</span></label>
           <input type="text" id="upTitle" class="form-input" placeholder="เช่น การแข่งขันโอลิมปิกวิชาการ ครั้งที่ 20" required>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px">
           <div>
-            <label class="label" style="display:block;margin-bottom:7px">หมวดหมู่หลัก <span style="color:var(--danger)">*</span></label>
+            <label class="label" style="display:block;margin-bottom:8px">หมวดหมู่หลัก <span style="color:var(--danger)">*</span></label>
             <select id="upCategory" class="form-input" required>
               <option value="วิทยาศาสตร์">วิทยาศาสตร์</option>
               <option value="คณิตศาสตร์">คณิตศาสตร์</option>
@@ -650,21 +587,23 @@ textarea.form-input{resize:vertical;line-height:1.65}
             </select>
           </div>
           <div>
-            <label class="label" style="display:block;margin-bottom:7px">หมวดหมู่ย่อย</label>
+            <label class="label" style="display:block;margin-bottom:8px">หมวดหมู่ย่อย</label>
             <input type="text" id="upSubCat" class="form-input" placeholder="เช่น ฟิสิกส์, ดนตรี">
           </div>
         </div>
-        <div style="margin-bottom:16px">
-          <label class="label" style="display:block;margin-bottom:7px">ชื่อผู้รับรางวัล <span style="color:var(--danger)">*</span></label>
+
+        <div style="margin-bottom:18px">
+          <label class="label" style="display:block;margin-bottom:8px">ชื่อผู้รับรางวัล <span style="color:var(--danger)">*</span></label>
           <input type="text" id="upRecipient" class="form-input" placeholder="ชื่อ-นามสกุล ผู้รับรางวัล" required>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px">
           <div>
-            <label class="label" style="display:block;margin-bottom:7px">ปีการศึกษา</label>
+            <label class="label" style="display:block;margin-bottom:8px">ปีการศึกษา</label>
             <input type="text" id="upYear" class="form-input" placeholder="เช่น 2567">
           </div>
           <div>
-            <label class="label" style="display:block;margin-bottom:7px">ระดับการแข่งขัน</label>
+            <label class="label" style="display:block;margin-bottom:8px">ระดับการแข่งขัน</label>
             <select id="upLevel" class="form-input">
               <option value="">-- ไม่ระบุ --</option>
               <option value="ระดับโรงเรียน">ระดับโรงเรียน</option>
@@ -676,47 +615,43 @@ textarea.form-input{resize:vertical;line-height:1.65}
             </select>
           </div>
         </div>
-        <div style="margin-bottom:16px">
-          <label class="label" style="display:block;margin-bottom:7px">รายละเอียดเพิ่มเติม</label>
+
+        <div style="margin-bottom:18px">
+          <label class="label" style="display:block;margin-bottom:8px">รายละเอียดเพิ่มเติม</label>
           <textarea id="upDetails" class="form-input" rows="3" placeholder="รางวัลที่ได้รับ, วันที่, สถานที่จัดงาน ฯลฯ"></textarea>
         </div>
-        <div style="margin-bottom:26px">
-          <label class="label" style="display:block;margin-bottom:7px">ไฟล์เกียรติบัตร (รูปภาพ) <span style="color:var(--danger)">*</span></label>
+
+        <div style="margin-bottom:28px">
+          <label class="label" style="display:block;margin-bottom:8px">ไฟล์เกียรติบัตร (รูปภาพ) <span style="color:var(--danger)">*</span></label>
           <div class="dropzone" id="dropzone">
             <input type="file" id="upFile" accept="image/*" required
               style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer"
               onchange="previewImage(this)">
             <div id="dzContent">
-              <div style="width:52px;height:52px;border-radius:14px;background:var(--accentSoft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 12px">
+              <div style="width:52px;height:52px;border-radius:14px;background:var(--accentSoft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
               </div>
-              <p style="font-size:13.5px;font-weight:700;color:var(--text2);margin-bottom:4px">คลิกหรือลากไฟล์มาวางที่นี่</p>
+              <p style="font-size:14px;font-weight:700;color:var(--text2);margin-bottom:5px">คลิกหรือลากไฟล์มาวางที่นี่</p>
               <p style="font-size:12px;color:var(--text3)">รองรับ JPG, PNG, WEBP ขนาดไม่เกิน 10MB</p>
             </div>
             <div id="dzPreview" style="display:none">
-              <div id="uploadProgress" style="display:none" class="upload-ring-wrap">
-                <div class="upload-ring">
-                  <svg viewBox="0 0 80 80"><circle class="upload-ring-bg" cx="40" cy="40" r="34"/><circle class="upload-ring-fg" id="uploadRingFg" cx="40" cy="40" r="34"/></svg>
-                  <div class="upload-ring-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-                </div>
-                <span style="font-size:12px;font-weight:700;color:var(--accent)" id="uploadPct">0%</span>
-              </div>
               <img id="previewImg" style="max-height:160px;border-radius:12px;margin:0 auto;object-fit:contain">
-              <p id="previewName" style="font-size:12px;font-weight:700;color:var(--accent);margin-top:10px;text-align:center"></p>
+              <p id="previewName" style="font-size:12px;font-weight:700;color:var(--accent);margin-top:12px;text-align:center"></p>
             </div>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary" id="submitBtn" style="width:100%;justify-content:center;padding:13px;font-size:14px">
+
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;font-size:14px">
           <i class="fa-solid fa-paper-plane"></i> ส่งเพื่อตรวจสอบ
         </button>
       </form>
     </div>
   </div>
 
-  <!-- HISTORY VIEW -->
+  <!-- ▸ HISTORY ─────────────────────────── -->
   <div id="view-history" class="view" style="max-width:820px;margin:0 auto">
     <div style="margin-bottom:28px">
-      <h1 class="serif" style="font-size:36px;margin-bottom:8px">ประวัติการอัปโหลด</h1>
+      <h1 class="serif" style="font-size:34px;color:var(--text);margin-bottom:8px">ประวัติการอัปโหลด</h1>
       <p style="font-size:14px;color:var(--text2)">รายการเกียรติบัตรที่คุณเคยส่งเข้าระบบ</p>
     </div>
     <div class="card-lg" style="overflow:hidden">
@@ -724,7 +659,7 @@ textarea.form-input{resize:vertical;line-height:1.65}
         <thead>
           <tr>
             <th>รายการ</th>
-            <th>วันที่</th>
+            <th style="display:none" class="dt-col">วันที่อัปโหลด</th>
             <th>สถานะ</th>
             <th style="text-align:center">ดู</th>
           </tr>
@@ -734,65 +669,83 @@ textarea.form-input{resize:vertical;line-height:1.65}
     </div>
   </div>
 
-  <!-- ADMIN VIEW -->
+  <!-- ▸ ADMIN ─────────────────────────── -->
   <div id="view-admin" class="view">
     <div style="margin-bottom:28px;display:flex;align-items:center;gap:14px">
-      <div style="width:44px;height:44px;border-radius:14px;background:var(--purpleSoft);color:var(--purple);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">
+      <div style="width:42px;height:42px;border-radius:12px;background:rgba(139,92,246,.1);color:#7C3AED;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">
         <i class="fa-solid fa-shield-halved"></i>
       </div>
       <div>
-        <h1 class="serif" style="font-size:30px;line-height:1.1">แผงควบคุมแอดมิน</h1>
-        <p style="font-size:13.5px;color:var(--text2);margin-top:3px">จัดการเกียรติบัตรและผู้ใช้งานทั้งหมดในระบบ</p>
+        <h1 class="serif" style="font-size:32px;color:var(--text);line-height:1.1">แผงควบคุมแอดมิน</h1>
+        <p style="font-size:14px;color:var(--text2);margin-top:4px">จัดการเกียรติบัตรและผู้ใช้งานทั้งหมดในระบบ</p>
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px" id="adminStats"></div>
+    <!-- Admin stat cards -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px" id="adminStats"></div>
 
-    <div style="display:grid;grid-template-columns:1fr 290px;gap:20px;align-items:start">
+    <!-- Two-column layout -->
+    <div style="display:grid;grid-template-columns:1fr 300px;gap:22px;align-items:start">
+
+      <!-- Left: cert list -->
       <div>
-        <div class="admin-tabs" style="margin-bottom:14px">
+        <!-- Tabs -->
+        <div class="admin-tabs" style="margin-bottom:16px">
           <button class="atab active" id="tab-pending" onclick="setAdminTab('pending')">
             <i class="fa-solid fa-hourglass-half" style="color:var(--warning)"></i>รออนุมัติ
-            <span id="badge-pending" style="margin-left:4px;background:var(--warningSoft);color:var(--warning);padding:2px 7px;border-radius:6px;font-size:10px">0</span>
+            <span id="badge-pending" style="margin-left:4px;background:var(--warningSoft);color:var(--warning);padding:2px 7px;border-radius:6px;font-size:11px">0</span>
           </button>
           <button class="atab" id="tab-approved" onclick="setAdminTab('approved')">
             <i class="fa-solid fa-circle-check" style="color:var(--success)"></i>อนุมัติ
-            <span id="badge-approved" style="margin-left:4px;background:var(--successSoft);color:var(--success);padding:2px 7px;border-radius:6px;font-size:10px">0</span>
+            <span id="badge-approved" style="margin-left:4px;background:var(--successSoft);color:var(--success);padding:2px 7px;border-radius:6px;font-size:11px">0</span>
           </button>
           <button class="atab" id="tab-rejected" onclick="setAdminTab('rejected')">
             <i class="fa-solid fa-circle-xmark" style="color:var(--danger)"></i>ไม่อนุมัติ
-            <span id="badge-rejected" style="margin-left:4px;background:var(--dangerSoft);color:var(--danger);padding:2px 7px;border-radius:6px;font-size:10px">0</span>
+            <span id="badge-rejected" style="margin-left:4px;background:var(--dangerSoft);color:var(--danger);padding:2px 7px;border-radius:6px;font-size:11px">0</span>
           </button>
         </div>
-        <div class="search-wrap" style="margin-bottom:12px">
+
+        <!-- Admin search -->
+        <div class="search-wrap" style="margin-bottom:14px">
           <i class="fa-solid fa-magnifying-glass si"></i>
           <input type="text" id="adminSearch" class="search-input" placeholder="ค้นหา..." oninput="renderAdminList()" style="font-size:13px;padding:11px 16px 11px 42px">
         </div>
-        <div id="adminGrid" style="display:flex;flex-direction:column;gap:9px"></div>
+
+        <!-- Cert list -->
+        <div id="adminGrid" style="display:flex;flex-direction:column;gap:10px"></div>
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:14px;position:sticky;top:72px">
-        <div class="card-lg" style="padding:18px">
-          <p class="label" style="margin-bottom:12px"><i class="fa-solid fa-chart-pie" style="margin-right:6px;color:var(--accent)"></i>ภาพรวมระบบ</p>
-          <div id="adminProgress" style="display:flex;flex-direction:column;gap:12px"></div>
+      <!-- Right: panels -->
+      <div style="display:flex;flex-direction:column;gap:16px;position:sticky;top:76px">
+
+        <!-- System overview -->
+        <div class="card-lg" style="padding:20px">
+          <p class="label" style="margin-bottom:14px"><i class="fa-solid fa-chart-pie" style="margin-right:6px;color:var(--accent)"></i>ภาพรวมระบบ</p>
+          <div id="adminProgress" style="display:flex;flex-direction:column;gap:14px"></div>
         </div>
-        <div class="card-lg" style="padding:18px">
-          <p class="label" style="margin-bottom:10px"><i class="fa-solid fa-user-shield" style="margin-right:6px;color:var(--accent)"></i>รายชื่อแอดมิน</p>
-          <div style="display:flex;gap:7px;margin-bottom:10px">
-            <input type="email" id="newAdminEmail" class="form-input" placeholder="อีเมลแอดมินใหม่" style="font-size:12px;padding:9px 11px">
+
+        <!-- Admin List -->
+        <div class="card-lg" style="padding:20px">
+          <p class="label" style="margin-bottom:12px"><i class="fa-solid fa-user-shield" style="margin-right:6px;color:var(--accent)"></i>รายชื่อแอดมิน</p>
+          <div style="display:flex;gap:8px;margin-bottom:12px">
+            <input type="email" id="newAdminEmail" class="form-input" placeholder="อีเมลแอดมินใหม่" style="font-size:12px;padding:9px 12px">
             <button onclick="addAdminEmail()" class="btn btn-primary btn-icon" title="เพิ่ม"><i class="fa-solid fa-plus"></i></button>
           </div>
-          <div id="adminList" style="display:flex;flex-direction:column;gap:5px;max-height:170px;overflow-y:auto"></div>
+          <div id="adminList" style="display:flex;flex-direction:column;gap:6px;max-height:180px;overflow-y:auto"></div>
         </div>
-        <div class="card-lg" style="padding:18px">
-          <p class="label" style="margin-bottom:10px"><i class="fa-solid fa-ban" style="margin-right:6px;color:var(--danger)"></i>รายชื่อถูกแบน</p>
-          <div style="display:flex;gap:7px;margin-bottom:10px">
-            <input type="email" id="banEmail" class="form-input" placeholder="อีเมลที่ต้องการแบน" style="font-size:12px;padding:9px 11px">
+
+        <!-- Banned -->
+        <div class="card-lg" style="padding:20px">
+          <p class="label" style="margin-bottom:12px"><i class="fa-solid fa-ban" style="margin-right:6px;color:var(--danger)"></i>รายชื่อถูกแบน</p>
+          <div style="display:flex;gap:8px;margin-bottom:12px">
+            <input type="email" id="banEmail" class="form-input" placeholder="อีเมลที่ต้องการแบน" style="font-size:12px;padding:9px 12px">
             <button onclick="banUserAction()" class="btn btn-danger btn-icon" title="แบน"><i class="fa-solid fa-gavel"></i></button>
           </div>
-          <div id="bannedList" style="display:flex;flex-direction:column;gap:5px;max-height:170px;overflow-y:auto"></div>
+          <div id="bannedList" style="display:flex;flex-direction:column;gap:6px;max-height:180px;overflow-y:auto"></div>
         </div>
-        <button onclick="exportCSV()" class="btn btn-ghost" style="width:100%;justify-content:center;padding:11px;font-size:13px">
+
+        <!-- Export -->
+        <button onclick="exportCSV()" class="btn btn-ghost" style="width:100%;justify-content:center;padding:12px">
           <i class="fa-solid fa-file-csv"></i> ส่งออกข้อมูล CSV
         </button>
       </div>
@@ -801,7 +754,9 @@ textarea.form-input{resize:vertical;line-height:1.65}
 
 </main>
 
-<!-- DOCK -->
+<!-- ═══════════════════════════════════════
+     DOCK
+════════════════════════════════════════ -->
 <div class="dock glass">
   <button class="dock-btn active" id="dock-browse" onclick="switchView('view-browse','browse')">
     <i class="fa-solid fa-house"></i><span id="dLabel-browse">หน้าแรก</span>
@@ -814,17 +769,23 @@ textarea.form-input{resize:vertical;line-height:1.65}
     <i class="fa-solid fa-clock-rotate-left"></i><span id="dLabel-history">ประวัติ</span>
   </button>
   <div class="dock-sep" id="adminSep" style="display:none"></div>
-  <button class="dock-btn" id="dock-admin" onclick="switchView('view-admin','admin')" style="display:none;color:var(--purple)">
+  <button class="dock-btn" id="dock-admin" onclick="switchView('view-admin','admin')" style="display:none;color:#7C3AED">
     <i class="fa-solid fa-shield-halved"></i><span id="dLabel-admin">แอดมิน</span>
   </button>
 </div>
 
-<!-- 3D MODAL -->
+<!-- ═══════════════════════════════════════
+     3D CERTIFICATE MODAL
+════════════════════════════════════════ -->
 <div id="modal3D">
-  <button onclick="closeModal()" style="position:fixed;top:16px;right:16px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.65);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10" onmouseenter="this.style.background='rgba(255,255,255,.14)'" onmouseleave="this.style.background='rgba(255,255,255,.07)'">
+  <!-- Close -->
+  <button onclick="closeModal()" style="position:fixed;top:18px;right:18px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10" onmouseenter="this.style.background='rgba(255,255,255,.15)'" onmouseleave="this.style.background='rgba(255,255,255,.08)'">
     <i class="fa-solid fa-xmark"></i>
   </button>
+
   <div class="modal-inner">
+
+    <!-- Left: 3D viewer -->
     <div>
       <div class="viewer-stage" id="viewerStage">
         <div class="cert3d-wrap" id="certWrap">
@@ -833,41 +794,47 @@ textarea.form-input{resize:vertical;line-height:1.65}
           <div class="cert3d-edge"></div>
         </div>
       </div>
+
       <div class="viewer-ctrl">
         <button class="vbtn" onclick="resetView()"><i class="fa-solid fa-rotate-left"></i> รีเซ็ต</button>
         <button class="vbtn" id="autoBtn" onclick="toggleAuto()"><i class="fa-solid fa-play" id="autoIcon"></i> หมุนอัตโนมัติ</button>
         <button class="vbtn" onclick="dlCert()"><i class="fa-solid fa-download"></i> บันทึก</button>
       </div>
-      <p style="text-align:center;font-size:10.5px;color:rgba(255,255,255,.28);margin-top:10px;font-weight:600">
+      <p style="text-align:center;font-size:11px;color:rgba(255,255,255,.3);margin-top:10px;font-weight:600">
         <i class="fa-solid fa-hand-pointer" style="margin-right:5px"></i>ลากเพื่อหมุน · Scroll เพื่อซูม
       </p>
     </div>
+
+    <!-- Right: info -->
     <div class="modal-info">
-      <div id="modalBadges" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+      <div id="modalBadges" style="display:flex;gap:7px;flex-wrap:wrap"></div>
+
       <div>
-        <h2 id="modalTitle" class="serif" style="font-size:24px;color:#fff;line-height:1.2;margin-bottom:12px"></h2>
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <div style="display:flex;align-items:center;gap:8px">
-            <i class="fa-solid fa-user-graduate" style="color:rgba(255,255,255,.28);font-size:12px;width:14px"></i>
-            <span style="font-size:12.5px;font-weight:600;color:rgba(255,255,255,.45)">ผู้รับรางวัล</span>
-            <span id="modalRecipient" style="font-size:12.5px;font-weight:700;color:#fff"></span>
+        <h2 id="modalTitle" class="serif" style="font-size:26px;color:#fff;line-height:1.2;margin-bottom:14px"></h2>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:9px">
+            <i class="fa-solid fa-user-graduate" style="color:rgba(255,255,255,.3);font-size:13px;width:14px"></i>
+            <span style="font-size:13px;font-weight:600;color:rgba(255,255,255,.5)">ผู้รับรางวัล</span>
+            <span id="modalRecipient" style="font-size:13px;font-weight:700;color:#fff"></span>
           </div>
-          <div id="modalYearRow" style="display:none;align-items:center;gap:8px">
-            <i class="fa-regular fa-calendar" style="color:rgba(255,255,255,.28);font-size:12px;width:14px"></i>
-            <span style="font-size:12.5px;font-weight:600;color:rgba(255,255,255,.45)">ปีการศึกษา</span>
-            <span id="modalYear" style="font-size:12.5px;font-weight:700;color:#fff"></span>
+          <div id="modalYearRow" style="display:none;align-items:center;gap:9px">
+            <i class="fa-regular fa-calendar" style="color:rgba(255,255,255,.3);font-size:13px;width:14px"></i>
+            <span style="font-size:13px;font-weight:600;color:rgba(255,255,255,.5)">ปีการศึกษา</span>
+            <span id="modalYear" style="font-size:13px;font-weight:700;color:#fff"></span>
           </div>
         </div>
       </div>
+
       <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px">
-        <p class="label" style="color:rgba(255,255,255,.28);margin-bottom:7px">รายละเอียด</p>
-        <p id="modalDetails" style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.75;font-weight:500"></p>
+        <p class="label" style="color:rgba(255,255,255,.3);margin-bottom:8px">รายละเอียด</p>
+        <p id="modalDetails" style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.75;font-weight:500"></p>
       </div>
-      <div style="display:flex;flex-direction:column;gap:9px;margin-top:auto">
-        <button onclick="dlCert()" class="btn btn-primary" style="width:100%;justify-content:center;padding:13px;font-size:13.5px">
+
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:auto">
+        <button onclick="dlCert()" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;font-size:14px">
           <i class="fa-solid fa-download"></i> ดาวน์โหลดเกียรติบัตร
         </button>
-        <button onclick="shareCert()" style="width:100%;padding:11px;border-radius:11px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.5);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .18s" onmouseenter="this.style.background='rgba(255,255,255,.1)'" onmouseleave="this.style.background='rgba(255,255,255,.05)'">
+        <button onclick="shareCert()" style="width:100%;padding:12px;border-radius:11px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.55);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s" onmouseenter="this.style.background='rgba(255,255,255,.1)'" onmouseleave="this.style.background='rgba(255,255,255,.05)'">
           <i class="fa-solid fa-share-nodes"></i> แชร์
         </button>
       </div>
@@ -875,45 +842,15 @@ textarea.form-input{resize:vertical;line-height:1.65}
   </div>
 </div>
 
-<!-- Firebase SDK (modular) -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDVeBYu0hcsU4EZ2FiGYowJjHasAHDuVMA",
-  authDomain: "e-certificates-2ea66.firebaseapp.com",
-  projectId: "e-certificates-2ea66",
-  storageBucket: "e-certificates-2ea66.firebasestorage.app",
-  messagingSenderId: "352154979396",
-  appId: "1:352154979396:web:700280ec6159bde1888011",
-  measurementId: "G-R6E5BKYN6Y"
-};
-
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
-
-// Storage bucket for images
-const IMAGE_BUCKET = "1b59fad2d55ae4633228b5cc840121a6";
-
-// Expose Firebase methods to global scope for use in legacy JS
-window._fb = {
-  db, storage, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy,
-  ref, uploadBytesResumable, getDownloadURL, deleteObject, IMAGE_BUCKET
-};
-
-// Signal that Firebase is ready
-window.dispatchEvent(new Event('firebaseReady'));
-</script>
-
 <!-- Google SDK -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <script>
+/* ════════════════════════════════════════
+   CONFIG
+════════════════════════════════════════ */
+const BACKEND = 'https://script.google.com/macros/s/AKfycbyr1ukzCEjrP17DQyQDNtFm9h-mXeZJM430nSimQ6meycC67wT-WewWQFzxXGPDMgUyXw/exec';
+
 /* ════════════════════════════════════════
    STATE
 ════════════════════════════════════════ */
@@ -923,11 +860,9 @@ let sort = 'newest';
 let category = 'all';
 let adminTab = 'pending';
 let activeCert = null;
-let uploadFile = null;
+let uploadB64 = null;
 let theme = localStorage.getItem('theme') || 'light';
 let lang = localStorage.getItem('lang') || 'th';
-let firebaseReady = false;
-let renderTimer = null;
 
 let adminCfg = JSON.parse(
   localStorage.getItem('adminCfg') ||
@@ -964,10 +899,6 @@ const T = {
     alreadyAdmin:'อีเมลนี้มีสิทธิ์แอดมินอยู่แล้ว',
     invalidEmail:'กรุณากรอกอีเมลที่ถูกต้อง',
     noFile:'กรุณาเลือกไฟล์รูปภาพ',
-    loading:'กำลังโหลด...',
-    uploading:'กำลังอัปโหลด...',
-    deleting:'กำลังลบ...',
-    updating:'กำลังอัปเดตสถานะ...',
   },
   en: {
     navSub:'Digital Certificate Vault',
@@ -995,54 +926,21 @@ const T = {
     alreadyAdmin:'Email already has admin access',
     invalidEmail:'Enter a valid email',
     noFile:'Please select an image file',
-    loading:'Loading...', uploading:'Uploading...', deleting:'Deleting...', updating:'Updating...',
   }
 };
-const t = k => { const v = T[lang][k]; return typeof v === 'function' ? v : (v || k); };
+const t = k => {
+  const v = T[lang][k];
+  return typeof v === 'function' ? v : v || k;
+};
 
 /* ════════════════════════════════════════
    INIT
 ════════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', () => {
+window.onload = () => {
   applyTheme(); applyLang();
   initSession();
-  // Show skeletons immediately
-  renderSkeletons();
-});
-
-window.addEventListener('firebaseReady', () => {
-  firebaseReady = true;
   fetchData();
-});
-
-/* ════════════════════════════════════════
-   SKELETON SCREENS (instant paint)
-════════════════════════════════════════ */
-function renderSkeletons() {
-  // Stats skeletons
-  const statsRow = document.getElementById('statsRow');
-  if (statsRow) {
-    statsRow.innerHTML = [1,2,3].map(()=>`
-      <div class="card stat-card">
-        <div class="skeleton stat-icon" style="width:46px;height:46px;border-radius:14px"></div>
-        <div style="flex:1"><div class="skeleton" style="height:28px;width:50px;margin-bottom:6px"></div><div class="skeleton" style="height:11px;width:100px"></div></div>
-      </div>`).join('');
-  }
-  // Cert grid skeletons
-  const grid = document.getElementById('certGrid');
-  if (grid) {
-    grid.innerHTML = Array(8).fill(0).map(()=>`
-      <div class="skel-card">
-        <div class="skel-img"></div>
-        <div class="skel-body">
-          <div class="skeleton skel-line skel-badge"></div>
-          <div class="skeleton skel-line wide"></div>
-          <div class="skeleton skel-line mid"></div>
-          <div class="skeleton skel-line short" style="margin-top:4px"></div>
-        </div>
-      </div>`).join('');
-  }
-}
+};
 
 /* ════════════════════════════════════════
    THEME & LANGUAGE
@@ -1057,6 +955,7 @@ function applyTheme() {
   const icon = document.getElementById('themeIcon');
   if (icon) icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 }
+
 function toggleLanguage() {
   lang = lang === 'th' ? 'en' : 'th';
   localStorage.setItem('lang', lang);
@@ -1065,14 +964,19 @@ function toggleLanguage() {
 function applyLang() {
   const lb = document.getElementById('langBtn');
   if (lb) lb.textContent = lang === 'th' ? 'EN' : 'TH';
+
   const ns = document.getElementById('navSub');
   if (ns) ns.textContent = t('navSub');
+
   const si = document.getElementById('searchInput');
   if (si) si.placeholder = t('searchPh');
+
   const as = document.getElementById('adminSearch');
   if (as) as.placeholder = t('adminSearchPh');
+
   const sl = document.getElementById('sortLabel');
   if (sl) sl.textContent = sort === 'newest' ? t('sortNew') : t('sortOld');
+
   ['browse','upload','history','admin'].forEach(k => {
     const el = document.getElementById('dLabel-'+k);
     if (el) el.textContent = T[lang]['d'+k[0].toUpperCase()+k.slice(1)] || k;
@@ -1080,18 +984,18 @@ function applyLang() {
 }
 
 /* ════════════════════════════════════════
-   TOAST SYSTEM
+   TOAST
 ════════════════════════════════════════ */
 function toast(msg, type='info', ms=3500) {
-  const icons = {success:'fa-circle-check',error:'fa-circle-xmark',warning:'fa-triangle-exclamation',info:'fa-circle-info'};
-  const colors = {success:'var(--success)',error:'var(--danger)',warning:'var(--warning)',info:'var(--accent)'};
+  const icon = {success:'fa-circle-check',error:'fa-circle-xmark',warning:'fa-triangle-exclamation',info:'fa-circle-info'}[type]||'fa-circle-info';
+  const col  = {success:'var(--success)',error:'var(--danger)',warning:'var(--warning)',info:'var(--accent)'}[type]||'var(--accent)';
   const el = document.createElement('div');
   el.className = 'toast';
   el.innerHTML = `
-    <div style="width:28px;height:28px;border-radius:8px;background:rgba(0,0,0,.04);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-      <i class="fa-solid ${icons[type]||'fa-circle-info'}" style="color:${colors[type]||colors.info};font-size:13px"></i>
+    <div style="width:30px;height:30px;border-radius:8px;background:rgba(0,0,0,.04);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <i class="fa-solid ${icon}" style="color:${col};font-size:14px"></i>
     </div>
-    <span style="flex:1;color:var(--text);font-size:12.5px">${msg}</span>
+    <span style="flex:1;color:var(--text)">${msg}</span>
     <button onclick="rmToast(this.parentElement)" style="background:none;border:none;color:var(--text3);cursor:pointer;font-size:15px;padding:0;display:flex;align-items:center"><i class="fa-solid fa-xmark"></i></button>`;
   document.getElementById('toasts').appendChild(el);
   setTimeout(()=>rmToast(el), ms);
@@ -1099,14 +1003,17 @@ function toast(msg, type='info', ms=3500) {
 function rmToast(el) {
   if (!el||!el.parentElement) return;
   el.classList.add('out');
-  setTimeout(()=>el.remove(), 280);
+  setTimeout(()=>el.remove(), 300);
 }
 
 /* ════════════════════════════════════════
-   LOADING — top bar only (no overlay)
+   LOADING
 ════════════════════════════════════════ */
-function setLoading(on) {
-  document.getElementById('topBar').classList.toggle('on', on);
+function setLoading(on, msg='') {
+  const ov = document.getElementById('loadingOverlay');
+  const tx = document.getElementById('loadingText');
+  if (msg) tx.textContent = msg;
+  ov.classList.toggle('on', on);
 }
 
 /* ════════════════════════════════════════
@@ -1149,7 +1056,7 @@ function logout() {
 function updateAuthUI() {
   const gArea = document.getElementById('googleArea');
   const pArea = document.getElementById('profileArea');
-  const dAdmin = document.getElementById('dock-admin');
+  const dAdmin  = document.getElementById('dock-admin');
   const dAdminSep = document.getElementById('adminSep');
   const dUpload = document.getElementById('dock-upload');
   const dHistory = document.getElementById('dock-history');
@@ -1159,31 +1066,29 @@ function updateAuthUI() {
     document.getElementById('uName').textContent = user.name;
     document.getElementById('uAvatar').src = user.picture;
     document.getElementById('uRole').textContent = user.isAdmin ? t('roleAdmin') : t('roleUser');
+    // show Upload + History
     dUpload.style.display='flex'; dHistory.style.display='flex'; dUserSep.style.display='block';
     if (user.isAdmin) { dAdmin.style.display='flex'; dAdminSep.style.display='block'; }
     else { dAdmin.style.display='none'; dAdminSep.style.display='none'; }
   } else {
     gArea.style.display='block'; pArea.style.display='none';
+    // hide Upload + History + Admin
     dUpload.style.display='none'; dHistory.style.display='none'; dUserSep.style.display='none';
     dAdmin.style.display='none'; dAdminSep.style.display='none';
   }
 }
 
 /* ════════════════════════════════════════
-   DATA — Firebase Firestore
+   DATA
 ════════════════════════════════════════ */
 async function fetchData() {
-  if (!firebaseReady) return;
-  setLoading(true);
+  setLoading(true, lang==='th'?'กำลังโหลดเกียรติบัตร...':'Loading certificates...');
   try {
-    const { db, collection, getDocs, query, orderBy } = window._fb;
-    const q = query(collection(db, 'certificates'), orderBy('timestamp', 'desc'));
-    const snap = await getDocs(q);
-    certs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    const r = await fetch(BACKEND);
+    certs = await r.json();
     renderAll();
   } catch(e) {
-    console.error(e);
-    toast(lang==='th'?'ไม่สามารถโหลดข้อมูลได้':'Failed to load data','error');
+    toast(lang==='th'?'ไม่สามารถเชื่อมต่อฐานข้อมูลได้':'Database connection failed','error');
     certs = [];
     renderAll();
   } finally { setLoading(false); }
@@ -1194,27 +1099,17 @@ function renderAll() {
   renderHistory(); renderAdminDashboard();
 }
 
-// Debounced render for search input
-function debouncedRender() {
-  clearTimeout(renderTimer);
-  renderTimer = setTimeout(() => renderCerts(), 160);
-}
-
 /* ════════════════════════════════════════
    VIEW SWITCHING
 ════════════════════════════════════════ */
 function switchView(viewId, dockId) {
-  document.querySelectorAll('.view').forEach(v=>{ v.classList.remove('active'); v.style.display='none'; });
-  const target = document.getElementById(viewId);
-  target.style.display='block';
-  // Force reflow then add active for animation
-  requestAnimationFrame(()=>{ requestAnimationFrame(()=>{ target.classList.add('active'); }); });
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(viewId).classList.add('active');
   document.querySelectorAll('.dock-btn').forEach(b=>b.classList.remove('active'));
   const d = document.getElementById('dock-'+dockId);
   if (d) d.classList.add('active');
   if (viewId==='view-history') renderHistory();
   if (viewId==='view-admin') renderAdminDashboard();
-  window.scrollTo({top:0,behavior:'smooth'});
 }
 function authSwitch(viewId, dockId) {
   if (!user) { toast(t('needLogin'),'warning'); return; }
@@ -1230,24 +1125,13 @@ function renderStats() {
   const data = [
     { val:certs.length, lbl:t('statTotal'), icon:'fa-certificate', col:'var(--accent)', bg:'var(--accentSoft)' },
     { val:approved.length, lbl:t('statApproved'), icon:'fa-circle-check', col:'var(--success)', bg:'var(--successSoft)' },
-    { val:cats.length, lbl:t('statCats'), icon:'fa-layer-group', col:'var(--purple)', bg:'var(--purpleSoft)' },
+    { val:cats.length, lbl:t('statCats'), icon:'fa-layer-group', col:'#7C3AED', bg:'rgba(139,92,246,.1)' },
   ];
-  document.getElementById('statsRow').innerHTML = data.map((s,i)=>`
-    <div class="card stat-card" style="animation:viewIn .32s ${i*0.08}s cubic-bezier(.25,1,.5,1) both">
+  document.getElementById('statsRow').innerHTML = data.map(s=>`
+    <div class="card stat-card">
       <div class="stat-icon" style="background:${s.bg};color:${s.col}"><i class="fa-solid ${s.icon}"></i></div>
-      <div><div class="stat-val" data-target="${s.val}">0</div><div class="stat-lbl">${s.lbl}</div></div>
+      <div><div class="stat-val">${s.val}</div><div class="stat-lbl">${s.lbl}</div></div>
     </div>`).join('');
-  // Animate counters
-  document.querySelectorAll('.stat-val[data-target]').forEach(el => {
-    const target = +el.dataset.target;
-    let current = 0;
-    const step = Math.ceil(target / 24);
-    const timer = setInterval(()=>{
-      current = Math.min(current+step, target);
-      el.textContent = current;
-      if (current >= target) clearInterval(timer);
-    }, 32);
-  });
 }
 
 /* ════════════════════════════════════════
@@ -1265,15 +1149,15 @@ function renderCatPills() {
       ? certs.filter(c=>c.status==='approved').length
       : certs.filter(c=>c.status==='approved'&&c.category===cat).length;
     return `<button class="cat-pill ${category===cat?'active':''}" onclick="setCategory('${cat}')">
-      <i class="fa-solid ${CAT_ICONS[cat]||'fa-tag'}" style="margin-right:5px;font-size:11px"></i>${lbl}
-      <span style="margin-left:4px;opacity:.5;font-size:10.5px">${cnt}</span>
+      <i class="fa-solid ${CAT_ICONS[cat]||'fa-tag'}" style="margin-right:6px;font-size:11px"></i>${lbl}
+      <span style="margin-left:5px;opacity:.55;font-size:11px">${cnt}</span>
     </button>`;
   }).join('');
 }
 function setCategory(cat) { category=cat; renderCatPills(); renderCerts(); }
 
 /* ════════════════════════════════════════
-   CERT GRID — lazy image loading
+   CERT GRID
 ════════════════════════════════════════ */
 function renderCerts() {
   const grid = document.getElementById('certGrid');
@@ -1290,53 +1174,36 @@ function renderCerts() {
 
   if (!filtered.length) {
     grid.innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:72px 20px;animation:viewIn .35s ease">
-        <div style="width:64px;height:64px;border-radius:20px;background:var(--bg3);margin:0 auto 18px;display:flex;align-items:center;justify-content:center">
+      <div style="grid-column:1/-1;text-align:center;padding:72px 20px">
+        <div style="width:62px;height:62px;border-radius:18px;background:var(--bg3);margin:0 auto 18px;display:flex;align-items:center;justify-content:center">
           <i class="fa-solid fa-certificate" style="font-size:26px;color:var(--text3)"></i>
         </div>
-        <p style="font-size:15px;font-weight:700;color:var(--text2);margin-bottom:5px">${t('noData')}</p>
-        <p style="font-size:12.5px;color:var(--text3)">ลองเปลี่ยนหมวดหมู่หรือคำค้นหา</p>
+        <p style="font-size:16px;font-weight:700;color:var(--text2);margin-bottom:5px">${t('noData')}</p>
+        <p style="font-size:13px;color:var(--text3)">ลองเปลี่ยนหมวดหมู่หรือคำค้นหา</p>
       </div>`;
     return;
   }
-
-  grid.innerHTML = filtered.map((c,i) => {
+  grid.innerHTML = filtered.map(c => {
     const catLbl = lang==='en' ? (T.en.catNames[c.category]||c.category) : c.category;
     return `
-      <div class="cert-card" onclick="openModal('${c.id}')" style="animation:viewIn .3s ${Math.min(i*0.04,0.3)}s cubic-bezier(.25,1,.5,1) both">
+      <div class="cert-card card" onclick="openModal('${c.id}')">
         <div class="cert-thumb-wrap">
-          <img class="cert-thumb" data-src="${c.image}" alt="${c.title}">
+          <img class="cert-thumb" src="${c.image}" alt="${c.title}" loading="lazy">
         </div>
         <div class="cert-body">
-          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px">
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px">
             <span class="badge badge-blue"><i class="fa-solid ${CAT_ICONS[c.category]||'fa-tag'}"></i> ${catLbl}</span>
             ${c.level?`<span class="badge badge-purple">${c.level}</span>`:''}
           </div>
-          <h3 style="font-size:13.5px;font-weight:700;color:var(--text);line-height:1.45;margin-bottom:7px" class="clamp2">${c.title}</h3>
-          <p style="font-size:11.5px;color:var(--text3);font-weight:600" class="truncate">
-            <i class="fa-solid fa-user-graduate" style="margin-right:4px;font-size:9.5px"></i>${c.recipient}
+          <h3 style="font-size:14px;font-weight:700;color:var(--text);line-height:1.45;margin-bottom:8px" class="clamp2">${c.title}</h3>
+          <p style="font-size:12px;color:var(--text3);font-weight:600" class="truncate">
+            <i class="fa-solid fa-user-graduate" style="margin-right:5px;font-size:10px"></i>${c.recipient}
           </p>
-          ${c.year?`<p style="font-size:10.5px;color:var(--text3);margin-top:4px"><i class="fa-regular fa-calendar" style="margin-right:3px"></i>${c.year}</p>`:''}
+          ${c.year?`<p style="font-size:11px;color:var(--text3);font-weight:500;margin-top:5px"><i class="fa-regular fa-calendar" style="margin-right:4px"></i>${c.year}</p>`:''}
         </div>
       </div>`;
   }).join('');
-
-  // Lazy load images with IntersectionObserver
-  const imgs = grid.querySelectorAll('.cert-thumb[data-src]');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const img = e.target;
-        img.src = img.dataset.src;
-        img.onload = () => img.classList.add('loaded');
-        img.onerror = () => { img.classList.add('loaded'); };
-        io.unobserve(img);
-      }
-    });
-  }, { rootMargin:'200px' });
-  imgs.forEach(img => io.observe(img));
 }
-
 function toggleSort() {
   sort = sort==='newest'?'oldest':'newest';
   document.getElementById('sortLabel').textContent = t(sort==='newest'?'sortNew':'sortOld');
@@ -1345,7 +1212,7 @@ function toggleSort() {
 }
 
 /* ════════════════════════════════════════
-   3D MODAL ENGINE
+   3D MODAL — ENGINE
 ════════════════════════════════════════ */
 let rx=0,ry=0,trx=0,try_=0,zoom=1;
 let dragging=false,dragX=0,dragY=0;
@@ -1355,21 +1222,29 @@ function openModal(id) {
   const c = certs.find(x=>x.id===id);
   if (!c) return;
   activeCert = c;
+
   document.getElementById('certImg3D').src = c.image;
   document.getElementById('modalTitle').textContent = c.title;
   document.getElementById('modalRecipient').textContent = c.recipient;
   document.getElementById('modalDetails').textContent = c.details || t('noDetail');
+
+  // Badges
   const catLbl = lang==='en'?(T.en.catNames[c.category]||c.category):c.category;
-  let bHTML = `<span class="badge badge-blue"><i class="fa-solid ${CAT_ICONS[c.category]||'fa-tag'}"></i> ${catLbl}</span>`;
-  if (c.subCategory) bHTML += `<span class="badge badge-gray">${c.subCategory}</span>`;
-  if (c.level) bHTML += `<span class="badge badge-purple">${c.level}</span>`;
-  document.getElementById('modalBadges').innerHTML = bHTML;
+  let badgeHTML = `<span class="badge badge-blue"><i class="fa-solid ${CAT_ICONS[c.category]||'fa-tag'}"></i> ${catLbl}</span>`;
+  if (c.subCategory) badgeHTML += `<span class="badge badge-gray">${c.subCategory}</span>`;
+  if (c.level) badgeHTML += `<span class="badge badge-purple">${c.level}</span>`;
+  document.getElementById('modalBadges').innerHTML = badgeHTML;
+
+  // Year
   const yr = document.getElementById('modalYearRow');
   if (c.year) { document.getElementById('modalYear').textContent=c.year; yr.style.display='flex'; }
   else yr.style.display='none';
+
+  // Reset
   rx=0;ry=0;trx=0;try_=0;zoom=1;isAuto=false;
   document.getElementById('autoBtn').classList.remove('active');
   document.getElementById('autoIcon').className='fa-solid fa-play';
+
   document.getElementById('modal3D').classList.add('open');
   document.body.style.overflow='hidden';
   startRenderLoop(); bind3D();
@@ -1380,195 +1255,202 @@ function closeModal() {
   document.body.style.overflow='';
   unbind3D();
 }
-document.getElementById('modal3D').addEventListener('click', e=>{ if(e.target===e.currentTarget) closeModal(); });
+document.getElementById('modal3D').addEventListener('click', e=>{
+  if(e.target===e.currentTarget) closeModal();
+});
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
 
+/* ─── Render loop ─── */
 function startRenderLoop() {
   if (rafId) cancelAnimationFrame(rafId);
   function loop() {
-    rx += (trx-rx)*.1; ry += (try_-ry)*.1;
+    const lerp = .1;
+    rx += (trx-rx)*lerp;
+    ry += (try_-ry)*lerp;
     applyTransform();
     rafId = requestAnimationFrame(loop);
   }
   rafId = requestAnimationFrame(loop);
 }
-function stopRenderLoop() { if (rafId) { cancelAnimationFrame(rafId); rafId=null; } }
+function stopRenderLoop() {
+  if (rafId) { cancelAnimationFrame(rafId); rafId=null; }
+}
+
 function applyTransform() {
   const wrap = document.getElementById('certWrap');
   const shine = document.getElementById('certShine');
   if (!wrap) return;
   wrap.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale3d(${zoom},${zoom},${zoom})`;
-  wrap.style.filter = `drop-shadow(${ry*.5}px ${-rx*.5}px 40px rgba(0,0,0,.7)) drop-shadow(${ry*1.4}px ${-rx*1.4}px 80px rgba(0,0,0,.4))`;
-  const nx=(ry+50)/100, ny=(-rx+50)/100;
-  shine.style.background = `radial-gradient(circle at ${Math.max(0,Math.min(100,nx*100)).toFixed(1)}% ${Math.max(0,Math.min(100,ny*100)).toFixed(1)}%, rgba(255,255,255,.35) 0%, rgba(255,255,255,.05) 45%, transparent 72%)`;
+  wrap.style.boxShadow = `
+    ${ry*.4}px ${-rx*.4}px 24px rgba(0,0,0,.5),
+    ${ry*1.2}px ${-rx*1.2}px 64px rgba(0,0,0,.3)
+  `;
+  const nx = (ry+50)/100, ny = (-rx+50)/100;
+  shine.style.background = `radial-gradient(circle at ${Math.max(0,Math.min(100,nx*100)).toFixed(1)}% ${Math.max(0,Math.min(100,ny*100)).toFixed(1)}%, rgba(255,255,255,.32) 0%, rgba(255,255,255,.04) 45%, transparent 72%)`;
 }
 
+/* ─── Interaction ─── */
 function bind3D() {
   const s = document.getElementById('viewerStage');
-  s.addEventListener('mousedown',md3D); s.addEventListener('mousemove',mm3D);
-  s.addEventListener('mouseup',mu3D); s.addEventListener('mouseleave',mu3D);
-  s.addEventListener('wheel',mw3D,{passive:true});
-  s.addEventListener('touchstart',ts3D,{passive:true}); s.addEventListener('touchmove',tm3D,{passive:true});
-  s.addEventListener('touchend',mu3D);
+  s.addEventListener('mousedown', md3D);
+  s.addEventListener('mousemove', mm3D);
+  s.addEventListener('mouseup', mu3D);
+  s.addEventListener('mouseleave', mu3D);
+  s.addEventListener('wheel', mw3D, {passive:true});
+  s.addEventListener('touchstart', ts3D, {passive:true});
+  s.addEventListener('touchmove', tm3D, {passive:true});
+  s.addEventListener('touchend', mu3D);
 }
 function unbind3D() {
   const s = document.getElementById('viewerStage');
-  s.removeEventListener('mousedown',md3D); s.removeEventListener('mousemove',mm3D);
-  s.removeEventListener('mouseup',mu3D); s.removeEventListener('mouseleave',mu3D);
-  s.removeEventListener('wheel',mw3D);
-  s.removeEventListener('touchstart',ts3D); s.removeEventListener('touchmove',tm3D);
-  s.removeEventListener('touchend',mu3D);
+  s.removeEventListener('mousedown', md3D);
+  s.removeEventListener('mousemove', mm3D);
+  s.removeEventListener('mouseup', mu3D);
+  s.removeEventListener('mouseleave', mu3D);
+  s.removeEventListener('wheel', mw3D);
+  s.removeEventListener('touchstart', ts3D);
+  s.removeEventListener('touchmove', tm3D);
+  s.removeEventListener('touchend', mu3D);
 }
-let tx0=0,ty0=0;
-function md3D(e){dragging=true;dragX=e.clientX;dragY=e.clientY;stopAuto()}
-function mm3D(e){
-  if(!dragging){
-    const s=e.currentTarget.getBoundingClientRect();
+
+let tx0=0,ty0=0; // touch start
+function md3D(e) { dragging=true; dragX=e.clientX; dragY=e.clientY; stopAuto(); }
+function mm3D(e) {
+  if (!dragging) {
+    // Hover tilt
+    const s = e.currentTarget.getBoundingClientRect();
     const dx=(e.clientX-s.left-s.width/2)/(s.width/2);
     const dy=(e.clientY-s.top-s.height/2)/(s.height/2);
-    trx=-dy*14;try_=dx*18;return;
+    trx = -dy*14; try_= dx*18;
+    return;
   }
-  const dx=e.clientX-dragX,dy=e.clientY-dragY;
-  dragX=e.clientX;dragY=e.clientY;
-  try_+=dx*.6;trx-=dy*.45;
-  trx=Math.max(-88,Math.min(88,trx));
+  const dx=e.clientX-dragX, dy=e.clientY-dragY;
+  dragX=e.clientX; dragY=e.clientY;
+  try_ += dx*.6; trx  -= dy*.45;
+  trx = Math.max(-88,Math.min(88,trx));
 }
-function mu3D(){dragging=false}
-function mw3D(e){zoom=Math.max(.5,Math.min(2.5,zoom-e.deltaY*.001))}
-function ts3D(e){tx0=e.touches[0].clientX;ty0=e.touches[0].clientY;dragging=true;stopAuto()}
-function tm3D(e){
-  if(!dragging)return;
-  const dx=e.touches[0].clientX-tx0,dy=e.touches[0].clientY-ty0;
-  tx0=e.touches[0].clientX;ty0=e.touches[0].clientY;
-  try_+=dx*.6;trx-=dy*.45;trx=Math.max(-88,Math.min(88,trx));
+function mu3D() { dragging=false; }
+function mw3D(e) { zoom = Math.max(.5,Math.min(2.5,zoom-e.deltaY*.001)); }
+function ts3D(e) { tx0=e.touches[0].clientX; ty0=e.touches[0].clientY; dragging=true; stopAuto(); }
+function tm3D(e) {
+  if (!dragging) return;
+  const dx=e.touches[0].clientX-tx0, dy=e.touches[0].clientY-ty0;
+  tx0=e.touches[0].clientX; ty0=e.touches[0].clientY;
+  try_ += dx*.6; trx -= dy*.45;
+  trx = Math.max(-88,Math.min(88,trx));
 }
-function resetView(){trx=0;try_=0;zoom=1}
-function toggleAuto(){isAuto?stopAuto():startAuto()}
-function startAuto(){
+
+/* ─── Controls ─── */
+function resetView() { trx=0; try_=0; zoom=1; }
+function toggleAuto() { isAuto?stopAuto():startAuto(); }
+function startAuto() {
   isAuto=true;
   document.getElementById('autoBtn').classList.add('active');
   document.getElementById('autoIcon').className='fa-solid fa-pause';
-  let a=try_;
-  function spin(){if(!isAuto)return;a+=.45;try_=a;autoRafId=requestAnimationFrame(spin)}
+  let a = try_;
+  function spin() { if(!isAuto)return; a+=.45; try_=a; autoRafId=requestAnimationFrame(spin); }
   spin();
 }
-function stopAuto(){
+function stopAuto() {
   isAuto=false;
-  if(autoRafId){cancelAnimationFrame(autoRafId);autoRafId=null}
+  if (autoRafId) { cancelAnimationFrame(autoRafId); autoRafId=null; }
   document.getElementById('autoBtn').classList.remove('active');
   document.getElementById('autoIcon').className='fa-solid fa-play';
 }
-async function dlCert(){
-  if(!activeCert)return;
-  const src=activeCert.image;
-  try{
-    const resp=await fetch(src);const blob=await resp.blob();
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');a.href=url;a.download=`cert-${activeCert.id}.jpg`;
-    document.body.appendChild(a);a.click();
-    setTimeout(()=>{URL.revokeObjectURL(url);a.remove()},1000);
-  }catch{window.open(src,'_blank')}
+async function dlCert() {
+  if (!activeCert) return;
+  const src = activeCert.image;
+  try {
+    // Base64 data URL → blob → force download
+    if (src.startsWith('data:')) {
+      const arr = src.split(',');
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const bstr = atob(arr[1]);
+      const u8 = new Uint8Array(bstr.length);
+      for (let i=0; i<bstr.length; i++) u8[i]=bstr.charCodeAt(i);
+      const blob = new Blob([u8], {type: mime});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `cert-${activeCert.id}.jpg`;
+      document.body.appendChild(a); a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 1000);
+    } else {
+      // External URL → fetch then blob
+      const resp = await fetch(src);
+      const blob = await resp.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `cert-${activeCert.id}.jpg`;
+      document.body.appendChild(a); a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 1000);
+    }
+  } catch(e) {
+    // Fallback: open in new tab
+    window.open(src, '_blank');
+  }
 }
-function shareCert(){
-  if(!activeCert)return;
-  if(navigator.share){navigator.share({title:activeCert.title,url:activeCert.image}).catch(()=>{})}
-  else{navigator.clipboard?.writeText(activeCert.image).then(()=>toast(t('linkCopied'),'success'))}
+function shareCert() {
+  if (!activeCert) return;
+  if (navigator.share) {
+    navigator.share({title:activeCert.title,url:activeCert.image}).catch(()=>{});
+  } else {
+    navigator.clipboard?.writeText(activeCert.image).then(()=>toast(t('linkCopied'),'success'));
+  }
 }
 
 /* ════════════════════════════════════════
-   UPLOAD — Firebase Storage with progress
+   UPLOAD
 ════════════════════════════════════════ */
 function previewImage(input) {
   const file = input.files[0];
   if (!file) return;
-  uploadFile = file;
-  const url = URL.createObjectURL(file);
-  document.getElementById('previewImg').src = url;
-  document.getElementById('previewName').textContent = file.name;
-  document.getElementById('dzPreview').style.display='block';
-  document.getElementById('dzContent').style.display='none';
-  document.getElementById('uploadProgress').style.display='none';
-  document.getElementById('dropzone').classList.add('active');
+  const rd = new FileReader();
+  rd.onload = e => {
+    uploadB64 = e.target.result;
+    document.getElementById('previewImg').src = e.target.result;
+    document.getElementById('previewName').textContent = file.name;
+    document.getElementById('dzPreview').style.display='block';
+    document.getElementById('dzContent').style.display='none';
+    document.getElementById('dropzone').classList.add('active');
+  };
+  rd.readAsDataURL(file);
 }
-
 async function handleUpload(e) {
   e.preventDefault();
   if (!user) { toast(t('needLogin'),'warning'); return; }
-  if (!uploadFile) { toast(t('noFile'),'warning'); return; }
-  if (!firebaseReady) { toast('Firebase not ready','error'); return; }
-
-  const { storage, db, ref, uploadBytesResumable, getDownloadURL, collection, addDoc, IMAGE_BUCKET } = window._fb;
-
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังอัปโหลด...';
-
-  // Show progress ring
-  document.getElementById('previewImg').style.display='none';
-  document.getElementById('previewName').style.display='none';
-  document.getElementById('uploadProgress').style.display='flex';
-
-  const id = 'cert_' + Date.now();
-  const ext = uploadFile.name.split('.').pop();
-  const storageRef = ref(storage, `gs://${IMAGE_BUCKET}/${id}.${ext}`);
-  const uploadTask = uploadBytesResumable(storageRef, uploadFile);
-
-  uploadTask.on('state_changed',
-    (snapshot) => {
-      const pct = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
-      document.getElementById('uploadPct').textContent = pct + '%';
-      const circumference = 2 * Math.PI * 34;
-      const offset = circumference - (pct / 100) * circumference;
-      document.getElementById('uploadRingFg').style.strokeDashoffset = offset;
-    },
-    (error) => {
-      console.error(error);
-      toast('Upload error: ' + error.message, 'error');
-      resetUploadBtn(btn);
-    },
-    async () => {
-      try {
-        const imageURL = await getDownloadURL(uploadTask.snapshot.ref);
-        const payload = {
-          title: document.getElementById('upTitle').value,
-          category: document.getElementById('upCategory').value,
-          subCategory: document.getElementById('upSubCat').value,
-          recipient: document.getElementById('upRecipient').value,
-          details: document.getElementById('upDetails').value,
-          year: document.getElementById('upYear').value,
-          level: document.getElementById('upLevel').value,
-          image: imageURL,
-          imagePath: `${id}.${ext}`,
-          uploaderEmail: user.email,
-          timestamp: Date.now(),
-          status: 'pending'
-        };
-        await addDoc(collection(db, 'certificates'), payload);
-        toast(t('uploadOk'),'success',5000);
-        document.getElementById('uploadForm').reset();
-        uploadFile = null;
-        document.getElementById('dzPreview').style.display='none';
-        document.getElementById('dzContent').style.display='block';
-        document.getElementById('previewImg').style.display='block';
-        document.getElementById('previewName').style.display='block';
-        document.getElementById('dropzone').classList.remove('active');
-        resetUploadBtn(btn);
-        await fetchData();
-        switchView('view-history','history');
-      } catch(err) {
-        console.error(err);
-        toast('Error saving: ' + err.message, 'error');
-        resetUploadBtn(btn);
-      }
-    }
-  );
-}
-function resetUploadBtn(btn) {
-  btn.disabled = false;
-  btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> ส่งเพื่อตรวจสอบ';
-  document.getElementById('uploadProgress').style.display='none';
-  document.getElementById('previewImg').style.display='block';
-  document.getElementById('previewName').style.display='block';
+  if (!uploadB64) { toast(t('noFile'),'warning'); return; }
+  setLoading(true, lang==='th'?'กำลังอัปโหลด...':'Uploading...');
+  const payload = {
+    action:'upload',
+    id:'cert_'+Date.now(),
+    title:document.getElementById('upTitle').value,
+    category:document.getElementById('upCategory').value,
+    subCategory:document.getElementById('upSubCat').value,
+    recipient:document.getElementById('upRecipient').value,
+    details:document.getElementById('upDetails').value,
+    year:document.getElementById('upYear').value,
+    level:document.getElementById('upLevel').value,
+    image:uploadB64,
+    uploaderEmail:user.email,
+    timestamp:Date.now()
+  };
+  try {
+    const r = await fetch(BACKEND,{method:'POST',body:JSON.stringify(payload)});
+    const result = await r.json();
+    if (result.status==='success') {
+      toast(t('uploadOk'),'success',5000);
+      document.getElementById('uploadForm').reset();
+      uploadB64=null;
+      document.getElementById('dzPreview').style.display='none';
+      document.getElementById('dzContent').style.display='block';
+      document.getElementById('dropzone').classList.remove('active');
+      await fetchData();
+      switchView('view-history','history');
+    } else { toast('Error: '+result.message,'error'); }
+  } catch { toast(lang==='th'?'เชื่อมต่อเซิร์ฟเวอร์ไม่ได้':'Server error','error'); }
+  finally { setLoading(false); }
 }
 
 /* ════════════════════════════════════════
@@ -1590,22 +1472,22 @@ function renderHistory() {
     return;
   }
   const sConf = {
-    pending:{lbl:t('sPending'),cls:'badge-orange',icon:'fa-hourglass-half'},
-    approved:{lbl:t('sApproved'),cls:'badge-green',icon:'fa-circle-check'},
-    rejected:{lbl:t('sRejected'),cls:'badge-red',icon:'fa-circle-xmark'},
+    pending:  {lbl:t('sPending'),  cls:'badge-orange', icon:'fa-hourglass-half'},
+    approved: {lbl:t('sApproved'), cls:'badge-green',  icon:'fa-circle-check'},
+    rejected: {lbl:t('sRejected'), cls:'badge-red',    icon:'fa-circle-xmark'},
   };
   tbody.innerHTML = mine.map(c=>{
     const sc = sConf[c.status]||sConf.pending;
     const date = new Date(+c.timestamp).toLocaleDateString(lang==='th'?'th-TH':'en-US',{year:'numeric',month:'short',day:'numeric'});
     return `<tr>
       <td>
-        <p style="font-size:13.5px;font-weight:700;color:var(--text)">${c.title}</p>
-        <p style="font-size:11.5px;color:var(--text3);margin-top:3px"><i class="fa-solid fa-user-graduate" style="margin-right:4px;font-size:10px"></i>${c.recipient}</p>
+        <p style="font-size:14px;font-weight:700;color:var(--text)">${c.title}</p>
+        <p style="font-size:12px;color:var(--text3);margin-top:3px"><i class="fa-solid fa-user-graduate" style="margin-right:5px;font-size:10px"></i>${c.recipient}</p>
       </td>
-      <td style="font-size:11.5px;font-weight:600;color:var(--text2)">${date}</td>
+      <td style="font-size:12px;font-weight:600;color:var(--text2)">${date}</td>
       <td><span class="badge ${sc.cls}"><i class="fa-solid ${sc.icon}"></i> ${sc.lbl}</span></td>
       <td style="text-align:center">
-        <button onclick="openModal('${c.id}')" class="btn btn-ghost btn-icon" title="ดู"><i class="fa-solid fa-eye" style="font-size:12px"></i></button>
+        <button onclick="openModal('${c.id}')" class="btn btn-ghost btn-icon" title="ดู"><i class="fa-solid fa-eye" style="font-size:13px"></i></button>
       </td>
     </tr>`;
   }).join('');
@@ -1616,7 +1498,10 @@ function renderHistory() {
 ════════════════════════════════════════ */
 function setAdminTab(status) {
   adminTab=status;
-  ['pending','approved','rejected'].forEach(s=>{ document.getElementById('tab-'+s).classList.toggle('active',s===status); });
+  ['pending','approved','rejected'].forEach(s=>{
+    const btn=document.getElementById('tab-'+s);
+    btn.classList.toggle('active',s===status);
+  });
   renderAdminList();
 }
 
@@ -1625,30 +1510,37 @@ function renderAdminDashboard() {
   const aCnt=certs.filter(c=>c.status==='approved').length;
   const rCnt=certs.filter(c=>c.status==='rejected').length;
   const tot=certs.length;
+
+  // Badge counts
   document.getElementById('badge-pending').textContent=pCnt;
   document.getElementById('badge-approved').textContent=aCnt;
   document.getElementById('badge-rejected').textContent=rCnt;
+
+  // Stat cards
   const aStats=document.getElementById('adminStats');
-  if(aStats) aStats.innerHTML=[
-    {val:pCnt,lbl:t('sPending'),icon:'fa-hourglass-half',col:'var(--warning)',bg:'var(--warningSoft)',bl:'var(--warning)'},
-    {val:aCnt,lbl:t('sApproved'),icon:'fa-circle-check',col:'var(--success)',bg:'var(--successSoft)',bl:'var(--success)'},
-    {val:rCnt,lbl:t('sRejected'),icon:'fa-circle-xmark',col:'var(--danger)',bg:'var(--dangerSoft)',bl:'var(--danger)'},
+  if (aStats) aStats.innerHTML=[
+    {val:pCnt,lbl:t('sPending'),   icon:'fa-hourglass-half', col:'var(--warning)', bg:'var(--warningSoft)', bl:'var(--warning)'},
+    {val:aCnt,lbl:t('sApproved'),  icon:'fa-circle-check',   col:'var(--success)', bg:'var(--successSoft)', bl:'var(--success)'},
+    {val:rCnt,lbl:t('sRejected'),  icon:'fa-circle-xmark',   col:'var(--danger)',  bg:'var(--dangerSoft)',  bl:'var(--danger)'},
   ].map(s=>`<div class="card stat-card" style="border-left:3px solid ${s.bl}">
     <div class="stat-icon" style="background:${s.bg};color:${s.col}"><i class="fa-solid ${s.icon}"></i></div>
     <div><div class="stat-val">${s.val}</div><div class="stat-lbl">${s.lbl}</div></div>
   </div>`).join('');
+
+  // Progress
   const aProg=document.getElementById('adminProgress');
-  if(aProg&&tot>0) aProg.innerHTML=[
-    {lbl:t('sPending'),cnt:pCnt,col:'var(--warning)'},
-    {lbl:t('sApproved'),cnt:aCnt,col:'var(--success)'},
-    {lbl:t('sRejected'),cnt:rCnt,col:'var(--danger)'},
+  if (aProg&&tot>0) aProg.innerHTML=[
+    {lbl:t('sPending'),  cnt:pCnt, col:'var(--warning)'},
+    {lbl:t('sApproved'), cnt:aCnt, col:'var(--success)'},
+    {lbl:t('sRejected'), cnt:rCnt, col:'var(--danger)'},
   ].map(p=>`<div>
-    <div style="display:flex;justify-content:space-between;margin-bottom:5px">
-      <span style="font-size:11.5px;font-weight:600;color:var(--text2)">${p.lbl}</span>
-      <span style="font-size:11.5px;font-weight:800;color:var(--text)">${p.cnt}<span style="color:var(--text3);font-weight:500"> / ${tot}</span></span>
+    <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+      <span style="font-size:12px;font-weight:600;color:var(--text2)">${p.lbl}</span>
+      <span style="font-size:12px;font-weight:800;color:var(--text)">${p.cnt}<span style="color:var(--text3);font-weight:500"> / ${tot}</span></span>
     </div>
     <div class="progress-track"><div class="progress-fill" style="width:${tot?((p.cnt/tot)*100).toFixed(1):0}%;background:${p.col}"></div></div>
   </div>`).join('');
+
   renderAdminCfgLists();
   if (!user?.isAdmin) return;
   renderAdminList();
@@ -1659,19 +1551,21 @@ function renderAdminList() {
   if (!grid) return;
   const q=(document.getElementById('adminSearch')?.value||'').toLowerCase();
   let items = certs.filter(c=>c.status===adminTab);
-  if(q) items=items.filter(c=>(c.title||'').toLowerCase().includes(q)||(c.recipient||'').toLowerCase().includes(q));
+  if (q) items=items.filter(c=>(c.title||'').toLowerCase().includes(q)||(c.recipient||'').toLowerCase().includes(q));
   items.sort((a,b)=>b.timestamp-a.timestamp);
-  if(!items.length){
-    grid.innerHTML=`<div style="padding:50px 20px;text-align:center;color:var(--text3);font-size:13.5px;font-weight:600">
-      <i class="fa-solid fa-inbox" style="font-size:28px;display:block;margin-bottom:12px"></i>
+
+  if (!items.length) {
+    grid.innerHTML=`<div style="padding:50px 20px;text-align:center;color:var(--text3);font-size:14px;font-weight:600">
+      <i class="fa-solid fa-inbox" style="font-size:30px;display:block;margin-bottom:12px"></i>
       ${lang==='th'?'ไม่มีรายการ':'No items here'}
     </div>`;
     return;
   }
+
   grid.innerHTML=items.map(c=>{
     const date=new Date(+c.timestamp).toLocaleDateString(lang==='th'?'th-TH':'en-US',{year:'numeric',month:'short',day:'numeric'});
     let btns='';
-    if(c.status==='pending'){
+    if (c.status==='pending') {
       btns=`
         <button onclick="changeStatus('${c.id}','approved')" class="btn btn-success btn-sm" style="flex:1;justify-content:center">
           <i class="fa-solid fa-circle-check"></i> ${lang==='th'?'อนุมัติ':'Approve'}
@@ -1689,85 +1583,70 @@ function renderAdminList() {
     return `
       <div class="card" style="padding:0;overflow:hidden">
         <div class="admin-row">
-          <img class="admin-thumb" src="${c.image}" onclick="openModal('${c.id}')" alt="" loading="lazy">
+          <img class="admin-thumb" src="${c.image}" onclick="openModal('${c.id}')" alt="">
           <div style="flex:1;overflow:hidden">
-            <h4 style="font-size:13.5px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:4px" class="clamp2">${c.title}</h4>
-            <p style="font-size:11.5px;color:var(--text3);font-weight:600;margin-bottom:5px" class="truncate"><i class="fa-solid fa-user" style="margin-right:4px;font-size:9.5px"></i>${c.recipient}</p>
+            <h4 style="font-size:14px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:5px" class="clamp2">${c.title}</h4>
+            <p style="font-size:12px;color:var(--text3);font-weight:600;margin-bottom:6px" class="truncate"><i class="fa-solid fa-user" style="margin-right:5px;font-size:10px"></i>${c.recipient}</p>
             <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-              <span class="badge badge-purple" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.uploaderEmail}"><i class="fa-solid fa-envelope"></i> ${c.uploaderEmail}</span>
-              <button onclick="banFromConsole('${c.uploaderEmail}')" style="font-size:9.5px;color:var(--danger);font-weight:800;background:none;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.4px;padding:0">แบน</button>
+              <span class="badge badge-purple" style="max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.uploaderEmail}"><i class="fa-solid fa-envelope"></i> ${c.uploaderEmail}</span>
+              <button onclick="banFromConsole('${c.uploaderEmail}')" style="font-size:10px;color:var(--danger);font-weight:800;background:none;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.4px;padding:0">แบน</button>
             </div>
-            <p style="font-size:10.5px;color:var(--text3);margin-top:4px"><i class="fa-regular fa-calendar" style="margin-right:3px"></i>${date}</p>
+            <p style="font-size:11px;color:var(--text3);margin-top:5px"><i class="fa-regular fa-calendar" style="margin-right:4px"></i>${date}</p>
           </div>
-          <button onclick="masterDelete('${c.id}')" class="btn btn-danger btn-icon btn-sm" title="${lang==='th'?'ลบถาวร':'Delete'}"><i class="fa-solid fa-trash" style="font-size:11px"></i></button>
+          <button onclick="masterDelete('${c.id}')" class="btn btn-danger btn-icon btn-sm" title="${lang==='th'?'ลบถาวร':'Delete'}"><i class="fa-solid fa-trash" style="font-size:12px"></i></button>
         </div>
-        <div style="display:flex;gap:7px;padding:0 14px 12px">${btns}</div>
+        <div style="display:flex;gap:8px;padding:0 16px 14px">${btns}</div>
       </div>`;
   }).join('');
 }
 
-/* ════════════════════════════════════════
-   ADMIN ACTIONS — Firestore
-════════════════════════════════════════ */
 async function changeStatus(id, newStatus) {
-  setLoading(true);
+  setLoading(true, lang==='th'?'กำลังอัปเดตสถานะ...':'Updating...');
   try {
-    const { db, doc, updateDoc } = window._fb;
-    await updateDoc(doc(db,'certificates',id), { status: newStatus });
-    const cert = certs.find(c=>c.id===id);
-    if (cert) cert.status = newStatus;
-    renderAll();
-    toast(t('statusUpdated'),'success');
-  } catch(e) { toast(lang==='th'?'เกิดข้อผิดพลาด':'Error','error'); }
+    const r=await fetch(BACKEND,{method:'POST',body:JSON.stringify({action:'changeStatus',id,newStatus})});
+    const result=await r.json();
+    if (result.status==='success') { await fetchData(); toast(t('statusUpdated'),'success'); }
+  } catch { toast(lang==='th'?'เกิดข้อผิดพลาด':'Error','error'); }
   finally { setLoading(false); }
 }
-
 async function masterDelete(id) {
   if (!confirm(t('delConfirm'))) return;
-  setLoading(true);
+  setLoading(true, lang==='th'?'กำลังลบ...':'Deleting...');
   try {
-    const { db, storage, doc, deleteDoc, ref, deleteObject } = window._fb;
-    const cert = certs.find(c=>c.id===id);
-    // Delete image from storage if path exists
-    if (cert?.imagePath) {
-      try {
-        const imgRef = ref(storage, `gs://${window._fb.IMAGE_BUCKET}/${cert.imagePath}`);
-        await deleteObject(imgRef);
-      } catch(e) { /* ignore if image not found */ }
-    }
-    await deleteDoc(doc(db,'certificates',id));
-    certs = certs.filter(c=>c.id!==id);
-    renderAll();
-    toast(t('deleted'),'success');
-  } catch(e) { toast(lang==='th'?'เกิดข้อผิดพลาด':'Error','error'); }
-  finally { setLoading(false); }
+    await fetch(BACKEND,{method:'POST',body:JSON.stringify({action:'delete',id})});
+    certs=certs.filter(c=>c.id!==id);
+    await fetchData(); toast(t('deleted'),'success');
+  } catch {
+    certs=certs.filter(c=>c.id!==id); renderAll(); setLoading(false);
+  }
 }
 
 /* ════════════════════════════════════════
-   ADMIN CONFIG — localStorage + Firestore sync
+   ADMIN CONFIG LISTS
 ════════════════════════════════════════ */
 function renderAdminCfgLists() {
   const aList=document.getElementById('adminList');
-  if(aList) aList.innerHTML=adminCfg.admins.map(email=>`
+  if (aList) aList.innerHTML=adminCfg.admins.map(email=>`
     <div class="mgmt-item">
-      <div style="display:flex;align-items:center;gap:6px;overflow:hidden">
-        <i class="fa-solid fa-shield" style="color:var(--accent);font-size:10px;flex-shrink:0"></i>
+      <div style="display:flex;align-items:center;gap:7px;overflow:hidden">
+        <i class="fa-solid fa-shield" style="color:var(--accent);font-size:11px;flex-shrink:0"></i>
         <span class="truncate" style="color:var(--text2)">${email}</span>
       </div>
       ${email==='aceaa372@gmail.com'
         ?`<span style="font-size:9px;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;flex-shrink:0">Owner</span>`
-        :`<button onclick="removeAdmin('${email}')" style="background:none;border:none;color:var(--danger);cursor:pointer;font-size:13px;flex-shrink:0"><i class="fa-solid fa-circle-minus"></i></button>`
+        :`<button onclick="removeAdmin('${email}')" style="background:none;border:none;color:var(--danger);cursor:pointer;font-size:14px;flex-shrink:0"><i class="fa-solid fa-circle-minus"></i></button>`
       }
     </div>`).join('');
+
   const bList=document.getElementById('bannedList');
-  if(bList){
-    if(!adminCfg.banned.length){
-      bList.innerHTML=`<p style="text-align:center;font-size:12px;color:var(--text3);padding:8px 0">${lang==='th'?'ไม่มีผู้ใช้ถูกแบน':'No banned users'}</p>`;
+  if (bList) {
+    if (!adminCfg.banned.length) {
+      bList.innerHTML=`<p style="text-align:center;font-size:12px;color:var(--text3);padding:10px 0">${lang==='th'?'ไม่มีผู้ใช้ถูกแบน':'No banned users'}</p>`;
     } else {
       bList.innerHTML=adminCfg.banned.map(email=>`
-        <div class="mgmt-item" style="background:var(--dangerSoft);border-color:rgba(var(--dangerRgb),.12)">
-          <div style="display:flex;align-items:center;gap:6px;overflow:hidden">
-            <i class="fa-solid fa-ban" style="color:var(--danger);font-size:10px;flex-shrink:0"></i>
+        <div class="mgmt-item" style="background:var(--dangerSoft);border-color:rgba(220,38,38,.12)">
+          <div style="display:flex;align-items:center;gap:7px;overflow:hidden">
+            <i class="fa-solid fa-ban" style="color:var(--danger);font-size:11px;flex-shrink:0"></i>
             <span class="truncate" style="color:var(--danger)">${email}</span>
           </div>
           <button onclick="unban('${email}')" style="font-size:10px;font-weight:800;color:var(--success);background:none;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.4px;flex-shrink:0">${lang==='th'?'ปลดแบน':'Unban'}</button>
@@ -1775,56 +1654,70 @@ function renderAdminCfgLists() {
     }
   }
 }
-function addAdminEmail(){
+function addAdminEmail() {
   const inp=document.getElementById('newAdminEmail');
   const email=inp.value.trim().toLowerCase();
-  if(!email||!email.includes('@')){toast(t('invalidEmail'),'warning');return}
-  if(!adminCfg.admins.includes(email)){
-    adminCfg.admins.push(email);saveAdminCfg();inp.value='';
+  if (!email||!email.includes('@')) { toast(t('invalidEmail'),'warning'); return; }
+  if (!adminCfg.admins.includes(email)) {
+    adminCfg.admins.push(email); saveAdminCfg(); inp.value='';
     toast(`${lang==='th'?'เพิ่มแอดมิน':'Admin added'}: ${email}`,'success');
-  } else {toast(t('alreadyAdmin'),'warning')}
+  } else { toast(t('alreadyAdmin'),'warning'); }
 }
-function removeAdmin(email){
+function removeAdmin(email) {
   adminCfg.admins=adminCfg.admins.filter(e=>e!==email);
-  saveAdminCfg();toast(lang==='th'?'ถอนสิทธิ์แล้ว':'Admin removed','info');
+  saveAdminCfg();
+  toast(lang==='th'?'ถอนสิทธิ์แล้ว':'Admin removed','info');
 }
-function banUserAction(){
+function banUserAction() {
   const inp=document.getElementById('banEmail');
   const email=inp.value.trim().toLowerCase();
-  if(!email)return;
-  if(email==='aceaa372@gmail.com'){toast(t('cannotBanOwner'),'error');return}
-  if(!adminCfg.banned.includes(email)){
-    adminCfg.banned.push(email);saveAdminCfg();inp.value='';
+  if (!email) return;
+  if (email==='aceaa372@gmail.com') { toast(t('cannotBanOwner'),'error'); return; }
+  if (!adminCfg.banned.includes(email)) {
+    adminCfg.banned.push(email); saveAdminCfg(); inp.value='';
     toast(`${lang==='th'?'แบนแล้ว':'Banned'}: ${email}`,'success');
   }
 }
-function banFromConsole(email){
-  const e=email.toLowerCase();
-  if(confirm(T[lang].banConfirm(e))){
-    if(!adminCfg.banned.includes(e)){adminCfg.banned.push(e);saveAdminCfg();toast(`${lang==='th'?'แบนแล้ว':'Banned'}: ${e}`,'success')}
+function banFromConsole(email) {
+  if (confirm(T[lang].banConfirm(email))) {
+    const e=email.toLowerCase();
+    if (!adminCfg.banned.includes(e)) {
+      adminCfg.banned.push(e); saveAdminCfg();
+      toast(`${lang==='th'?'แบนแล้ว':'Banned'}: ${e}`,'success');
+    }
   }
 }
-function unban(email){
+function unban(email) {
   adminCfg.banned=adminCfg.banned.filter(e=>e!==email);
-  saveAdminCfg();toast(lang==='th'?'ปลดแบนแล้ว':'Unbanned','success');
+  saveAdminCfg();
+  toast(lang==='th'?'ปลดแบนแล้ว':'Unbanned','success');
 }
-function saveAdminCfg(){
+function saveAdminCfg() {
   localStorage.setItem('adminCfg',JSON.stringify(adminCfg));
-  if(user){user.isAdmin=adminCfg.admins.includes(user.email);localStorage.setItem('session',JSON.stringify(user));updateAuthUI()}
+  if (user) {
+    user.isAdmin=adminCfg.admins.includes(user.email);
+    localStorage.setItem('session',JSON.stringify(user));
+    updateAuthUI();
+  }
   renderAdminCfgLists();
 }
 
 /* ════════════════════════════════════════
    EXPORT CSV
 ════════════════════════════════════════ */
-function exportCSV(){
+function exportCSV() {
   const hdr=['ID','Title','Category','SubCategory','Recipient','Level','Year','Status','Uploader','Date'];
-  const rows=certs.map(c=>[c.id,c.title,c.category,c.subCategory||'',c.recipient,c.level||'',c.year||'',c.status,c.uploaderEmail,new Date(+c.timestamp).toLocaleDateString('th-TH')]);
+  const rows=certs.map(c=>[
+    c.id,c.title,c.category,c.subCategory||'',c.recipient,
+    c.level||'',c.year||'',c.status,c.uploaderEmail,
+    new Date(+c.timestamp).toLocaleDateString('th-TH')
+  ]);
   const csv=[hdr,...rows].map(r=>r.map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(',')).join('\n');
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'}));
   a.download=`ntun_archive_${new Date().toISOString().slice(0,10)}.csv`;
-  a.click();toast(t('exported'),'success');
+  a.click();
+  toast(t('exported'),'success');
 }
 </script>
 </body>
